@@ -23,6 +23,7 @@ import com.telus.rcms.utils.APIUtils;
 import com.telus.rcms.utils.DBUtils;
 import com.telus.rcms.utils.GenericUtils;
 import com.telus.rcms.utils.JSONUtils;
+import com.telus.rcms.utils.ValidationUtils;
 import com.test.reporting.Reporting;
 import com.test.ui.actions.BaseTest;
 import com.test.ui.actions.Validate;
@@ -34,11 +35,11 @@ import com.test.reporting.ExtentTestManager;
 
 /**
  * 
- * TestCase name : TC01 Call getMigrationPenalty for a subscriber who wants to
- * Migrate from Prepaid account with PRESOC to Postpaid (DB+DF)
+ * Testcase Name : TC04 Call notifySubscriptionMigration to migrate from Prepaid to Postpaid_FROM PRESOC and PRECREDIT to DB + DF + BIB + ACB + RCB+AF
  *
+ * 
  */
-public class TC06_Telus_DB_DF_BIB_ACB_TIA_TIP_AF extends BaseTest {
+public class TC04_Pre_PRESOC_PRECREDIT_to_Post_DB_DF_ACB_RCB_AF extends BaseTest {
 
 	String testCaseName = null;
 	String scriptName = null;
@@ -47,15 +48,16 @@ public class TC06_Telus_DB_DF_BIB_ACB_TIA_TIP_AF extends BaseTest {
 	String jsonPathLibrary = null;
 
 	String environment = null;
-	static String connectionString = null;
+
+	static Statement statement = null;
+	static ResultSet resultSet = null;
+	static ResultSet rsAgreementItem = null;
 
 	String accountID = null;
 	String subscriptionID = null;
 	String subscriberNum = null;
-
 	String startDate = null;
 	String jsonString = null;
-	String paymentMech = null;
 
 	ExtentTest parentTest = null;
 
@@ -69,12 +71,12 @@ public class TC06_Telus_DB_DF_BIB_ACB_TIA_TIP_AF extends BaseTest {
 		scriptName = GenericUtils.getTestCaseName(testCaseName);
 		testCaseDescription = "The purpose of this test case is to verify \"" + scriptName + "\" workflow";
 		environment = SystemProperties.EXECUTION_ENVIRONMENT;
+
 	}
 
-	@Test(groups = { "Migration", "TC01_Telus_DB_DF_BIB_ACB_TIA_TIP_AF",
-			"CompleteRegressionSuite" })
+	@Test(groups = { "Loyalty_Agreement", "Migration", "TC04_Pre_PRESOC_PRECREDIT_to_Post_DB_DF_ACB_RCB_AF", "CompleteRegressionSuite" })
 
-	public void testMethod_Migration(ITestContext iTestContext) throws Exception {
+	public void testMethod_migration(ITestContext iTestContext) throws Exception {
 
 		parentTest = ExtentTestManager.getTest();
 		parentTest.assignCategory("MIGRATION");
@@ -88,27 +90,27 @@ public class TC06_Telus_DB_DF_BIB_ACB_TIA_TIP_AF extends BaseTest {
 		Reporting.setNewGroupName("Test Case Details");
 		Reporting.logReporter(Status.INFO, "Test Case Name : [" + scriptName + "]");
 		Reporting.logReporter(Status.INFO, "Test Case Description : [" + testCaseDescription + "]");
+		Reporting.logReporter(Status.INFO, "Request Payload Path : [" + requestPayloadFilePath + "]");
 		Reporting.printAndClearLogGroupStatements();
 
+	
 		Reporting.setNewGroupName("ACCESS TOKEN GENERATION");
-		String rewardServiceaccessToken = APIUtils.getAccessToken(environment, "rewardService");
-		String violationaccessToken = APIUtils.getAccessToken(environment, "violation");
-		Reporting.logReporter(Status.INFO, "ACCESS_TOKEN FOR REWARD SERVICE: " + rewardServiceaccessToken);
-		Reporting.logReporter(Status.INFO, "ACCESS_TOKEN FOR VIOLATION SERVICE: " + violationaccessToken);
+		String accessToken = APIUtils.getAccessToken(environment, "rewardService");
+		Reporting.logReporter(Status.INFO, "ACCESS_TOKEN: " + accessToken);
 		Reporting.printAndClearLogGroupStatements();
 
 		// Activation API Call
 
-		Reporting.setNewGroupName("ACTIVATION SERVICE API CALL");
+		Reporting.setNewGroupName("ACTIVATION SERVICE API CALL - TC01");
 		String apiEnv = GenericUtils.getAPIEnvironment(environment);
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 		accountID = GenericUtils.getUniqueAccountID(apiEnv);
 		subscriptionID = GenericUtils.getUniqueSubscriptionID(apiEnv);
 		subscriberNum = GenericUtils.getUniqueSubscriberNumber(apiEnv);
 		startDate = JSONUtils.getGMTStartDate();
-		System.setProperty("karate.auth_token", rewardServiceaccessToken);
-		System.setProperty("karate.auth_token_reward", rewardServiceaccessToken);
-		System.setProperty("karate.auth_token_violation", violationaccessToken);
+
+
+		System.setProperty("karate.auth_token_reward", accessToken);
 		System.setProperty("karate.accID", accountID);
 		System.setProperty("karate.subID", subscriptionID);
 		System.setProperty("karate.subNum", subscriberNum);
@@ -116,67 +118,61 @@ public class TC06_Telus_DB_DF_BIB_ACB_TIA_TIP_AF extends BaseTest {
 		System.setProperty("karate.apiEnv", apiEnv);
 
 		Map<String, Object> apiOperation = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/activation/activationTC1.feature");
-		Reporting.logReporter(Status.INFO,
-				"API Operation status: " + apiOperation.get("tc01ActivateTelusSubWithAllRequest"));
-		Reporting.logReporter(Status.INFO,
-				"API Operation Request: " + apiOperation.get("tc01ActivateTelusSubWithAllStatus"));
+				"classpath:tests/RCMS/activation/Others/activationTC31.feature");
+		Reporting.logReporter(Status.INFO, "API Operation Status: " + apiOperation.get("apiStatus"));
+		Reporting.logReporter(Status.INFO, "API Operation Request: " + apiOperation.get("apiRequest"));
+
 		Reporting.printAndClearLogGroupStatements();
 
 		// Migration API Call
-
-		Reporting.setNewGroupName("MIGRATION SERVICE API CALL");
+		Reporting.setNewGroupName("MIGRATION API CALL");
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
+		
 
-		Map<String, Object> apiOperation3 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/GetMigrationPenalty/GetMigrationPenaltyTC01.feature");
-		Reporting.logReporter(Status.INFO, "API Operation status: " + apiOperation3.get("apiStatus"));
-		Reporting.logReporter(Status.INFO, "API Operation Request: " + apiOperation3.get("apiResponse"));
-
-		jsonString = String.valueOf(apiOperation3.get("apiResponse")).replace("=", ":");
+		Map<String, Object> apiOperation2 = APIJava.runKarateFeature(environment,
+				"classpath:tests/RCMS/Migration/migrationTC4.feature");
+		Reporting.logReporter(Status.INFO,
+				"API Operation status: " + apiOperation2.get("apiStatus"));
+		Reporting.logReporter(Status.INFO,
+				"API Operation Request: " + apiOperation2.get("apiRequest"));
+		
+		jsonString = String.valueOf(apiOperation2.get("apiRequest")).replace("=", ":");
 		Reporting.printAndClearLogGroupStatements();
 
 		/*** DB VALIDATION ***/
-		Reporting.setNewGroupName("DB VERIFICATION - TC06");
-		responseAndDbCheck();
+		Reporting.setNewGroupName("DB VERIFICATION");
+		payloadAndDbCheck(jsonString);
 		Reporting.printAndClearLogGroupStatements();
 
 	}
 
-	public void responseAndDbCheck() throws SQLException, IOException, InterruptedException {
+	public void payloadAndDbCheck(String jsonString) throws SQLException, IOException {
 
 		DBUtils.callDBConnect();
-
 		/**
 		 * DB Verification Steps
 		 */
-
-		Reporting.logReporter(Status.INFO, "Pretty Payload: " + jsonString);
-		paymentMech="NA";
-
 		// Declaring variable from payload
-
-		GenericUtils.responseDBCheckMigrationPenalty(jsonString, subscriptionID, 0, paymentMech);
+		ValidationUtils.migrationDBcheck(jsonString,1);
 
 		Reporting.logReporter(Status.INFO, "--------------------DB Validation Completed--------------------");
+
 	}
 
 	/**
-	 * Close Connections
+	 * Close DB Connection
 	 */
 
 	@AfterMethod(alwaysRun = true)
 	public void afterTest() {
-		Reporting.setNewGroupName("Close DB Connection");
+		Reporting.setNewGroupName("Close All Connection");
 		try {
 			DBUtils.dbDisConnect();
 		} catch (SQLException e) {
-			Reporting.logReporter(Status.INFO, "DB Connection Closed Successfully!");
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		Reporting.printAndClearLogGroupStatements();
-		Reporting.setNewGroupName("Close All Browser");
-		WebDriverSteps.closeTheBrowser();
+		Reporting.logReporter(Status.INFO, "DB Connection Closed Successfully!");
 		Reporting.printAndClearLogGroupStatements();
 	}
-
 }

@@ -23,6 +23,7 @@ import com.telus.rcms.utils.APIUtils;
 import com.telus.rcms.utils.DBUtils;
 import com.telus.rcms.utils.GenericUtils;
 import com.telus.rcms.utils.JSONUtils;
+import com.telus.rcms.utils.ValidationUtils;
 import com.test.reporting.Reporting;
 import com.test.ui.actions.BaseTest;
 import com.test.ui.actions.Validate;
@@ -34,10 +35,11 @@ import com.test.reporting.ExtentTestManager;
 
 /**
  * 
- * TestCase name : TC04 Call getMigrationPenalty for a subscriber who DID RENEWAL having DB+DF+BIB -  Renewed to DF with Payment Method as BIB_TELUS_PENDING and wants to Migrate to Prepaid
+ * Testcase Name : TC02 Call notifySubscriptionMigration to migrate from Prepaid account with PRECREDIT to Postpaid(DB+DF+AF)
  *
+ * 
  */
-public class TC04_DB_DF_BIB_Postpaid_Renewal_DF_Pay_BTP_Prepaid extends BaseTest {
+public class TC02_Pre_PRECREDIT_to_Post_DB_DF_AF extends BaseTest {
 
 	String testCaseName = null;
 	String scriptName = null;
@@ -46,15 +48,16 @@ public class TC04_DB_DF_BIB_Postpaid_Renewal_DF_Pay_BTP_Prepaid extends BaseTest
 	String jsonPathLibrary = null;
 
 	String environment = null;
-	static String connectionString = null;
+
+	static Statement statement = null;
+	static ResultSet resultSet = null;
+	static ResultSet rsAgreementItem = null;
 
 	String accountID = null;
 	String subscriptionID = null;
 	String subscriberNum = null;
-
 	String startDate = null;
 	String jsonString = null;
-	String paymentMech=null;
 
 	ExtentTest parentTest = null;
 
@@ -68,11 +71,12 @@ public class TC04_DB_DF_BIB_Postpaid_Renewal_DF_Pay_BTP_Prepaid extends BaseTest
 		scriptName = GenericUtils.getTestCaseName(testCaseName);
 		testCaseDescription = "The purpose of this test case is to verify \"" + scriptName + "\" workflow";
 		environment = SystemProperties.EXECUTION_ENVIRONMENT;
+
 	}
 
-	@Test(groups = {"Loyalty_Agreement_Violation","Migration","TC04_DB_DF_BIB_Postpaid_Renewal_DF_Pay_BTP_Prepaid","CompleteRegressionSuite" })
+	@Test(groups = { "Loyalty_Agreement", "Migration", "TC02_Pre_PRECREDIT_to_Post_DB_DF_AF", "CompleteRegressionSuite" })
 
-	public void testMethod_Migration(ITestContext iTestContext) throws Exception {
+	public void testMethod_migration(ITestContext iTestContext) throws Exception {
 
 		parentTest = ExtentTestManager.getTest();
 		parentTest.assignCategory("MIGRATION");
@@ -86,112 +90,89 @@ public class TC04_DB_DF_BIB_Postpaid_Renewal_DF_Pay_BTP_Prepaid extends BaseTest
 		Reporting.setNewGroupName("Test Case Details");
 		Reporting.logReporter(Status.INFO, "Test Case Name : [" + scriptName + "]");
 		Reporting.logReporter(Status.INFO, "Test Case Description : [" + testCaseDescription + "]");
+		Reporting.logReporter(Status.INFO, "Request Payload Path : [" + requestPayloadFilePath + "]");
 		Reporting.printAndClearLogGroupStatements();
-		
+
+	
 		Reporting.setNewGroupName("ACCESS TOKEN GENERATION");
-		String rewardServiceaccessToken = APIUtils.getAccessToken(environment, "rewardService");
-		String violationaccessToken = APIUtils.getAccessToken(environment, "violation");
-		Reporting.logReporter(Status.INFO, "ACCESS_TOKEN FOR REWARD SERVICE: " + rewardServiceaccessToken);
-		Reporting.logReporter(Status.INFO, "ACCESS_TOKEN FOR VIOLATION SERVICE: " + violationaccessToken);
+		String accessToken = APIUtils.getAccessToken(environment, "rewardService");
+		Reporting.logReporter(Status.INFO, "ACCESS_TOKEN: " + accessToken);
 		Reporting.printAndClearLogGroupStatements();
 
 		// Activation API Call
 
+		Reporting.setNewGroupName("ACTIVATION SERVICE API CALL - TC01");
 		String apiEnv = GenericUtils.getAPIEnvironment(environment);
+		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 		accountID = GenericUtils.getUniqueAccountID(apiEnv);
 		subscriptionID = GenericUtils.getUniqueSubscriptionID(apiEnv);
 		subscriberNum = GenericUtils.getUniqueSubscriberNumber(apiEnv);
 		startDate = JSONUtils.getGMTStartDate();
-		System.setProperty("karate.auth_token", rewardServiceaccessToken);
-		System.setProperty("karate.auth_token_reward", rewardServiceaccessToken);
-		System.setProperty("karate.auth_token_violation", violationaccessToken);
+
+
+		System.setProperty("karate.auth_token_reward", accessToken);
 		System.setProperty("karate.accID", accountID);
 		System.setProperty("karate.subID", subscriptionID);
 		System.setProperty("karate.subNum", subscriberNum);
 		System.setProperty("karate.startDate", startDate);
 		System.setProperty("karate.apiEnv", apiEnv);
 
-		
-		//Activation API Call 
-		
-		Reporting.setNewGroupName("ACTIVATION SERVICE API CALL");
-		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
-		
-		Map<String, Object> apiOperation1 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/Activation/Others/activationTC6.feature");
-		Reporting.logReporter(Status.INFO,
-				"API Operation status: " + apiOperation1.get("tc06ActivateTelusSubwithDF_DB_BIBStatus"));
-		Reporting.logReporter(Status.INFO,
-				"API Operation Request: " + apiOperation1.get("tc06ActivateTelusSubwithDF_DB_BIBRequest"));
-		
+		Map<String, Object> apiOperation = APIJava.runKarateFeature(environment,
+				"classpath:tests/RCMS/activation/Others/activationTC30.feature");
+		Reporting.logReporter(Status.INFO, "API Operation Status: " + apiOperation.get("apiStatus"));
+		Reporting.logReporter(Status.INFO, "API Operation Request: " + apiOperation.get("apiRequest"));
+
 		Reporting.printAndClearLogGroupStatements();
-		
-		//Renewal API call
-		Reporting.setNewGroupName("RENEWAL SERVICE API CALL - AccessoryFinance");
+
+		// Migration API Call
+		Reporting.setNewGroupName("MIGRATION API CALL");
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
+		
 
 		Map<String, Object> apiOperation2 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/Renewal/getMigrationPenalty/renewalTC2.feature");
-		Reporting.logReporter(Status.INFO, "API Operation status: " + apiOperation2.get("apiStatus"));
-		Reporting.logReporter(Status.INFO, "API Operation Request: " + apiOperation2.get("apiRequest"));
-		paymentMech="BIB_TELUS_PENDING";
-		Reporting.printAndClearLogGroupStatements();
+				"classpath:tests/RCMS/Migration/migrationTC2.feature");
+		Reporting.logReporter(Status.INFO,
+				"API Operation status: " + apiOperation2.get("apiStatus"));
+		Reporting.logReporter(Status.INFO,
+				"API Operation Request: " + apiOperation2.get("apiRequest"));
 		
-		// GetMigrationPenalty API Call
-
-		Reporting.setNewGroupName("GET MIGRATION SERVICE API CALL");
-		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
-
-		Map<String, Object> apiOperation3 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/GetMigrationPenalty/GetMigrationPenaltyTC04.feature");
-		Reporting.logReporter(Status.INFO,
-				"API Operation status: " + apiOperation3.get("apiStatus"));
-		Reporting.logReporter(Status.INFO,
-				"API Operation Request: " + apiOperation3.get("apiResponse"));
-
-		jsonString = String.valueOf(apiOperation3.get("apiResponse")).replace("=", ":");
+		jsonString = String.valueOf(apiOperation2.get("apiRequest")).replace("=", ":");
 		Reporting.printAndClearLogGroupStatements();
 
 		/*** DB VALIDATION ***/
-		Reporting.setNewGroupName("DB VERIFICATION - TC04");
-		responseAndDbCheck();
+		Reporting.setNewGroupName("DB VERIFICATION");
+		payloadAndDbCheck(jsonString);
 		Reporting.printAndClearLogGroupStatements();
 
 	}
 
-	public void responseAndDbCheck() throws SQLException, IOException, InterruptedException {
+	public void payloadAndDbCheck(String jsonString) throws SQLException, IOException {
 
-		 DBUtils.callDBConnect();
-
+		DBUtils.callDBConnect();
 		/**
 		 * DB Verification Steps
 		 */
-
-		Reporting.logReporter(Status.INFO, "Pretty Payload: " + jsonString);
-
 		// Declaring variable from payload
-
-		GenericUtils.responseDBCheckMigrationPenalty(jsonString, subscriptionID, 2,paymentMech);
+		ValidationUtils.migrationDBcheck(jsonString,1);
 
 		Reporting.logReporter(Status.INFO, "--------------------DB Validation Completed--------------------");
+
 	}
 
 	/**
-	 * Close Connections
+	 * Close DB Connection
 	 */
 
 	@AfterMethod(alwaysRun = true)
 	public void afterTest() {
-		Reporting.setNewGroupName("Close DB Connection");
+		Reporting.setNewGroupName("Close All Connection");
 		try {
 			DBUtils.dbDisConnect();
 		} catch (SQLException e) {
-			Reporting.logReporter(Status.INFO, "DB Connection Closed Successfully!");
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		Reporting.printAndClearLogGroupStatements();
-		Reporting.setNewGroupName("Close All Browser");
-		WebDriverSteps.closeTheBrowser();
+		Reporting.logReporter(Status.INFO, "DB Connection Closed Successfully!");
 		Reporting.printAndClearLogGroupStatements();
 	}
-
 }

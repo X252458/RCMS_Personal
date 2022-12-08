@@ -3,13 +3,13 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.telus.rcms.tests.ReturnAgreementItem.TC04_Telus_DB_DF_BIB_TIA_TIP_Renewal_DB_AF_Pay_BTP_ReturnAgrmt">
+      <class name="com.telus.rcms.tests.Migration.TC01_Pre_PRESOC_to_Post_DB_DF_AF">
         <methods>
-          <include name="testMethod_Exchange" invocation-numbers="0"/>
           <include name="afterTest"/>
+          <include name="testMethod_migration" invocation-numbers="0"/>
           <include name="BeforeMethod"/>
         </methods>
-      </class> <!-- com.telus.rcms.tests.ReturnAgreementItem.TC04_Telus_DB_DF_BIB_TIA_TIP_Renewal_DB_AF_Pay_BTP_ReturnAgrmt -->
+      </class> <!-- com.telus.rcms.tests.Migration.TC01_Pre_PRESOC_to_Post_DB_DF_AF -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

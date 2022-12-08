@@ -1,0 +1,294 @@
+{
+	"agreementCreate": {
+		"agreementDuration": {
+			"startDateTime": "2021-06-23T14:00:00-0500",
+			"endDateTime": null,
+			"quantity": {
+				"amount": 0,
+				"units": "MONTH"
+			}
+		},
+		"relatedParty": [
+			{
+				"id": "70909959",
+				"role": "ACCOUNT",
+				"characteristic": [
+					{
+						"name": "BRAND_ID",
+						"value": "1"
+					},
+					{
+						"name": "ACCOUNT_TYPE_CODE",
+						"value": "I"
+					},
+					{
+						"name": "ACCOUNT_SUB_TYPE_CODE",
+						"value": "Q"
+					}
+				]
+			},
+			{
+				"id": 324234,
+				"role": "ORIGINATOR",
+				"characteristic": [
+					{
+						"name": "TRANSACTION_ID",
+						"value": "234252"
+					},
+					{
+						"name": "TEAM_MEMBER_ID",
+						"value": "156715"
+					},
+					{
+						"name": "CHNL_ORG_ID",
+						"value": "C00VW01506"
+					},
+					{
+						"name": "SALES_REP_ID",
+						"value": "8164"
+					}
+				]
+			},
+			{
+				"id": "8499865",
+				"role": "SUBSCRIPTION",
+				"characteristic": [
+					{
+						"name": "MARKET_PROVINCE",
+						"value": "ON"
+					},
+					{
+						"name": "HOME_PROVINCE_CODE",
+						"value": "ON"
+					},
+					{
+						"name": "SUBSCRIBER_NUMBER",
+						"value": "4161960904"
+					},
+					{
+						"name": "COMBO_RATE_PLAN_IND",
+						"value": "false"
+					}
+				]
+			}
+		],
+		"agreementItem": [
+			{
+				"itemType": "PRECREDIT",
+				"incentiveServiceCode": [
+					"257"
+				],
+				"incentiveAmount": 20,
+				"itemDuration": {
+					"startDateTime": "2021-03-23T14:00:00-0500",
+					"endDateTime": null,
+					"quantity": {
+						"amount": 0,
+						"units": "MONTH"
+					}
+				},
+				"installment": {
+					"installmentDuration": {
+						"quantity": {
+							"amount": 4
+						}
+					},
+					"characteristic": [
+						{
+							"name": "INSTALLMENTS_APPLIED_NUM",
+							"value": "1"
+						}
+					]
+				},
+				"promotion": [
+					{
+						"id": "4242524",
+						"perspectiveDate": "2021-03-23T13:04:00-0500"
+					}
+				],
+				"product": [
+					{
+						"productSerialNumber": "9002342422344",
+						"productSpecification": {
+							"id": "HAPPLEI5",
+							"categoryCode": "SMARTPHONE",
+							"typeCode": "DEVICE_TYPE"
+						},
+						"productPrice": {
+							"price": {
+								"dutyFreeAmount": {
+									"value": 1299,
+									"unit": "CAD"
+								}
+							}
+						},
+						"productCharacteristic": [
+							{
+								"name": "USIM_ID",
+								"value": "891223000044853124"
+							}
+						]
+					}
+				],
+				"productOffering": {
+					"id": "345345",
+					"characteristic": [
+						{
+							"name": "REDEEMED_OFFER_CONTEXT_CODE",
+							"value": "AOM"
+						},
+						{
+							"name": "DATA_COMMITMENT_IND",
+							"value": "false"
+						},
+						{
+							"name": "CONTRACT_ENFORCED_PLAN_IND",
+							"value": "false"
+						}
+					],
+					"perspectiveDate": "2021-03-23T14:04:00-0500",
+					"sourceSystemId": "15373"
+				},
+				"termOrCondition": {
+					"characteristic": [
+						{
+							"name": "COMMITMENT_SERVICE_CD",
+							"value": "829"
+						},
+						{
+							"name": "AUTO_TOPUP_COMMITMENT_IND",
+							"value": "true"
+						}
+					]
+				}
+			}
+		]
+	},
+	"payment": [
+		{
+			"amount": {
+				"value": 220,
+				"unit": "CAD"
+			},
+			"relatedParty": [
+				{
+					"id": "",
+					"role": "LOYALTY_AGREEMENT_ITEM",
+					"characteristic": [
+						{
+							"name": "CHARGE_TYPE",
+							"value": "HWDB"
+						},
+						{
+							"name": "ITEM_TYPE",
+							"value": "HARDWARE"
+						}
+					]
+				}
+			]
+		},
+		{
+			"amount": {
+				"value": 300,
+				"unit": "CAD"
+			},
+			"relatedParty": [
+				{
+					"id": "",
+					"role": "LOYALTY_AGREEMENT_ITEM",
+					"characteristic": [
+						{
+							"name": "CHARGE_TYPE",
+							"value": "AFDB"
+						},
+						{
+							"name": "ITEM_TYPE",
+							"value": "ACCESSORYFINANCE"
+						}
+					]
+				}
+			]
+		},
+		{
+			"amount": {
+				"value": 400,
+				"unit": "CAD"
+			},
+			"paymentMechanism": "BIB_TELUS_RETURN",
+			"relatedParty": [
+				{
+					"id": "",
+					"role": "LOYALTY_AGREEMENT_ITEM",
+					"characteristic": [
+						{
+							"name": "CHARGE_TYPE",
+							"value": "BIBDB"
+						},
+						{
+							"name": "FINANCE_COMMITMENT_ITEM_ID",
+							"value": "20617"
+						},
+						{
+							"name": "ITEM_TYPE",
+							"value": "BIB"
+						}
+					]
+				}
+			]
+		},
+		{
+			"amount": {
+				"value": 320,
+				"unit": "CAD"
+			},
+			"relatedParty": [
+				{
+					"id": "",
+					"role": "LOYALTY_AGREEMENT_ITEM",
+					"characteristic": [
+						{
+							"name": "CHARGE_TYPE",
+							"value": "FINDB"
+						},
+						{
+							"name": "FINANCE_COMMITMENT_ITEM_ID",
+							"value": "20616"
+						},
+						{
+							"name": "ITEM_TYPE",
+							"value": "FINANCE"
+						}
+					]
+				}
+			]
+		},
+		{
+			"amount": {
+				"value": 100,
+				"unit": "CAD"
+			},
+			"relatedParty": [
+				{
+					"id": "",
+					"role": "LOYALTY_AGREEMENT_ITEM",
+					"characteristic": [
+						{
+							"name": "CHARGE_TYPE",
+							"value": "HWECF"
+						},
+						{
+							"name": "ITEM_TYPE",
+							"value": "HARDWARE"
+						}
+					]
+				}
+			]
+		}
+	],
+	"characteristic": [
+		{
+			"name": "MIGRATION_TYPE_CODE",
+			"value": "POSTPAID_TO_PREPAID"
+		}
+	]
+}
