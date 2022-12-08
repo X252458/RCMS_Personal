@@ -1,0 +1,32 @@
+{
+   "quantity":{
+      "unit":"CAD",
+      "balance":240
+   },
+   "relatedParty":[
+      {
+         "id":#(subID),
+         "role":"Subscriber"
+      },
+      {
+         "id":"56793",
+         "role":"Originator",
+         "characteristic":[
+            {
+               "name":"CHANNEL_ID",
+               "value":"1100035318"
+            },
+            {
+               "name":"SALESREP_ID",
+               "value":"2BMZ"
+            },
+            {
+               "name":"TEAM_MEMEBER_ID",
+               "value":"156715"
+            }
+         ]
+      }
+   ],
+   "reasonCode":"LUMPSUM_PAYMENT",
+   "paymentMethodCd":"CREDITCARD"
+}

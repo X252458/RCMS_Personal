@@ -1,0 +1,73 @@
+{
+	"sla": {
+		"id": "ServiceChange"
+	},
+	"product": {
+		"id": "S9110",
+		"name": "RATE_PLAN",
+		"startDate": #(startDate),
+		"terminationDate": #(startDate),
+		"productPrice": [
+			{
+				"priceType": "PVOICE35",
+				"price": {
+					"dutyFreeAmount": {
+						"unit": "CAD",
+						"value": 10
+					}
+				}
+			}
+		],
+		"productCharacteristic": [
+			{
+				"name": "BREAK_RATE_PLAN_IND",
+				"value": "false"
+			},
+			{
+				"name": "COMBO_RATE_PLAN_IND",
+				"value": "false"
+			}
+		],
+		"product": [
+			{
+				"id": "PVOICE35",
+				"productPrice": [
+					{
+						"priceType": "PVOICE35",
+						"price": {
+							"dutyFreeAmount": {
+								"unit": "CAD",
+								"value": 10
+							}
+						}
+					}
+				]
+			}
+		]
+	},
+	"relatedParty": [
+		{
+			"role": "SUBSCRIPTION",
+			"id": #(subID),
+			"characteristic": [
+				{
+					"name": "SUBSCRIBER_NUMBER",
+					"value": #(subNum)
+				}
+			]
+		},
+		{
+			"role": "ACCOUNT",
+			"characteristic": [
+				{
+					"name": "ACCOUNT_TYPE_CODE",
+					"value": "I"
+				},
+				{
+					"name": "ACCOUNT_SUB_TYPE_CODE",
+					"value": "R"
+				}
+			]
+		}
+	]
+}

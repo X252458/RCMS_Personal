@@ -1,0 +1,126 @@
+{
+  "relatedParty": [
+    {
+      "id": #(accID),
+      "role": "ACCOUNT",
+      "characteristic": [
+        {
+          "name": "BRAND_ID",
+          "value": "3"
+        },
+        {
+          "name": "ACCOUNT_TYPE_CODE",
+          "value": "I"
+        },
+        {
+          "name": "ACCOUNT_SUB_TYPE_CODE",
+          "value": "R"
+        }
+      ]
+    },
+    {
+      "id": #(subID),
+      "role": "Subscription",
+      "characteristic": [
+        {
+          "name": "MARKET_PROVINCE",
+          "value": "ON"
+        },
+        {
+          "name": "HOME_PROVINCE_CODE",
+          "value": "ON"
+        },
+        {
+          "name": "SUBSCRIBER_NUMBER",
+          "value": #(subNum)
+        },
+        {
+          "name": "COMBO_RATE_PLAN_IND",
+          "value": null
+        }
+      ]
+    },
+    {
+      "id": 12373,
+      "role": "ORIGINATOR",
+      "characteristic": [
+        {
+          "name": "TRANSACTION_ID",
+          "value": 2147483647
+        },
+        {
+          "name": "CHNL_ORG_ID",
+          "value": "0000029199"
+        },
+        {
+          "name": "SALES_REP_ID",
+          "value": "5335"
+        },
+        {
+          "name": "TEAM_MEMBER_ID",
+          "value": "78978"
+        }
+      ]
+    }
+  ],
+  "payment": [
+    {
+      "amount": {
+        "value": "-95.83",
+        "unit": "CAD"
+      },
+      "paymentMechanism": "MSC_PAYMENT",
+
+
+      "relatedParty": [
+        {
+          "id": "",
+          "role": "LOYALTY_AGREEMENT_ITEM",
+          "characteristic": [
+            {
+              "name": "FINANCE_COMMITMENT_ITEM_ID",
+              "value": null
+            },
+            {
+              "name": "CHARGE_TYPE",
+              "value": "HWSMSC"
+            },
+            {
+              "name": "ITEM_TYPE",
+              "value": "HWS"
+            }
+          ]
+        }
+      ],
+      "waive": null
+    },
+    {
+      "amount": {
+        "value": "-220",
+        "unit": "CAD"
+      },
+      "paymentMechanism": "MSC_PAYMENT",
+      "relatedParty": [
+        {
+          "id": "",
+          "role": "LOYALTY_AGREEMENT_ITEM",
+          "characteristic": [
+		  {
+              "name": "FINANCE_COMMITMENT_ITEM_ID",
+              "value": "40461"
+            },
+            {
+              "name": "CHARGE_TYPE",
+              "value": "TABMSC"
+            },
+            {
+              "name": "ITEM_TYPE",
+              "value": "TAB"
+            }
+          ]
+        }
+      ],
+      "waive": null
+    }
+  ]
+}

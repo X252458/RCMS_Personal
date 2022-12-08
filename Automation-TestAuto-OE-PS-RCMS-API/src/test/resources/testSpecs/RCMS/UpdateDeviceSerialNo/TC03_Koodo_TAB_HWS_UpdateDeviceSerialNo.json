@@ -1,0 +1,34 @@
+{
+	"characteristic": [
+		{
+			"name": "brandId",
+			"value": "3"
+		},
+		{
+			"name": "contractEndDate",
+			"value": #(endDate)
+		},
+		{
+			"name": "contractStartDate",
+			"value": #(startDate)
+		},
+		{
+			"name": "productId",
+			"value": #(productId)
+		},
+		{
+			"name": "serialNumber",
+			"value": #(serialNo)
+		},
+		{
+			"name": "redeemedOfferId",
+			"value": #(redeemOfferId)
+		}
+	],
+	"relatedParty": [
+		{
+			"id": #(subID),
+			"role": "SUBSCRIPTION"
+		}
+	]
+}

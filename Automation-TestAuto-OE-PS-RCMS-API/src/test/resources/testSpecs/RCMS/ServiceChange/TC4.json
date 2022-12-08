@@ -1,0 +1,168 @@
+{
+	"relatedParty": [
+		{
+			"id": #(accID),
+			"role": "ACCOUNT",
+			"characteristic": [
+				{
+					"name": "BRAND_ID",
+					"value": "1"
+				},
+				{
+					"name": "ACCOUNT_TYPE_CODE",
+					"value": "C"
+				},
+				{
+					"name": "ACCOUNT_SUB_TYPE_CODE",
+					"value": "Q"
+				}
+			]
+		},
+		{
+			"id": #(subID),
+			"role": "Subscription",
+			"characteristic": [
+				{
+					"name": "MARKET_PROVINCE",
+					"value": "ON"
+				},
+				{
+					"name": "HOME_PROVINCE_CODE",
+					"value": "ON"
+				},
+				{
+					"name": "SUBSCRIBER_NUMBER",
+					"value": #(subNum)
+				},
+				{
+					"name": "COMBO_RATE_PLAN_IND",
+					"value": null
+				}
+			]
+		},
+		{
+			"id": 12373,
+			"role": "ORIGINATOR",
+			"characteristic": [
+				{
+					"name": "TRANSACTION_ID",
+					"value": 2147483647
+				},
+				{
+					"name": "CHNL_ORG_ID",
+					"value": "0000029199"
+				},
+				{
+					"name": "SALES_REP_ID",
+					"value": "5335"
+				},
+				{
+					"name": "TEAM_MEMBER_ID",
+					"value": "78978"
+				}
+			]
+		}
+	],
+	"payment": [
+		{
+			"amount": {
+				"value": "230",
+				"unit": "CAD"
+			},
+			"paymentMechanism": "BILL",
+			"relatedParty": [
+				{
+					"id": "",
+					"role": "LOYALTY_AGREEMENT_ITEM",
+					"characteristic": [
+						{
+							"name": "FINANCE_COMMITMENT_ITEM_ID",
+							"value": "40836"
+						},
+						{
+							"name": "CHARGE_TYPE",
+							"value": "HWCMT"
+						},
+						{
+							"name": "ITEM_TYPE",
+							"value": "HARDWARE"
+						}
+					]
+				}
+			]
+		},
+		{
+			"amount": {
+				"value": "240",
+				"unit": "CAD"
+			},
+			"paymentMechanism": "BILL",
+			"relatedParty": [
+				{
+					"id": "",
+					"role": "LOYALTY_AGREEMENT_ITEM",
+					"characteristic": [
+						{
+							"name": "FINANCE_COMMITMENT_ITEM_ID",
+							"value": "40836"
+						},
+						{
+							"name": "CHARGE_TYPE",
+							"value": "FINCMT"
+						},
+						{
+							"name": "ITEM_TYPE",
+							"value": "FINANCE"
+						}
+					]
+				}
+			]
+		},
+		{
+			"amount": {
+				"value": "0.0",
+				"unit": "CAD"
+			},
+			"paymentMechanism": "",
+			"relatedParty": [
+				{
+					"id": "",
+					"role": "LOYALTY_AGREEMENT_ITEM",
+					"characteristic": [
+						{
+							"name": "CHARGE_TYPE",
+							"value": "RCBCMT"
+						},
+						{
+							"name": "ITEM_TYPE",
+							"value": "RENEWALBILLCREDIT"
+						}
+					]
+				}
+			]
+		},
+		{
+			"amount": {
+				"value": "240",
+				"unit": "CAD"
+			},
+			"paymentMechanism": "",
+			"relatedParty": [
+				{
+					"id": "",
+					"role": "LOYALTY_AGREEMENT_ITEM",
+					"characteristic": [
+						{
+							"name": "CHARGE_TYPE",
+							"value": "BIBCMT"
+						},
+						{
+							"name": "ITEM_TYPE",
+							"value": "BIB"
+						}
+					]
+				}
+			]
+		}
+	]
+}

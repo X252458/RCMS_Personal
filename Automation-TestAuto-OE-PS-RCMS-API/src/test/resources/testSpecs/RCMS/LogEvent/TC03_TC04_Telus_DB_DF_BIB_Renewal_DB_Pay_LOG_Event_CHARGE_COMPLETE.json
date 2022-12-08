@@ -1,0 +1,40 @@
+{
+    "eventId": "1234567890",
+    "eventTime": #(startDate),
+    "eventType": "DRS",
+    "memberId": "12345",
+    "characteristic": [
+        {
+            "name": "REWARD_TYPE_CD",
+            "value": "BIB"
+        },
+        {
+            "name": "REASON_CODE",
+            "value": "CHARGE_COMPLETE"
+        },
+        {
+            "name": "DEVICE_DUEDATE",
+            "value": #(startDate)
+        }
+    ],
+    "relatedParty": [
+        {
+            "id": #(subID),
+            "role": "Subscription"
+        },
+        {
+            "id": "",
+            "role": "Originator",
+            "characteristic": [
+                {
+                    "name": "CHANNEL_ID",
+                    "value": "1100035318"
+                },
+                {
+                    "name": "SALES_REP_ID",
+                    "value": "0"
+                }
+            ]
+        }
+    ]
+}

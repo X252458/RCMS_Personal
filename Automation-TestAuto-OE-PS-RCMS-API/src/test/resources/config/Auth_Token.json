@@ -1,0 +1,20 @@
+{
+	"RewardService": {
+		"grant_type": "client_credentials",
+		"client_id": "839d492a-1d74-4b79-8a28-62b3a2ea8bfb",
+		"client_secret": "829f247e-87e2-49c2-9b31-4b7cc9da7776f1ee0be6-c4f0-4574-a73d-0b63d3d9dcda",
+		"scope": "235 233 125 992"
+	},
+	"Violation": {
+		"grant_type": "client_credentials",
+		"client_id": "beab269c-e618-419c-860b-7585f3180d48",
+		"client_secret": "4745ddaf-2592-4567-aede-3ee198a7d34c2593a8e3-80a7-4edb-a4f0-493f348ac8b1",
+		"scope": "127 1914"
+	},
+	"Management": {
+		"grant_type": "client_credentials",
+		"client_id": "a813589d-3d0c-44fb-ac55-8cc373ae31b1",
+		"client_secret": "7d712fe5-1e4f-4691-a879-9f0f5658e3011e957e34-e5d5-4f58-aecb-d915df3af4ec",
+		"scope": "37 993 264"
+	}
+}

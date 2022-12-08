@@ -1,0 +1,87 @@
+{
+  "AT01": {
+    "DESKTOP_ONE": "http://desktopone-at01.tsl.telus.com/desktopone/dashboard/initialAgent.do",
+    "SRM": "http://btwn001001.corp.ads/pt01/srm/",
+    "NET_CRACKER": "http://asfweb-itn01.tsl.telus.com/",
+    "AWAS": "http://asfweb-itn01.tsl.telus.com/solutions/customers/telus/mm/test/test_awas_handler.jsp"
+  },
+  "AT06": {
+    "DESKTOP_ONE": "http://webat.tsl.telus.com:41121/desktopone/dashboard/initialAgent.do",
+    "SRM": "http://btwn000989.corp.ads/pt02/srm/",
+    "NET_CRACKER": "http://asfweb-itn02.tsl.telus.com/",
+    "AWAS": "http://asfweb-itn02.tsl.telus.com/solutions/customers/telus/mm/test/test_awas_handler.jsp"
+  },
+  "PT61": {
+    "DESKTOP_ONE": "http://desktopone-pt05.tsl.telus.com/desktopone/dashboard/initialAgent.do",
+    "SRM": "http://btwn000989.corp.ads/at02/srm"
+  },
+  "PS": {
+    "DESKTOP_ONE": "https://desktopone-ps.tsl.telus.com/desktopone/dashboard/initialAgent.do"
+  },
+  "ST01": {
+    "DESKTOP_ONE": "https://desktopone-st01.tsl.telus.com/desktopone/dashboard/initialAgent.do/desktopone/dashboard/initialAgent.do"
+  },
+  "PS101": {
+    "RCM": "http://resourcemanagement-ps101.tmi.telus.com/RCM/",
+    "EDGE_FTP_SERVER": {
+      "host": "sn25373.corp.ads",
+      "username": "invload",
+      "password": "not4invload",
+      "port": "22"
+    }
+  },
+  "PT140": {
+    "RCM": "situcanada",
+    "EDGE_FTP_SERVER": {
+      "host": "sn25373.corp.ads",
+      "username": "canada888",
+      "password": "not4invload",
+      "certificatePath": "",
+      "port": "22"
+    },
+    "RISTelus": "http://salesmanagement-ps101.tmi.telus.com/qsm/",
+    "RISKoodo": "http://koodosalesmgmt-ps101.tmi.telus.com/qsm/"
+  },
+  "PT148": {
+    "RCM": "http://resourcemanagement-pt148.tmi.telus.com/RCM/",
+    "EDGE_FTP_SERVER": {
+      "host": "sn25373.corp.ads",
+      "username": "invload",
+      "password": "not4invload",
+      "port": "22"
+    },
+    "RISTelus": "http://salesmanagement-pt148.tmi.telus.com/qsm/",
+    "RISKoodo": "http://koodosalesmgmt-pt148.tmi.telus.com/qsm/"
+  },
+  "PT168": {
+    "RCM": "http://resourcemanagement-pt168.tmi.telus.com/RCM/",
+    "EDGE_FTP_SERVER": {
+      "host": "sn25373.corp.ads",
+      "username": "invload",
+      "password": "not4invload",
+      "port": "22"
+    },
+    "RISTelus": "http://salesmanagement-pt168.tmi.telus.com/qsm/",
+    "RISKoodo": "http://koodosalesmgmt-pt168.tmi.telus.com/qsm/"
+  },
+  "Sandbox": {
+    "RCM": "http://resourcemanagement-pt168.tmi.telus.com/RCM/",
+    "EDGE_FTP_SERVER": {
+      "host": "btwn004349.corp.ads",
+      "username": "sftpuser01",
+      "certificatePath": "src/test/resources/ac/files/credentials/sftpuser01.pem",
+      "port": "22"
+    },
+    "RISTelus": "http://salesmanagement-pt168.tmi.telus.com/qsm/",
+    "RISKoodo": "http://koodosalesmgmt-pt168.tmi.telus.com/qsm/"
+  },
+  "ST101": {
+    "RCM": "http://resourcemanagement-st101.tmi.telus.com/RCM/",
+    "EDGE_FTP_SERVER": {
+      "host": "sn25363.corp.ads",
+      "username": "invload",
+      "password": "not4invload",
+      "port": "22"
+    }
+  }
+}

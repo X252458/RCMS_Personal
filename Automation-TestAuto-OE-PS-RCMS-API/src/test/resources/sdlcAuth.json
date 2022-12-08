@@ -1,0 +1,27 @@
+{
+	"JIRA_SERVER":{
+		"ConnectionEnable": "false", 
+		"AttachmentsEnable": "true", 
+		"ServerUrl": "http://jira-btln001249.tsl.telus.com:8081/", 
+	    "User": "telusUser", 
+		"Password": "TXlFbmNvZGVkUHdk",
+		"ProjectKey": "MMM", 
+		"ProjectId": "10408",  			
+		"SearchMode": "ANNOTATION",
+		"SearchModeSummary_CreateItemToReport": "Test",
+		"SearchModeSummary_SearchJqlBaseQuery": "Open_AnyType",
+		"SearchModeSummary_SearchResultsMaxItemsToUpdate": "10",
+		"ZephyrTestExecutionEnable": "true", 
+		"ZephyrTestCycleId": "-1", 
+		"ZephyrTestCycleVersionId": "-1"
+	},
+	
+	"ALM_SERVER":{
+		"ServerUrl": "http://alm-btln001249.tsl.telus.com:8081/"
+	},
+	
+	"RALLY_SERVER":{
+		"ServerUrl": "http://rally-btln001249.tsl.telus.com:8081/"
+	}
+
+ }

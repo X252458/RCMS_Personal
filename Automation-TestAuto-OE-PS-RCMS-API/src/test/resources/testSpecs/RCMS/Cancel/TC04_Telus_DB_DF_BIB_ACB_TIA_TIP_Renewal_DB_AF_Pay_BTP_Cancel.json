@@ -1,0 +1,202 @@
+{
+	"characteristic": [
+		{
+			"name": "REASON_CODE",
+			"value": "CANCELLATION_PAYMENT"
+		}
+	],
+	"payment": [
+		{
+			"amount": {
+				"value": 230,
+				"unit": "CAD"
+			},
+			"paymentMechanism": "BILL",
+			"waive": [],
+			"relatedParty": [
+				{
+					"id": "",
+					"role": "LOYALTY_AGREEMENT_ITEM",
+					"characteristic": [
+						{
+							"name": "FINANCE_COMMITMENT_ITEM_ID",
+							"value": "33458"
+						},
+						{
+							"name": "CHARGE_TYPE",
+							"value": "HWDB"
+						},
+						{
+							"name": "ITEM_TYPE",
+							"value": "HARDWARE"
+						}
+					]
+				},
+				{
+					"id": #(subID),
+					"role": "SUBSCRIPTION",
+					"characteristic": [
+						{
+							"name": "MARKET_PROVINCE",
+							"value": "ON"
+						},
+						{
+							"name": "HOME_PROVINCE_CODE",
+							"value": "ON"
+						},
+						{
+							"name": "SUBSCRIBER_NUMBER",
+							"value": #(subNum)
+						},
+						{
+							"name": "COMBO_RATE_PLAN_IND",
+							"value": "false"
+						}
+					]
+				}
+			]
+		},
+		{
+			"amount": {
+				"value": 240,
+				"unit": "CAD"
+			},
+			"paymentMechanism": "BILL",
+			"waive": [],
+			"relatedParty": [
+				{
+					"id": "",
+					"role": "LOYALTY_AGREEMENT_ITEM",
+					"characteristic": [
+						{
+							"name": "FINANCE_COMMITMENT_ITEM_ID",
+							"value": "33458"
+						},
+						{
+							"name": "CHARGE_TYPE",
+							"value": "AFDB"
+						},
+						{
+							"name": "ITEM_TYPE",
+							"value": "ACCESSORYFINANCE"
+						}
+					]
+				},
+				{
+					"id": #(subID),
+					"role": "SUBSCRIPTION",
+					"characteristic": [
+						{
+							"name": "MARKET_PROVINCE",
+							"value": "ON"
+						},
+						{
+							"name": "HOME_PROVINCE_CODE",
+							"value": "ON"
+						},
+						{
+							"name": "SUBSCRIBER_NUMBER",
+							"value": #(subNum)
+						},
+						{
+							"name": "COMBO_RATE_PLAN_IND",
+							"value": "false"
+						}
+					]
+				}
+			]
+		},
+		{
+			"amount": {
+				"value": 240,
+				"unit": "CAD"
+			},
+			"paymentMechanism": "BIB_TELUS_PENDING",
+			"waive": [],
+			"relatedParty": [
+				{
+					"id": "",
+					"role": "LOYALTY_AGREEMENT_ITEM",
+					"characteristic": [
+						{
+							"name": "FINANCE_COMMITMENT_ITEM_ID",
+							"value": "33458"
+						},
+						{
+							"name": "CHARGE_TYPE",
+							"value": "BIBPDB"
+						},
+						{
+							"name": "ITEM_TYPE",
+							"value": "BIB"
+						}
+					]
+				},
+				{
+					"id": #(subID),
+					"role": "SUBSCRIPTION",
+					"characteristic": [
+						{
+							"name": "MARKET_PROVINCE",
+							"value": "ON"
+						},
+						{
+							"name": "HOME_PROVINCE_CODE",
+							"value": "ON"
+						},
+						{
+							"name": "SUBSCRIBER_NUMBER",
+							"value": #(subNum)
+						},
+						{
+							"name": "COMBO_RATE_PLAN_IND",
+							"value": "false"
+						}
+					]
+				}
+			]
+		}
+	],
+	"relatedParty": [
+		{
+			"id": "2342342",
+			"role": "Originator",
+			"characteristic": [
+				{
+					"name": "TRANSACTION_ID",
+					"value": "1343241121"
+				},
+				{
+					"name": "CHNL_ORG_ID",
+					"value": "10149534"
+				},
+				{
+					"name": "SALES_REP_ID",
+					"value": "6855"
+				},
+				{
+					"name": "TEAM_MEMBER_ID",
+					"value": "156715"
+				}
+			]
+		},
+		{
+			"id": #(accID),
+			"role": "Account",
+			"characteristic": [
+				{
+					"name": "BRAND_ID",
+					"value": "1"
+				},
+				{
+					"name": "ACCOUNT_TYPE_CODE",
+					"value": "C"
+				},
+				{
+					"name": "ACCOUNT_SUB_TYPE_CODE",
+					"value": "Q"
+				}
+			]
+		}
+	]
+}

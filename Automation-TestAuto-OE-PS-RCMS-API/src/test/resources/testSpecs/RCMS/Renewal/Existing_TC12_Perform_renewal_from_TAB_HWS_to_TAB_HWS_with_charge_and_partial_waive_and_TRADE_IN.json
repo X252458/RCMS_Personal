@@ -1,0 +1,395 @@
+{
+	"agreementCreate": {
+		"agreementDuration": {
+			"endDateTime": null,
+			"quantity": {
+				"amount": 24,
+				"units": "MONTH"
+			},
+			"startDateTime": #(startDate)
+		},
+		"agreementItem": [
+			{
+				"id": "",
+				"incentiveAmount": 240,
+				"installment": {
+					"characteristic": [
+						{
+							"name": "INSTALLMENTS_LEFT_NUM",
+							"value": "24"
+						},
+						{
+							"name": "INSTALLMENTS_APPLIED_NUM",
+							"value": "0"
+						},
+						{
+							"name": "INSTALLMENTS_APPLIED_AMT",
+							"value": "0.0"
+						}
+					]
+				},
+				"itemDuration": {
+					"endDateTime": null,
+					"quantity": {
+						"amount": 24,
+						"units": "MONTH"
+					},
+					"startDateTime": #(startDate)
+				},
+				"itemType": "HWS",
+				"product": [
+					{
+						"productCharacteristic": [
+							{
+								"name": "USIM_ID",
+								"value": "8912239900000235601"
+							}
+						],
+						"productPrice": {
+							"price": {
+								"dutyFreeAmount": {
+									"unit": "CAD",
+									"value": 1299
+								}
+							}
+						},
+						"productSerialNumber": "9009375803974841",
+						"productSpecification": {
+							"categoryCode": "SMARTPHONE",
+							"id": "LAIX256GBSL",
+							"typeCode": "DEVICE_TYPE"
+						}
+					}
+				],
+				"productOffering": {
+					"characteristic": [
+						{
+							"name": "REDEEMED_OFFER_CONTEXT_CODE",
+							"value": "OOM"
+						},
+						{
+							"name": "OFFER_TIER_CD",
+							"value": "10"
+						},
+						{
+							"name": "OFFER_TIER_CAP_AMT",
+							"value": "1300.0"
+						},
+						{
+							"name": "DATA_COMMITMENT_IND",
+							"value": "true"
+						},
+						{
+							"name": "CONTRACT_ENFORCED_PLAN_IND",
+							"value": "true"
+						}
+					],
+					"id": "1002063",
+					"perspectiveDate": #(startDate),
+					"sourceSystemId": "15373"
+				},
+				"promotion": [
+					{
+						"id": "419812",
+						"perspectiveDate": #(startDate)
+					}
+				],
+				"tax": {
+					"taxPaymentChannelCode": "RTL",
+					"taxPaymentMechanismCode": "TILL",
+					"taxPaymentMethodCode": "CA",
+					"taxProvinceCode": "ON",
+					"taxRate": [
+						{
+							"taxAmount": {
+								"unit": "CAD",
+								"value": 14.59
+							},
+							"taxCategory": "HST",
+							"taxRate": 13
+						}
+					]
+				},
+				"termOrCondition": {
+					"characteristic": [
+						{
+							"name": "MIN_RATE_PLAN_VALUE_AMT",
+							"value": "40.0"
+						},
+						{
+							"name": "MIN_FEATURE_VALUE_AMT",
+							"value": "30.0"
+						},
+						{
+							"name": "MIN_COMBINED_VALUE_AMT",
+							"value": "70.0"
+						}
+					]
+				}
+			},
+			{
+				"id": "",
+				"incentiveAmount": 300,
+				"incentiveServiceCode": null,
+				"installment": {
+					"characteristic": [
+						{
+							"name": "INSTALLMENTS_LEFT_NUM",
+							"value": "24"
+						},
+						{
+							"name": "INSTALLMENTS_APPLIED_NUM",
+							"value": "0"
+						},
+						{
+							"name": "INSTALLMENTS_APPLIED_AMT",
+							"value": "0.0"
+						}
+					],
+					"installmentDuration": {
+						"endDateTime": null,
+						"quantity": {
+							"amount": 24,
+							"units": "MONTH"
+						},
+						"startDateTime": null
+					}
+				},
+				"itemDuration": {
+					"endDateTime": null,
+					"quantity": {
+						"amount": 24,
+						"units": "MONTH"
+					},
+					"startDateTime": "2020-04-15T00:00:00-0500"
+				},
+				"itemType": "TAB",
+				"product": [
+					{
+						"productCharacteristic": [
+							{
+								"name": "USIM_ID",
+								"value": "8912239900000235601"
+							}
+						],
+						"productPrice": {
+							"price": {
+								"dutyFreeAmount": {
+									"unit": "CAD",
+									"value": 1299
+								}
+							}
+						},
+						"productSerialNumber": "9009375803974841",
+						"productSpecification": {
+							"categoryCode": "SMARTPHONE",
+							"id": "LAIX256GBSL",
+							"typeCode": "DEVICE_TYPE"
+						}
+					}
+				],
+				"productOffering": {
+					"characteristic": [
+						{
+							"name": "REDEEMED_OFFER_CONTEXT_CODE",
+							"value": "OOM"
+						},
+						{
+							"name": "OFFER_TIER_CD",
+							"value": "10"
+						},
+						{
+							"name": "OFFER_TIER_CAP_AMT",
+							"value": "1300.0"
+						},
+						{
+							"name": "DATA_COMMITMENT_IND",
+							"value": "true"
+						},
+						{
+							"name": "CONTRACT_ENFORCED_PLAN_IND",
+							"value": "true"
+						}
+					],
+					"id": "1002063",
+					"perspectiveDate": #(startDate),
+					"sourceSystemId": "15373"
+				},
+				"promotion": [
+					{
+						"id": "419812",
+						"perspectiveDate": #(startDate)
+					}
+				],
+				"tax": {
+					"taxPaymentChannelCode": "RTL",
+					"taxPaymentMechanismCode": "TILL",
+					"taxPaymentMethodCode": "CA",
+					"taxProvinceCode": "ON",
+					"taxRate": [
+						{
+							"taxAmount": {
+								"unit": "CAD",
+								"value": 14.59
+							},
+							"taxCategory": "HST",
+							"taxRate": 13
+						}
+					]
+				},
+				"termOrCondition": {
+					"characteristic": [
+						{
+							"name": "MIN_RATE_PLAN_VALUE_AMT",
+							"value": "40.0"
+						},
+						{
+							"name": "MIN_FEATURE_VALUE_AMT",
+							"value": "30.0"
+						},
+						{
+							"name": "MIN_COMBINED_VALUE_AMT",
+							"value": "70.0"
+						}
+					]
+				}
+			}
+		],
+		"relatedParty": [
+			{
+				"characteristic": [
+					{
+						"name": "BRAND_ID",
+						"value": "3"
+					},
+					{
+						"name": "ACCOUNT_TYPE_CODE",
+						"value": "I"
+					},
+					{
+						"name": "ACCOUNT_SUB_TYPE_CODE",
+						"value": "R"
+					}
+				],
+				"id": "70947823",
+				"role": "ACCOUNT"
+			},
+			{
+				"characteristic": [
+					{
+						"name": "TRANSACTION_ID",
+						"value": "1567864851"
+					},
+					{
+						"name": "TEAM_MEMBER_ID",
+						"value": "156715"
+					},
+					{
+						"name": "CHNL_ORG_ID",
+						"value": "C00TE00010"
+					},
+					{
+						"name": "SALES_REP_ID",
+						"value": "6855"
+					}
+				],
+				"id": 7894914,
+				"role": "ORIGINATOR"
+			},
+			{
+				"characteristic": [
+					{
+						"name": "MARKET_PROVINCE",
+						"value": "ON"
+					},
+					{
+						"name": "HOME_PROVINCE_CODE",
+						"value": "ON"
+					},
+					{
+						"name": "SUBSCRIBER_NUMBER",
+						"value": "4161933329"
+					},
+					{
+						"name": "COMBO_RATE_PLAN_IND",
+						"value": "true"
+					}
+				],
+				"id": "8485380",
+				"role": "SUBSCRIPTION"
+			}
+		]
+	},
+	"payment": [
+		{
+			"amount": {
+				"unit": "CAD",
+				"value": "100"
+			},
+			"paymentMechanism": "BILL",
+			"relatedParty": [
+				{
+					"characteristic": [
+						{
+							"name": "FINANCE_COMMITMENT_ITEM_ID",
+							"value": "21857"
+						},
+						{
+							"name": "CHARGE_TYPE",
+							"value": "TABEPB"
+						},
+						{
+							"name": "ITEM_TYPE",
+							"value": "TAB"
+						}
+					],
+					"id": "",
+					"role": "LOYALTY_AGREEMENT_ITEM"
+				}
+			],
+			"waive": [
+				{
+					"adjustmentCode": "ATABRE",
+					"amount": {
+						"unit": "CAD",
+						"value": 100
+					},
+					"reasonCode": "RENEWAL_OFFER_WAIVE"
+				}
+			]
+		},
+		{
+			"amount": {
+				"unit": "CAD",
+				"value": "95.83"
+			},
+			"paymentMechanism": "BILL",
+			"relatedParty": [
+				{
+					"characteristic": [
+						{
+							"name": "CHARGE_TYPE",
+							"value": "HWSHB"
+						},
+						{
+							"name": "ITEM_TYPE",
+							"value": "HWS"
+						}
+					],
+					"id": "",
+					"role": "LOYALTY_AGREEMENT_ITEM"
+				}
+			],
+			"waive": [
+				{
+					"adjustmentCode": "APHCRE",
+					"amount": {
+						"unit": "CAD",
+						"value": 95.83
+					},
+					"reasonCode": "RENEWAL_OFFER_WAIVE"
+				}
+			]
+		}
+	]
+}

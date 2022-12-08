@@ -1,0 +1,11 @@
+{
+	"sla": {
+		"id": "ReturnAdjustment"
+	},
+	"relatedParty": [
+		{
+			"role": "SUBSCRIPTION",
+			"id": #(subID)
+		}
+	]
+}

@@ -1,0 +1,66 @@
+{
+  "relatedParty": [
+    {
+      "id": #(accID),
+      "role": "ACCOUNT",
+      "characteristic": [
+        {
+          "name": "BRAND_ID",
+          "value": "1"
+        },
+        {
+          "name": "ACCOUNT_TYPE_CODE",
+          "value": "I"
+        },
+        {
+          "name": "ACCOUNT_SUB_TYPE_CODE",
+          "value": "R"
+        }
+      ]
+    },
+    {
+      "id": 7894914,
+      "role": "ORIGINATOR",
+      "characteristic": [
+        {
+          "name": "TRANSACTION_ID",
+          "value": "1567864851"
+        }, 
+        {
+          "name": "CHNL_ORG_ID",
+          "value": "10122167"
+        },
+        {
+          "name": "SALES_REP_ID",
+          "value": "5335"
+        },
+         {
+          "name": "TEAM_MEMBER_ID",
+          "value": "156715"
+        }
+      ]
+    },
+    {
+      "id": #(subID),
+      "role": "SUBSCRIPTION",
+      "characteristic": [
+        {
+          "name": "MARKET_PROVINCE",
+          "value": "ON"
+        },
+        {
+          "name": "HOME_PROVINCE_CODE",
+          "value": "ON"
+        },
+        {
+          "name": "SUBSCRIBER_NUMBER",
+          "value": #(subNum)
+        },
+        {
+          "name": "COMBO_RATE_PLAN_IND",
+          "value": "true"
+        }
+      ]
+    }
+  ]
+}

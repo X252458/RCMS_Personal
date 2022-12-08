@@ -1,0 +1,30 @@
+{
+	"sla": {
+		"id": "EarlyRenewal"
+	},
+	"relatedParty": [
+		{
+			"role": "SUBSCRIPTION",
+			"id": #(subID),
+			"characteristic": [
+				{
+					"name": "LOYALTY_TYPE",
+					"value": ""
+				}
+			]
+		},
+		{
+			"role": "ACCOUNT",
+			"characteristic": [
+				{
+					"name": "ACCOUNT_TYPE_CODE",
+					"value": "C"
+				},
+				{
+					"name": "ACCOUNT_SUB_TYPE_CODE",
+					"value": "Q"
+				}
+			]
+		}
+	]
+}

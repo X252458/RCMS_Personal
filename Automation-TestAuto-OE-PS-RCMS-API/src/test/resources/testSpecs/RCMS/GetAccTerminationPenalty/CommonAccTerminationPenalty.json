@@ -1,0 +1,21 @@
+{
+    "sla": {
+        "id": "BanTermination"
+    },
+    "relatedParty": [
+        {
+            "role": "ACCOUNT",
+            "id": #(accID),
+            "characteristic": [
+                {
+                    "name": "ACCOUNT_TYPE_CODE",
+                    "value": "I"
+                },
+                {
+                    "name": "ACCOUNT_SUB_TYPE_CODE",
+                    "value": "R"
+                }
+            ]
+        }
+    ]
+}

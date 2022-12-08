@@ -1,0 +1,32 @@
+{
+   "quantity":{
+      "unit":"CAD",
+      "balance":240
+   },
+   "relatedParty":[
+      {
+         "id":#(subID),
+         "role":"Subscriber"
+      },
+      {
+         "id":"56793",
+         "role":"Originator",
+         "characteristic":[
+            {
+               "name":"CHANNEL_ID",
+               "value":"10122167"
+            },
+            {
+               "name":"SALESREP_ID",
+               "value":"5335"
+            },
+            {
+               "name":"TEAM_MEMEBER_ID",
+               "value":"156715"
+            }
+         ]
+      }
+   ],
+   "reasonCode":"RESTORE_RETURN",
+   "paymentMethodCd":"CREDITCARD"
+}

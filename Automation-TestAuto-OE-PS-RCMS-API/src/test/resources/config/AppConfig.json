@@ -1,0 +1,7 @@
+{   
+	PATH_CONFIG: 'classpath:config/',
+	PATH_TESTS:'classpath:tests/',
+	PATH_API_OPS: 'classpath:services/RCMS/',
+	PATH_API_PAYLOAD: 'classpath:testSpecs/RCMS/'
+	
+}

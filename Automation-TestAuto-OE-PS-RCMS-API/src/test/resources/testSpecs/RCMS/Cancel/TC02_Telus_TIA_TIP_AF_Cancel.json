@@ -1,0 +1,102 @@
+{
+	"characteristic": [
+		{
+			"name": "REASON_CODE",
+			"value": "CANCELLATION_PAYMENT"
+		}
+	],
+	"payment": [
+		{
+			"amount": {
+				"value": 390,
+				"unit": "CAD"
+			},
+			"paymentMechanism": "BILL",
+			"waive": [],
+			"relatedParty": [
+				{
+					"id": "",
+					"role": "LOYALTY_AGREEMENT_ITEM",
+					"characteristic": [
+						{
+							"name": "FINANCE_COMMITMENT_ITEM_ID",
+							"value": "91186"
+						},
+						{
+							"name": "CHARGE_TYPE",
+							"value": "AFDB"
+						},
+						{
+							"name": "ITEM_TYPE",
+							"value": "ACCESSORYFINANCE"
+						}
+					]
+				},
+				{
+					"id": #(subID),
+					"role": "SUBSCRIPTION",
+					"characteristic": [
+						{
+							"name": "MARKET_PROVINCE",
+							"value": "ON"
+						},
+						{
+							"name": "HOME_PROVINCE_CODE",
+							"value": "ON"
+						},
+						{
+							"name": "SUBSCRIBER_NUMBER",
+							"value": #(subNum)
+						},
+						{
+							"name": "COMBO_RATE_PLAN_IND",
+							"value": "true"
+						}
+					]
+				}
+			]
+		}
+	],
+	"relatedParty": [
+		{
+			"id": "12373",
+			"role": "Originator",
+			"characteristic": [
+				{
+					"name": "TRANSACTION_ID",
+					"value": "877344"
+				},
+				{
+					"name": "CHNL_ORG_ID",
+					"value": "10122167"
+				},
+				{
+					"name": "SALES_REP_ID",
+					"value": "10157758"
+				},
+				{
+					"name": "TEAM_MEMBER_ID",
+					"value": "78978"
+				}
+			]
+		},
+		{
+			"id": #(accID),
+			"role": "Account",
+			"characteristic": [
+				{
+					"name": "BRAND_ID",
+					"value": "1"
+				},
+				{
+					"name": "ACCOUNT_TYPE_CODE",
+					"value": "C"
+				},
+				{
+					"name": "ACCOUNT_SUB_TYPE_CODE",
+					"value": "Q"
+				}
+			]
+		}
+	]
+}

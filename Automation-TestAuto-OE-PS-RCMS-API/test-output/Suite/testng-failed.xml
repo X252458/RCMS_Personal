@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="1" guice-stage="DEVELOPMENT" name="Failed suite [Suite]" parallel="methods">
+  <listeners>
+    <listener class-name="com.test.reporting.AnnotationTransformer"/>
+  </listeners>
+  <test thread-count="1" name="Test(failed)" parallel="methods">
+    <groups>
+      <run>
+        <include name="CompleteRegressionSuite"/>
+      </run>
+    </groups>
+    <classes>
+      <class name="com.telus.rcms.tests.getRewardCommitment.TC07_Telus_DB_DF_BIB_ACB_TIA_TIP_Renewed_DB_BIB_TELUS_PENDING">
+        <methods>
+          <include name="afterTest"/>
+          <include name="BeforeMethod"/>
+          <include name="testMethod_TestRCMCActivationFlow" invocation-numbers="0"/>
+        </methods>
+      </class> <!-- com.telus.rcms.tests.getRewardCommitment.TC07_Telus_DB_DF_BIB_ACB_TIA_TIP_Renewed_DB_BIB_TELUS_PENDING -->
+      <class name="com.telus.rcms.tests.notifySubscriptionRenewal.TC12_Telus_TAB_HWS_to_TAB_HWS_Pay_charge_half_waive_TRADE_IN">
+        <methods>
+          <include name="afterTest"/>
+          <include name="BeforeMethod"/>
+          <include name="testMethod_TestRCMCActivationFlow" invocation-numbers="0"/>
+        </methods>
+      </class> <!-- com.telus.rcms.tests.notifySubscriptionRenewal.TC12_Telus_TAB_HWS_to_TAB_HWS_Pay_charge_half_waive_TRADE_IN -->
+      <class name="com.telus.rcms.tests.notifySubscriptionRenewal.TC13_Telus_TAB_M_offercode_7_TAB_HWS_pay_TRADE_IN">
+        <methods>
+          <include name="testMethod_TestRCMCActivationFlow" invocation-numbers="0"/>
+          <include name="afterTest"/>
+          <include name="BeforeMethod"/>
+        </methods>
+      </class> <!-- com.telus.rcms.tests.notifySubscriptionRenewal.TC13_Telus_TAB_M_offercode_7_TAB_HWS_pay_TRADE_IN -->
+      <class name="com.telus.rcms.tests.getRewardCommitment.TC06_Telus_DB_DF_BIB_ACB_TIA_TIP_WHEN_DEVICE_RECEIVED">
+        <methods>
+          <include name="BeforeMethod"/>
+          <include name="afterTest"/>
+          <include name="testMethod_TestRCMCActivationFlow" invocation-numbers="0"/>
+        </methods>
+      </class> <!-- com.telus.rcms.tests.getRewardCommitment.TC06_Telus_DB_DF_BIB_ACB_TIA_TIP_WHEN_DEVICE_RECEIVED -->
+      <class name="com.telus.rcms.tests.notifySubscriptionRenewal.TC08_Telus_DB_DF_BIB_Renewal_DF_BIB_Renewal_DB_DF">
+        <methods>
+          <include name="testMethod_TestRCMCActivationFlow" invocation-numbers="0"/>
+          <include name="BeforeMethod"/>
+          <include name="afterTest"/>
+        </methods>
+      </class> <!-- com.telus.rcms.tests.notifySubscriptionRenewal.TC08_Telus_DB_DF_BIB_Renewal_DF_BIB_Renewal_DB_DF -->
+      <class name="com.telus.rcms.tests.getRewardCommitment.TC09_Telus_with_DB_DF_BIB_RCB">
+        <methods>
+          <include name="testMethod_TestRCMCActivationFlow" invocation-numbers="0"/>
+          <include name="afterTest"/>
+          <include name="BeforeMethod"/>
+        </methods>
+      </class> <!-- com.telus.rcms.tests.getRewardCommitment.TC09_Telus_with_DB_DF_BIB_RCB -->
+      <class name="com.telus.rcms.tests.notifySubscriptionRenewal.TC14_Telus_TAB_L_offercode_6_to_SIM_Only">
+        <methods>
+          <include name="afterTest"/>
+          <include name="testMethod_TestRCMCActivationFlow" invocation-numbers="0"/>
+          <include name="BeforeMethod"/>
+        </methods>
+      </class> <!-- com.telus.rcms.tests.notifySubscriptionRenewal.TC14_Telus_TAB_L_offercode_6_to_SIM_Only -->
+      <class name="com.telus.rcms.tests.getRewardCommitment.TC04_Telus_Return_Renewal_DF_AF_TIA_TIP_Renewal_DF_Pay_BILL">
+        <methods>
+          <include name="testMethod_TestRCMCActivationFlow" invocation-numbers="0"/>
+          <include name="BeforeMethod"/>
+          <include name="afterTest"/>
+        </methods>
+      </class> <!-- com.telus.rcms.tests.getRewardCommitment.TC04_Telus_Return_Renewal_DF_AF_TIA_TIP_Renewal_DF_Pay_BILL -->
+      <class name="com.telus.rcms.tests.getRewardCommitment.TC08_Koodo_with_TAB_HWS">
+        <methods>
+          <include name="testMethod_TestRCMCActivationFlow" invocation-numbers="0"/>
+          <include name="BeforeMethod"/>
+          <include name="afterTest"/>
+        </methods>
+      </class> <!-- com.telus.rcms.tests.getRewardCommitment.TC08_Koodo_with_TAB_HWS -->
+    </classes>
+  </test> <!-- Test(failed) -->
+</suite> <!-- Failed suite [Suite] -->

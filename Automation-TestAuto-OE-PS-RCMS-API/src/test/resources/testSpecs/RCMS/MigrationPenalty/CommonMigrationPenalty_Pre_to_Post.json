@@ -1,0 +1,31 @@
+{
+	"sla": {
+		"id": "Migration"
+	},
+	"relatedParty": [
+		{
+			"role": "SUBSCRIPTION",
+			"id": #(subID),
+			"characteristic": [
+				{
+					"name": "MIGRATION_TYPE_CODE",
+					"value": "PREPAID_TO_POSTPAID"
+				}
+			]
+		},
+		{
+			"role": "ACCOUNT",
+			"id": #(accID),
+			"characteristic": [
+				{
+					"name": "ACCOUNT_TYPE_CODE",
+					"value": "I"
+				},
+				{
+					"name": "ACCOUNT_SUB_TYPE_CODE",
+					"value": "R"
+				}
+			]
+		}
+	]
+}
