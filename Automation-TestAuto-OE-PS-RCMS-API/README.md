@@ -1,2 +1,0 @@
-# Automation-TestAuto-OE-PS-RCMS-API
- RCMS API AUTOMATION
