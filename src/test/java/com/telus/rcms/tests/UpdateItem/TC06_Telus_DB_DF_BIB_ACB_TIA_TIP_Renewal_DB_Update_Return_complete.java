@@ -23,6 +23,7 @@ import com.telus.rcms.utils.APIUtils;
 import com.telus.rcms.utils.DBUtils;
 import com.telus.rcms.utils.GenericUtils;
 import com.telus.rcms.utils.JSONUtils;
+import com.telus.rcms.utils.ValidationUtils;
 import com.test.reporting.Reporting;
 import com.test.ui.actions.BaseTest;
 import com.test.ui.actions.Validate;
@@ -132,30 +133,26 @@ public class TC06_Telus_DB_DF_BIB_ACB_TIA_TIP_Renewal_DB_Update_Return_complete 
 				"classpath:tests/RCMS/UpdateItem/updateItemTC6.feature");
 		Reporting.logReporter(Status.INFO, "API Operation status: " + apiOperation2.get("apiStatus"));
 		Reporting.logReporter(Status.INFO, "API Operation Request: " + apiOperation2.get("apiRequest"));
+
+		jsonString = String.valueOf(apiOperation2.get("apiRequest")).replace("=", ":");
 		Reporting.printAndClearLogGroupStatements();
 
 		/*** DB VALIDATION ***/
 		Reporting.setNewGroupName("DB VERIFICATION");
-		//payloadAndDbCheck();
+		payloadAndDbCheck(jsonString);
 		Reporting.printAndClearLogGroupStatements();
-
 	}
-
-	public void payloadAndDbCheck() throws SQLException, IOException, InterruptedException {
+	public void payloadAndDbCheck(String jsonString) throws SQLException, IOException {
 
 		DBUtils.callDBConnect();
-
 		/**
 		 * DB Verification Steps
 		 */
-
-		Reporting.logReporter(Status.INFO, "Pretty Payload: " + jsonString);
-
 		// Declaring variable from payload
-
-		GenericUtils.responseDBCheckAgrmtItemNew(jsonString, subscriptionID, 2);
+		ValidationUtils.updateItemDBcheck(jsonString,2);
 
 		Reporting.logReporter(Status.INFO, "--------------------DB Validation Completed--------------------");
+
 	}
 
 	/**

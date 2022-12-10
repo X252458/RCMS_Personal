@@ -60,6 +60,7 @@ public class TC08_Telus_TIA_Return_complete_Update_Due_date extends BaseTest {
 	String subscriberNum = null;
 	String startDate = null;
 	String endDate = null;
+	String jsonString = null;
 
 	ExtentTest parentTest = null;
 

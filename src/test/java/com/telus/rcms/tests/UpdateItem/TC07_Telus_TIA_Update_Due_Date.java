@@ -23,6 +23,7 @@ import com.telus.rcms.utils.APIUtils;
 import com.telus.rcms.utils.DBUtils;
 import com.telus.rcms.utils.GenericUtils;
 import com.telus.rcms.utils.JSONUtils;
+import com.telus.rcms.utils.ValidationUtils;
 import com.test.reporting.Reporting;
 import com.test.ui.actions.BaseTest;
 import com.test.ui.actions.Validate;
@@ -59,6 +60,8 @@ public class TC07_Telus_TIA_Update_Due_Date extends BaseTest {
 	String subscriptionID = null;
 	String subscriberNum = null;
 	String startDate = null;
+	String jsonString = null;
+	String endDate = null;
 
 	ExtentTest parentTest = null;
 
@@ -114,12 +117,14 @@ public class TC07_Telus_TIA_Update_Due_Date extends BaseTest {
 		subscriptionID = GenericUtils.getUniqueSubscriptionID(apiEnv);
 		subscriberNum = GenericUtils.getUniqueSubscriberNumber(apiEnv);
 		startDate = JSONUtils.getGMTStartDate();
+		endDate = JSONUtils.getNewGMTEndDate(2);
 
 		System.setProperty("karate.auth_token_reward", accessToken);
 		System.setProperty("karate.accID", accountID);
 		System.setProperty("karate.subID", subscriptionID);
 		System.setProperty("karate.subNum", subscriberNum);
 		System.setProperty("karate.startDate", startDate);
+		System.setProperty("karate.endDate", endDate);
 		System.setProperty("karate.apiEnv", apiEnv);
 
 		Map<String, Object> apiOperation = APIJava.runKarateFeature(environment,
@@ -139,43 +144,43 @@ public class TC07_Telus_TIA_Update_Due_Date extends BaseTest {
 		Reporting.logReporter(Status.INFO, "API Operation status: " + apiOperation2.get("apiStatus"));
 		Reporting.logReporter(Status.INFO, "API Operation Request: " + apiOperation2.get("apiRequest"));
 
+		jsonString = String.valueOf(apiOperation2.get("apiRequest")).replace("=", ":");
 		Reporting.printAndClearLogGroupStatements();
 
 		/*** DB VALIDATION ***/
 		Reporting.setNewGroupName("DB VERIFICATION");
-		// payloadAndDbCheck(updateSerialNojsonString);
+		payloadAndDbCheck(jsonString);
 		Reporting.printAndClearLogGroupStatements();
-
 	}
-
-	public void payloadAndDbCheck(String UpdateSerialNojson) throws SQLException, IOException {
+	public void payloadAndDbCheck(String jsonString) throws SQLException, IOException {
 
 		DBUtils.callDBConnect();
 		/**
 		 * DB Verification Steps
 		 */
-
 		// Declaring variable from payload
-		GenericUtils.serialNoUpdateCheck(UpdateSerialNojson);
+		ValidationUtils.updateItemDBcheck(jsonString,1);
 
 		Reporting.logReporter(Status.INFO, "--------------------DB Validation Completed--------------------");
 
 	}
 
 	/**
-	 * Close DB Connection
+	 * Close Connections
 	 */
 
 	@AfterMethod(alwaysRun = true)
 	public void afterTest() {
-		Reporting.setNewGroupName("Close All Connection");
+		Reporting.setNewGroupName("Close DB Connection");
 		try {
 			DBUtils.dbDisConnect();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Reporting.logReporter(Status.INFO, "DB Connection Closed Successfully!");
 		}
-		Reporting.logReporter(Status.INFO, "DB Connection Closed Successfully!");
+		Reporting.printAndClearLogGroupStatements();
+		Reporting.setNewGroupName("Close All Browser");
+		WebDriverSteps.closeTheBrowser();
 		Reporting.printAndClearLogGroupStatements();
 	}
+
 }

@@ -23,6 +23,7 @@ import com.telus.rcms.utils.APIUtils;
 import com.telus.rcms.utils.DBUtils;
 import com.telus.rcms.utils.GenericUtils;
 import com.telus.rcms.utils.JSONUtils;
+import com.telus.rcms.utils.ValidationUtils;
 import com.test.reporting.Reporting;
 import com.test.ui.actions.BaseTest;
 import com.test.ui.actions.Validate;
@@ -136,7 +137,25 @@ public class TC09_Telus_TIA_TIP_Update_Due_date_Post_inspection_TIA extends Base
 		Reporting.logReporter(Status.INFO, "API Operation status: " + apiOperation2.get("apiStatus"));
 		Reporting.logReporter(Status.INFO, "API Operation Request: " + apiOperation2.get("apiRequest"));
 
+
+		jsonString = String.valueOf(apiOperation2.get("apiRequest")).replace("=", ":");
 		Reporting.printAndClearLogGroupStatements();
+
+		/*** DB VALIDATION ***/
+		Reporting.setNewGroupName("DB VERIFICATION");
+		payloadAndDbCheck(jsonString);
+		Reporting.printAndClearLogGroupStatements();
+	}
+	public void payloadAndDbCheck(String jsonString) throws SQLException, IOException {
+
+		DBUtils.callDBConnect();
+		/**
+		 * DB Verification Steps
+		 */
+		// Declaring variable from payload
+		ValidationUtils.updateItemDBcheck(jsonString,1);
+
+		Reporting.logReporter(Status.INFO, "--------------------DB Validation Completed--------------------");
 
 	}
 

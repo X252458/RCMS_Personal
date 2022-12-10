@@ -8,6 +8,7 @@ Feature: RCMS Activation API - UpdateItem API
     * def subID = karate.properties['karate.subID']
     * def subNum = karate.properties['karate.subNum']
     * def startDate = karate.properties['karate.startDate']
+    * def endDate = karate.properties['karate.endDate']
     * def payload = read(PATH_API_PAYLOAD + 'UpdateItem/TC06_Telus_DB_DF_BIB_ACB_TIA_TIP_Renewal_DB_Update_Return_complete.json')
     * header Authorization = 'Bearer ' + auth_token
     * header Content-Type = 'application/json'

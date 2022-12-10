@@ -6,7 +6,7 @@
 		{
 			"id": "",
 			"itemDuration": {
-				"endDateTime": null,
+				"endDateTime": #(endDate),
 				"startDateTime": #(startDate),
 				"quantity": {
 					"amount": 36,
@@ -14,13 +14,13 @@
 				}
 			},
 			"itemType": "TIASSETCREDIT",
-			"incentiveAmount": 310,
+			"incentiveAmount": 240,
 			"incentiveServiceCode": [
 				"566"
 			],
 			"installment": {
 				"installmentDuration": {
-					"endDateTime": null,
+					"endDateTime": #(endDate),
 					"startDateTime": #(startDate),
 					"quantity": {
 						"amount": 1,
@@ -34,7 +34,7 @@
 					},
 					{
 						"name": "INSTALLMENTS_APPLIED_NUM",
-						"value": "1"
+						"value": "0"
 					},
 					{
 						"name": "INSTALLMENTS_APPLIED_AMT",
@@ -157,7 +157,7 @@
 		{
 			"id": "",
 			"itemDuration": {
-				"endDateTime": null,
+				"endDateTime": #(endDate),
 				"startDateTime": #(startDate),
 				"quantity": {
 					"amount": 36,
@@ -165,13 +165,13 @@
 				}
 			},
 			"itemType": "TIPROMOCREDIT",
-			"incentiveAmount": 100,
+			"incentiveAmount": 240,
 			"incentiveServiceCode": [
 				"257"
 			],
 			"installment": {
 				"installmentDuration": {
-					"endDateTime": null,
+					"endDateTime": #(endDate),
 					"startDateTime": #(startDate),
 					"quantity": {
 						"amount": 1,
@@ -185,7 +185,7 @@
 					},
 					{
 						"name": "INSTALLMENTS_APPLIED_NUM",
-						"value": "1"
+						"value": "0"
 					},
 					{
 						"name": "INSTALLMENTS_APPLIED_AMT",

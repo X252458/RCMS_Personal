@@ -6,7 +6,7 @@
 		{
 			"id": "",
 			"itemDuration": {
-				"endDateTime": #(endDate),
+				"endDateTime": #(startDate),
 				"startDateTime": #(startDate),
 				"quantity": {
 					"amount": 36,
@@ -14,13 +14,13 @@
 				}
 			},
 			"itemType": "TIASSETCREDIT",
-			"incentiveAmount": 100,
+			"incentiveAmount": 240,
 			"incentiveServiceCode": [
-				"12345"
+				"566"
 			],
 			"installment": {
 				"installmentDuration": {
-					"endDateTime": #(endDate),
+					"endDateTime": #(startDate),
 					"startDateTime": #(startDate),
 					"quantity": {
 						"amount": 1,

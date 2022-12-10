@@ -14,7 +14,7 @@
 				}
 			},
 			"itemType": "TIASSETCREDIT",
-			"incentiveAmount": 200,
+			"incentiveAmount": 240,
 			"incentiveServiceCode": [
 				"566"
 			],
@@ -165,7 +165,7 @@
 				}
 			},
 			"itemType": "TIPROMOCREDIT",
-			"incentiveAmount": 100,
+			"incentiveAmount": 240,
 			"incentiveServiceCode": [
 				"257"
 			],
@@ -185,7 +185,7 @@
 					},
 					{
 						"name": "INSTALLMENTS_APPLIED_NUM",
-						"value": "1"
+						"value": "0"
 					},
 					{
 						"name": "INSTALLMENTS_APPLIED_AMT",

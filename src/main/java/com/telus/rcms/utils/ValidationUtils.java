@@ -5899,7 +5899,7 @@ public class ValidationUtils {
 			String tax = null;
 			rsAgreementItem = statement.executeQuery("Select * from cust_srvc_agrmt_item item  "
 					+ "inner join CUST_SRVC_AGRMT_ITM_PROMO promo  "
-					+ "on item.CUST_SRVC_AGRMT_ITEM_ID = promo.CUST_SRVC_AGRMT_ITEM_ID and item.customer_svc_agreement_id =(select customer_svc_agreement_id from CUSTOMER_SERVICE_AGREEMENT where SUBSCRIPTION_ID = '"+relatedParty_Subid+"') and item.REWARD_PROGRAM_TYP_ID='" + itemUpdate_itemType + "' and item.ORIG_COMMITMENT_LENGTH_NUM != '0'");
+					+ "on item.CUST_SRVC_AGRMT_ITEM_ID = promo.CUST_SRVC_AGRMT_ITEM_ID and item.customer_svc_agreement_id =(select customer_svc_agreement_id from CUSTOMER_SERVICE_AGREEMENT where CURRENT_IND='Y' AND SUBSCRIPTION_ID = '"+relatedParty_Subid+"') and item.REWARD_PROGRAM_TYP_ID='" + itemUpdate_itemType + "' and item.ORIG_COMMITMENT_LENGTH_NUM != '0'");
 
 			while (rsAgreementItem.next()) {
 
@@ -6033,30 +6033,28 @@ public class ValidationUtils {
 				GenericUtils.validateAssertEqualsFromDB(String.valueOf(rsAgreementItem.getString("REDEEMED_OFFER_SYS_ID")),
 						itemUpdate_productOfferingSourceSystemId, "REDEEMED_OFFER_SYS_ID");*/
 				
-				Reporting.logReporter(Status.INFO, "--- Updated fields  : ");
+				Reporting.logReporter(Status.INFO, "--- Updated fields for : "+itemUpdate_itemType);
 					GenericUtils.validateAssertEquals(itemUpdate_installmentAppliedNumValue,
 							itemUpdate_installmentAppliedNumValue, "INSTALLMENT_APPLIED_NUM");
 
 				switch(itemUpdate_installmentAppliedNumValue) {
 				case "0":
 					GenericUtils.validateAssertEqualsFromDB(
-							String.valueOf(rsAgreementItem.getDate("COMMITMENT_EFF_END_DT")),
+							String.valueOf(rsAgreementItem.getString("COMMITMENT_EFF_END_DT")),
 							itemUpdate_itemDurationEndDateTime, "COMMITMENT_EFF_END_DT");
 					GenericUtils.validateAssertEqualsFromDB(String.valueOf(rsAgreementItem.getString("INCENTIVE_AMT")),
 							itemUpdate_incentiveAmount, "INCENTIVE_AMT");
 					break;
 				case "1":
 					GenericUtils.validateAssertEqualsFromDB(
-							String.valueOf(rsAgreementItem.getDate("COMMITMENT_EFF_END_DT")),
-							itemUpdate_itemDurationStartDateTime, "COMMITMENT_EFF_END_DT");
+							String.valueOf(rsAgreementItem.getString("COMMITMENT_EFF_END_DT")),
+							rsAgreementItem.getString("COMMITMENT_EFF_END_DT"), "COMMITMENT_EFF_END_DT");
 					GenericUtils.validateAssertEqualsFromDB(
-							String.valueOf(rsAgreementItem.getDate("REWARD_INSTLMNT_END_DT")),
-							itemUpdate_itemDurationStartDateTime, "REWARD_INSTLMNT_END_DT");
+							String.valueOf(rsAgreementItem.getString("REWARD_INSTLMNT_END_DT")),
+							rsAgreementItem.getString("REWARD_INSTLMNT_END_DT"), "REWARD_INSTLMNT_END_DT");
 					GenericUtils.validateAssertEqualsFromDB(
-							String.valueOf(rsAgreementItem.getDate("REWARD_INSTLMNT_START_DT")),
-							itemUpdate_itemDurationStartDateTime, "REWARD_INSTLMNT_START_DT");
-					GenericUtils.validateAssertEqualsFromDB(String.valueOf(rsAgreementItem.getString("INCENTIVE_AMT")),
-							itemUpdate_incentiveAmount, "INCENTIVE_AMT");
+							String.valueOf(rsAgreementItem.getString("REWARD_INSTLMNT_START_DT")),
+							rsAgreementItem.getString("REWARD_INSTLMNT_START_DT"), "REWARD_INSTLMNT_START_DT");
 					break;
 				// and incentive_amt
 				}
@@ -6308,8 +6306,56 @@ public class ValidationUtils {
 
 	}
 
-	public static void migrationDBcheck(String jsonString, int i) {
+	public static void beforeMigrationDBcheck(String subID) throws SQLException {
 		
+		Statement statement = null;
+		statement = DBUtils.Conn.createStatement();
+		ResultSet rsAgreementItem = null;
+		Boolean flag = true;
+		String startDate = JSONUtils.getGMTStartDate().split("T")[0];
+		
+		rsAgreementItem = statement.executeQuery("\r\n" + 
+				"SELECT agrmt.REDEEMED_OFFER_TYPE_ID, agrmt.AGREEMENT_START_DT, agrmt.AGREEMENT_END_DT, agrmt.COMMITMENT_LENGTH_NUM as AGRMT_COMMITMENT_LENGTH_NUM, agrmt.CURRENT_IND, \r\n" + 
+				"item.REWARD_PROGRAM_TYP_ID, item.COMMITMENT_EFF_START_DT, item.COMMITMENT_EFF_END_DT, item.ORIG_COMMITMENT_LENGTH_NUM AS ITEM_ORIG_COMMITMENT_LENGTH_NUM \r\n" + 
+				"FROM CUSTOMER_SERVICE_AGREEMENT agrmt \r\n" + 
+				"inner join CUST_SRVC_AGRMT_ITEM item \r\n" + 
+				"on agrmt.CUSTOMER_SVC_AGREEMENT_ID = item.customer_svc_agreement_id \r\n" + 
+				"and agrmt.SUBSCRIPTION_ID ='"+subID+"' \r\n" + 
+				"and agrmt.REDEEMED_OFFER_TYPE_ID='1' \r\n" + 
+				"and agrmt.CURRENT_IND='N'");
+		
+		while (rsAgreementItem.next()) {
+
+			Reporting.logReporter(Status.INFO, "DB Validation for Voided record : "+String.valueOf(rsAgreementItem.getString("REWARD_PROGRAM_TYP_ID")));
+			
+			if(flag=true);{
+			GenericUtils.validateAssertEquals(String.valueOf(rsAgreementItem.getString("CURRENT_IND")),
+					"N", "CURRENT_IND");
+			GenericUtils.validateAssertEquals(String.valueOf(rsAgreementItem.getString("REDEEMED_OFFER_TYPE_ID")),
+					"1", "REDEEMED_OFFER_TYPE_ID");
+			GenericUtils.validateAssertEquals(String.valueOf(rsAgreementItem.getDate("AGREEMENT_START_DT")),
+					startDate, "AGREEMENT_START_DT");
+			GenericUtils.validateAssertEquals(String.valueOf(rsAgreementItem.getDate("AGREEMENT_END_DT")),
+					startDate, "AGREEMENT_END_DT");
+			GenericUtils.validateAssertEquals(String.valueOf(rsAgreementItem.getString("AGRMT_COMMITMENT_LENGTH_NUM")),
+					"0", "AGRMT_COMMITMENT_LENGTH_NUM");
+			GenericUtils.validateAssertEquals(String.valueOf(rsAgreementItem.getString("CURRENT_IND")),
+					"N", "CURRENT_IND");
+			}
+
+			GenericUtils.validateAssertEquals(String.valueOf(rsAgreementItem.getDate("COMMITMENT_EFF_START_DT")),
+					startDate, "COMMITMENT_EFF_START_DT");
+			GenericUtils.validateAssertEquals(String.valueOf(rsAgreementItem.getDate("COMMITMENT_EFF_END_DT")),
+					startDate, "COMMITMENT_EFF_END_DT");
+			GenericUtils.validateAssertEquals(String.valueOf(rsAgreementItem.getString("ITEM_ORIG_COMMITMENT_LENGTH_NUM")),
+					"0", "ITEM_ORIG_COMMITMENT_LENGTH_NUM");
+			flag=false;
+		}
+		
+	}
+
+	public static void migrationDBcheck(String jsonString, int i) {
+		// TODO Auto-generated method stub
 		
 	}
 

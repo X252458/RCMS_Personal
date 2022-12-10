@@ -14,9 +14,9 @@
 				}
 			},
 			"itemType": "TIASSETCREDIT",
-			"incentiveAmount": 475,
+			"incentiveAmount": 240,
 			"incentiveServiceCode": [
-				"12345"
+				"566"
 			],
 			"installment": {
 				"installmentDuration": {
@@ -165,9 +165,9 @@
 				}
 			},
 			"itemType": "TIPROMOCREDIT",
-			"incentiveAmount": 100,
+			"incentiveAmount": 240,
 			"incentiveServiceCode": [
-				"12345"
+				"257"
 			],
 			"installment": {
 				"installmentDuration": {

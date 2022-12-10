@@ -8,6 +8,7 @@ Feature: RCMS Activation API - UpdateItem API
     * def subID = karate.properties['karate.subID']
     * def subNum = karate.properties['karate.subNum']
     * def startDate = karate.properties['karate.startDate']
+    * def endDate = karate.properties['karate.endDate']
     * def payload = read(PATH_API_PAYLOAD + 'UpdateItem/TC02_Telus_TIA_TIP_Update_Installment_Date_and_Post_inspection.json')
     * header Authorization = 'Bearer ' + auth_token
     * header Content-Type = 'application/json'

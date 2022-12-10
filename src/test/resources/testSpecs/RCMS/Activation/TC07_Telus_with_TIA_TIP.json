@@ -22,7 +22,7 @@
 				"566"
 			],
 			"itemType": "TIASSETCREDIT",
-			"incentiveAmount": 300,
+			"incentiveAmount": 240,
 			"installment": {
 				"characteristic": [
 					{
@@ -161,7 +161,7 @@
 				"257"
 			],
 			"itemType": "TIPROMOCREDIT",
-			"incentiveAmount": 100,
+			"incentiveAmount": 240,
 			"installment": {
 				"characteristic": [
 					{

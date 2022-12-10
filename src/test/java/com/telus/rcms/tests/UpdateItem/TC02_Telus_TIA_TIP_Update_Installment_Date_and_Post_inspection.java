@@ -55,6 +55,7 @@ public class TC02_Telus_TIA_TIP_Update_Installment_Date_and_Post_inspection exte
 	String subscriberNum = null;
 
 	String startDate = null;
+	String endDate = null;
 	String jsonString = null;
 
 	ExtentTest parentTest = null;
@@ -88,7 +89,6 @@ public class TC02_Telus_TIA_TIP_Update_Installment_Date_and_Post_inspection exte
 		Reporting.setNewGroupName("Test Case Details");
 		Reporting.logReporter(Status.INFO, "Test Case Name : [" + scriptName + "]");
 		Reporting.logReporter(Status.INFO, "Test Case Description : [" + testCaseDescription + "]");
-		Reporting.logReporter(Status.INFO, "Request Payload Path : [" + requestPayloadFilePath + "]");
 		Reporting.printAndClearLogGroupStatements();
 
 		/**
@@ -109,12 +109,14 @@ public class TC02_Telus_TIA_TIP_Update_Installment_Date_and_Post_inspection exte
 		subscriptionID = GenericUtils.getUniqueSubscriptionID(apiEnv);
 		subscriberNum = GenericUtils.getUniqueSubscriberNumber(apiEnv);
 		startDate = JSONUtils.getStartDate();
+		endDate = JSONUtils.getNewGMTEndDate(2);
 		System.setProperty("karate.auth_token_reward", accessToken);
 		System.setProperty("karate.auth_token", accessToken);
 		System.setProperty("karate.accID", accountID);
 		System.setProperty("karate.subID", subscriptionID);
 		System.setProperty("karate.subNum", subscriberNum);
 		System.setProperty("karate.startDate", startDate);
+		System.setProperty("karate.endDate", endDate);
 		System.setProperty("karate.apiEnv", apiEnv);
 
 		Map<String, Object> apiOperation1 = APIJava.runKarateFeature(environment,
@@ -127,7 +129,7 @@ public class TC02_Telus_TIA_TIP_Update_Installment_Date_and_Post_inspection exte
 		Reporting.printAndClearLogGroupStatements();
 
 		// Update API Call
-
+		Reporting.setNewGroupName("UPDATE ITEM API CALL");
 		Map<String, Object> apiOperation2 = APIJava.runKarateFeature(environment,
 				"classpath:tests/RCMS/UpdateItem/updateItemTC2.feature");
 		Reporting.logReporter(Status.INFO,
@@ -135,7 +137,6 @@ public class TC02_Telus_TIA_TIP_Update_Installment_Date_and_Post_inspection exte
 		Reporting.logReporter(Status.INFO,
 				"API Operation Request: " + apiOperation2.get("apiRequest"));
 
-		Reporting.printAndClearLogGroupStatements();
 		jsonString = String.valueOf(apiOperation2.get("apiRequest")).replace("=", ":");
 		Reporting.printAndClearLogGroupStatements();
 

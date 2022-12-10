@@ -1,0 +1,48 @@
+{
+	"relatedParty": [
+		{
+			"id": #(subID),
+			"role": "SUBSCRIPTION",
+			"characteristic": [
+				{
+					"name": "SUBSCRIBER_NUMBER",
+					"value": #(subNum)
+				},
+				{
+					"name": "PREVIOUS_SUB_STATUS_CODE",
+					"value": "ACTIVE"
+				},
+				{
+					"name": "CURRENT_SUB_STATUS_CODE",
+					"value": "SUSPENDED"
+				}
+			]
+		},
+		{
+			"id": #(accID),
+			"role": "ACCOUNT"
+		},
+		{
+			"id": "8794891",
+			"role": "ORIGINATOR",
+			"characteristic": [
+				{
+					"name": "TRANSACTION_ID",
+					"value": "1231487414"
+				},
+				{
+					"name": "CHNL_ORG_ID",
+					"value": "B00AB00407"
+				},
+				{
+					"name": "SALES_REP_ID",
+					"value": "6862"
+				},
+				{
+					"name": "TEAM_MEMBER_ID",
+					"value": "156715"
+				}
+			]
+		}
+	]
+}

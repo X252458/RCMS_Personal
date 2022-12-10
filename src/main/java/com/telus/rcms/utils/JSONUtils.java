@@ -113,7 +113,7 @@ public class JSONUtils {
 		 */
 		
 		Instant instant = Instant.now();
-        ZonedDateTime zdtNewYork = instant.atZone(ZoneId.of("GMT"));
+        ZonedDateTime zdtNewYork = instant.atZone(ZoneId.of("EST", ZoneId.SHORT_IDS));
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         String startDate = zdtNewYork.format(formatter).toString();
         startDate=startDate.concat("T00:00:00-0500");
@@ -124,7 +124,7 @@ public class JSONUtils {
 public static String getNewGMTEndDate(Integer duration) {
 				
 		Instant instant = Instant.now();
-        ZonedDateTime zdtNewYork = instant.atZone(ZoneId.of("GMT"));
+        ZonedDateTime zdtNewYork = instant.atZone(ZoneId.of("EST", ZoneId.SHORT_IDS));
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         String startDate = zdtNewYork.format(formatter).toString();
         
@@ -140,7 +140,7 @@ public static String getNewGMTEndDate(Integer duration) {
 	public static String getGMTFutureStartDate() {
 
 		Instant instant = Instant.now();
-		ZonedDateTime zdtNewYork = instant.atZone(ZoneId.of("GMT"));
+		ZonedDateTime zdtNewYork = instant.atZone(ZoneId.of("EST", ZoneId.SHORT_IDS));
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		String startDate = zdtNewYork.format(formatter).toString();
 
@@ -163,8 +163,8 @@ public static String getNewGMTEndDate(Integer duration) {
 		case "BIB":
 		case "9":
 			startDateFormatted = LocalDate.parse(startDate);
-//            startDateFormatted = startDateFormatted.plusMonths(monthDuration + 1).minusDays(1);
-			startDateFormatted = startDateFormatted.plusMonths(monthDuration + 1);
+            startDateFormatted = startDateFormatted.plusMonths(monthDuration + 1).minusDays(1);
+//			startDateFormatted = startDateFormatted.plusMonths(monthDuration + 1);
 			startDate = startDateFormatted.toString();
 			break;
 		case "TIASSETCREDIT":

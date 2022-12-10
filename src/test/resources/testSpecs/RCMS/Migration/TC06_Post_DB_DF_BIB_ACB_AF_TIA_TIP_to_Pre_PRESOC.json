@@ -167,7 +167,7 @@
   "payment": [
     {
       "amount": {
-        "value": 220,
+        "value": 230,
         "unit": "CAD"
       },
       "relatedParty": [
@@ -189,7 +189,7 @@
     },
     {
       "amount": {
-        "value": 0,
+        "value": 240,
         "unit": "CAD"
       },
       "relatedParty": [
@@ -211,7 +211,7 @@
     },
 	{
       "amount": {
-        "value": 300,
+        "value": 240,
         "unit": "CAD"
       },
       "relatedParty": [
@@ -233,7 +233,7 @@
     },
         {
       "amount": {
-        "value": 400.0,
+        "value": 240,
         "unit": "CAD"
       },
       "paymentMechanism": "BIB_TELUS_RETURN",
@@ -260,7 +260,7 @@
     },
     {
       "amount": {
-        "value": 320.0,
+        "value": 240,
         "unit": "CAD"
       },
       "relatedParty": [
@@ -286,7 +286,7 @@
     },
     {
       "amount": {
-        "value": 50,
+        "value": 230,
         "unit": "CAD"
       },
       "relatedParty": [

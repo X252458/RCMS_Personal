@@ -167,7 +167,7 @@
 	"payment": [
 		{
 			"amount": {
-				"value": 220,
+				"value": 230,
 				"unit": "CAD"
 			},
 			"relatedParty": [
@@ -189,7 +189,7 @@
 		},
 		{
 			"amount": {
-				"value": 300,
+				"value": 240,
 				"unit": "CAD"
 			},
 			"relatedParty": [
@@ -211,7 +211,7 @@
 		},
 		{
 			"amount": {
-				"value": 400,
+				"value": 240,
 				"unit": "CAD"
 			},
 			"paymentMechanism": "BIB_TELUS_RETURN",
@@ -238,7 +238,7 @@
 		},
 		{
 			"amount": {
-				"value": 320,
+				"value": 240,
 				"unit": "CAD"
 			},
 			"relatedParty": [
@@ -252,33 +252,11 @@
 						},
 						{
 							"name": "FINANCE_COMMITMENT_ITEM_ID",
-							"value": "20616"
+							"value": "9166538"
 						},
 						{
 							"name": "ITEM_TYPE",
 							"value": "FINANCE"
-						}
-					]
-				}
-			]
-		},
-		{
-			"amount": {
-				"value": 100,
-				"unit": "CAD"
-			},
-			"relatedParty": [
-				{
-					"id": "",
-					"role": "LOYALTY_AGREEMENT_ITEM",
-					"characteristic": [
-						{
-							"name": "CHARGE_TYPE",
-							"value": "HWECF"
-						},
-						{
-							"name": "ITEM_TYPE",
-							"value": "HARDWARE"
 						}
 					]
 				}

@@ -96,6 +96,7 @@ public class TC04_Pre_PRESOC_PRECREDIT_to_Post_DB_DF_ACB_RCB_AF extends BaseTest
 	
 		Reporting.setNewGroupName("ACCESS TOKEN GENERATION");
 		String accessToken = APIUtils.getAccessToken(environment, "rewardService");
+		String accessToken_violation = APIUtils.getAccessToken(environment,"violation");
 		Reporting.logReporter(Status.INFO, "ACCESS_TOKEN: " + accessToken);
 		Reporting.printAndClearLogGroupStatements();
 
@@ -111,6 +112,7 @@ public class TC04_Pre_PRESOC_PRECREDIT_to_Post_DB_DF_ACB_RCB_AF extends BaseTest
 
 
 		System.setProperty("karate.auth_token_reward", accessToken);
+		System.setProperty("karate.auth_token_violation", accessToken_violation);
 		System.setProperty("karate.accID", accountID);
 		System.setProperty("karate.subID", subscriptionID);
 		System.setProperty("karate.subNum", subscriberNum);
@@ -123,6 +125,17 @@ public class TC04_Pre_PRESOC_PRECREDIT_to_Post_DB_DF_ACB_RCB_AF extends BaseTest
 		Reporting.logReporter(Status.INFO, "API Operation Request: " + apiOperation.get("apiRequest"));
 
 		Reporting.printAndClearLogGroupStatements();
+		
+		//MigrationPenalty API Call
+		Reporting.setNewGroupName("MIGRATION PENALTY API CALL");
+		Map<String, Object> apiOperation3 = APIJava.runKarateFeature(environment,
+				"classpath:tests/RCMS/GetMigrationPenalty/GetMigrationPenaltyTC01.feature");
+		Reporting.logReporter(Status.INFO,
+				"API Operation status: " + apiOperation3.get("apiStatus"));
+		Reporting.logReporter(Status.INFO,
+				"API Operation Request: " + apiOperation3.get("apiResponse"));
+		Reporting.printAndClearLogGroupStatements();
+
 
 		// Migration API Call
 		Reporting.setNewGroupName("MIGRATION API CALL");
@@ -141,19 +154,19 @@ public class TC04_Pre_PRESOC_PRECREDIT_to_Post_DB_DF_ACB_RCB_AF extends BaseTest
 
 		/*** DB VALIDATION ***/
 		Reporting.setNewGroupName("DB VERIFICATION");
-		payloadAndDbCheck(jsonString);
+		payloadAndDbCheck();
 		Reporting.printAndClearLogGroupStatements();
 
 	}
 
-	public void payloadAndDbCheck(String jsonString) throws SQLException, IOException {
+	public void payloadAndDbCheck() throws SQLException, IOException {
 
 		DBUtils.callDBConnect();
 		/**
 		 * DB Verification Steps
 		 */
 		// Declaring variable from payload
-		ValidationUtils.migrationDBcheck(jsonString,1);
+		ValidationUtils.beforeMigrationDBcheck(subscriptionID);
 
 		Reporting.logReporter(Status.INFO, "--------------------DB Validation Completed--------------------");
 
