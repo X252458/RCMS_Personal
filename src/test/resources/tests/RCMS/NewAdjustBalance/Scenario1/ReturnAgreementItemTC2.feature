@@ -10,5 +10,5 @@ Feature: TC02 Perform Accessory return - ReturnAgreementItem with amount=300. (f
     #Status
     * def apiDetailsStatus = apiDetails.responseStatus
     #Validation
-    #Then match apiDetailsStatus == 500
+    ##Then match apiDetailsStatus == 500
    

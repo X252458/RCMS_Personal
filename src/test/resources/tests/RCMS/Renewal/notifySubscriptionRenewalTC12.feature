@@ -8,4 +8,4 @@ Feature: TC12_Perform_renewal_from_TAB_HWS_to_TAB_HWS_with_charge_and_partial_wa
     #Status
     * def tc12RenewalStatus = tc12Renewal.responseStatus
     #Validation
-    #Then match tc12RenewalStatus == 200
+    ##Then match tc12RenewalStatus == 200

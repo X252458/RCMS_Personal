@@ -10,4 +10,4 @@ Feature: TC02 Perform Activation for Koodo Subscriber with TAB+HWS
     #Status
     * def tc02ActivateKoodoTAB_HWSStatus = tc02ActivateKoodoTAB_HWS.responseStatus
     #Validation
-    #Then match tc02ActivateKoodoTAB_HWSStatus == 200
+    ##Then match tc02ActivateKoodoTAB_HWSStatus == 200

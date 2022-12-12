@@ -8,4 +8,4 @@ Feature: ReturnAgreementItem API
     #Status
     * def apiStatus = apiDetails.responseStatus
     #Validation
-    Then match apiStatus == 500
+    #Then match apiStatus == 500

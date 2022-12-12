@@ -10,4 +10,4 @@ Feature:  getEarlyRenewalPenalty API
     #Status
     * def getEarlyRenewalPenaltyStatus = getEarlyRenewalPenalty.responseStatus
     #Validation
-    Then match getEarlyRenewalPenaltyStatus == 201
+    #Then match getEarlyRenewalPenaltyStatus == 201

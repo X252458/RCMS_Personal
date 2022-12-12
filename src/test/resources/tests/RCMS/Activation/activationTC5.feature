@@ -10,4 +10,4 @@ Feature: TC05 Activate Telus subscriber with ACCESSORYFINANCE
     #Status
     * def tc05ActivateTelusSubwithAFStatus = tc05ActivateTelusSubwithAF.responseStatus
     #Validation
-    #Then match tc05ActivateTelusSubwithAFStatus == 200
+    ##Then match tc05ActivateTelusSubwithAFStatus == 200

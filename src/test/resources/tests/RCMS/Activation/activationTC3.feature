@@ -9,4 +9,4 @@ Feature: tc03 Activate DB+DF+RCB+AF
     #Status
     * def tc03ActivateKoodoWithSimOnlyStatus = tc03ActivateKoodoWithSimOnly.responseStatus
     #Validation
-    #Then match tc03ActivateKoodoWithSimOnlyStatus == 200
+    ##Then match tc03ActivateKoodoWithSimOnlyStatus == 200

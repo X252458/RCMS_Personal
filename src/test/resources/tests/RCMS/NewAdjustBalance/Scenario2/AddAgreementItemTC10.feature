@@ -11,5 +11,5 @@ Feature: TC10 Perform Addagreementitem to add ACCESSORYFINANCE to above subscrib
     #Status
     * def apiDetailsStatus = apiDetails.responseStatus
     #Validation
-    #Then match apiDetailsStatus == 200
+    ##Then match apiDetailsStatus == 200
    

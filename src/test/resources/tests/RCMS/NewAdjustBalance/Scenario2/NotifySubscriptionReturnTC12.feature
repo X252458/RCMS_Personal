@@ -10,5 +10,5 @@ Feature: TC12 Perform Device Return – notifySubscriptionReturn makes DF=0
     #Status
     * def apiDetailsStatus = apiDetails.responseStatus
     #Validation
-    #Then match apiDetailsStatus == 200
+    ##Then match apiDetailsStatus == 200
    

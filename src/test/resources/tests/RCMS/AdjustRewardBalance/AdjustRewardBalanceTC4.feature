@@ -8,4 +8,4 @@ Feature: TC04 Telus Sub with DB+DF+BIB+ACB+TIASSETCREDIT+TIPROMOCREDIT+ACCESSORY
     #Status
     * def apiDetailsStatus = apiDetails.responseStatus
     #Validation
-    #Then match apiDetailsStatus == 500
+    ##Then match apiDetailsStatus == 500

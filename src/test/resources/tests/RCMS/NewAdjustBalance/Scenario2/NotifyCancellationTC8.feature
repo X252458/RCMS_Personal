@@ -10,5 +10,5 @@ Feature: TC08 Perform Notify Cancellation for Telus Sub with DF+ACCESSORYFINANCE
     #Status
     * def apiDetailsStatus = apiDetails.responseStatus
     #Validation
-    #Then match apiDetailsStatus == 200
+    ##Then match apiDetailsStatus == 200
    

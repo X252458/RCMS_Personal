@@ -8,4 +8,4 @@ Feature: TC01_EAA_ Telus subscriber with DB+ TIASSETCREDIT +AF  exchanged to DB 
     #Status
     * def apiStatus = apiDetails.responseStatus
     #Validation
-    Then match apiStatus == 200
+    #Then match apiStatus == 200

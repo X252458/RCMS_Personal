@@ -8,4 +8,4 @@ Feature: TC01 Telus Subscriber having DF_AF_TIASSETCREDIT_TIPROMOCREDIT Renewed 
     #Status
     * def apiStatus = apiDetails.responseStatus
     #Validation
-    Then match apiStatus == 200
+    #Then match apiStatus == 200

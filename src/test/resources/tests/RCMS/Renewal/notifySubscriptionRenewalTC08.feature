@@ -8,4 +8,4 @@ Feature: TC08_Customer_having_DB_DF_BIB_Renewal_DF_BIB_Renewal_to_DB_DF
     #Status
     * def tc08RenewalStatus = tc08Renewal.responseStatus
     #Validation
-    Then match tc08RenewalStatus == 200
+    #Then match tc08RenewalStatus == 200

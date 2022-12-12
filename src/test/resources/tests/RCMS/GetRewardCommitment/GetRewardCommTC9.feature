@@ -11,4 +11,4 @@ Feature: TC09 Call getRewardCommitment operation for Telus Subscriber with DB+DF
     #Status
     * def getRewardCommStatus = getRewardComm.responseStatus
     #Validation
-    Then match getRewardCommStatus == 200
+    #Then match getRewardCommStatus == 200

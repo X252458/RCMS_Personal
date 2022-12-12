@@ -8,4 +8,4 @@ Feature: Updating TIAssetCredit and TIPromoCredit installment date
     #Status
     * def tc01UpdateTelusSubWithTICreditInstalStatus = tc01UpdateTelusSubWithTICreditInstal.responseStatus
     #Validation
-    Then match tc01UpdateTelusSubWithTICreditInstalStatus == 200
+    #Then match tc01UpdateTelusSubWithTICreditInstalStatus == 200

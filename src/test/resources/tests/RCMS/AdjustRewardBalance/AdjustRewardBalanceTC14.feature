@@ -10,4 +10,4 @@ Feature: TC14 Telus Sub with DB + DF + BIB + ACB_Adjustment reason CORRECTION__U
     #Status
     * def apiDetailsStatus = apiDetails.responseStatus
     #Validation
-    #Then match apiDetailsStatus == 200
+    ##Then match apiDetailsStatus == 200

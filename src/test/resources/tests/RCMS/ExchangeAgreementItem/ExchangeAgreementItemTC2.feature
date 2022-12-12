@@ -9,4 +9,4 @@ Feature: TC02 Perform exchangeAgreementItem for Telus subscriber with DF + DB do
     #Status
     * def apiDetailsStatus = apiDetails.responseStatus
     #Validation
-    Then match apiDetailsStatus == 500
+    #Then match apiDetailsStatus == 500

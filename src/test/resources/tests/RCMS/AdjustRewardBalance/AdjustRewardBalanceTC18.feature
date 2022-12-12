@@ -10,4 +10,4 @@ Feature: TC18 Telus Sub with DF + DB+RCB_Adjustment reason  'RCB_MANUAL_INSTALLM
     #Status
     * def apiDetailsStatus = apiDetails.responseStatus
     #Validation
-    #Then match apiDetailsStatus == 200
+    ##Then match apiDetailsStatus == 200

@@ -8,4 +8,4 @@ Feature: TC02 Activate Telus Subscriber with DF_BIB_ACB_DB_TIA_TIP
     #Status
     * def tc01ActivateTelusSubWithDF_BIB_ACB_DB_TIASSETCREDIT_TIPROMOCREDITStatus = tc01ActivateTelusSubWithDF_BIB_ACB_DB_TIA_TIP.responseStatus
     #Validation
-    #Then match tc01ActivateTelusSubWithDF_BIB_ACB_DB_TIASSETCREDIT_TIPROMOCREDITStatus == 200
+    ##Then match tc01ActivateTelusSubWithDF_BIB_ACB_DB_TIASSETCREDIT_TIPROMOCREDITStatus == 200

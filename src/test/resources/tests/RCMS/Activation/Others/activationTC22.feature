@@ -9,4 +9,4 @@ Feature: TC02 Activate Telus Subscriber with DF
     #Status
     * def tc22ActivateDB_DF_RCBStatus = tc22ActivateDB_DF_RCB.responseStatus
     #Validation
-    #Then match tc22ActivateDB_DF_RCBStatus == 200
+    ##Then match tc22ActivateDB_DF_RCBStatus == 200

@@ -10,4 +10,4 @@ Feature: TC01 Telus Subscriber having ACCESSORYFINANCE
     #Status
     * def getReturnPenaltyStatus = getReturnPenalty.responseStatus
     #Validation
-    Then match getReturnPenaltyStatus == 201
+    #Then match getReturnPenaltyStatus == 201

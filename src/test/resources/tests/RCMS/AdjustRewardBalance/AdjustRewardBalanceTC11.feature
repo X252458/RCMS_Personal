@@ -10,4 +10,4 @@ Feature: TC11 Koodo Subscriber active in RCMS DB having TAB - Adjustment with Go
     #Status
     * def apiDetailsStatus = apiDetails.responseStatus
     #Validation
-    #Then match apiDetailsStatus == 500
+    ##Then match apiDetailsStatus == 500

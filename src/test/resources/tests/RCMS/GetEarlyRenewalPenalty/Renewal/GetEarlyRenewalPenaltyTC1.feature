@@ -10,4 +10,4 @@ Feature: TC01 Telus Subscriber having ACCESSORYFINANCE
     #Status
     * def getEarlyRenewalPenaltyStatus = getEarlyRenewalPenalty.responseStatus
     #Validation
-    Then match getEarlyRenewalPenaltyStatus == 201
+    #Then match getEarlyRenewalPenaltyStatus == 201

@@ -8,4 +8,4 @@ Feature: Updating All Device return
     #Status
     * def tc02UpdateTelusSubWithAllUpdateStatus = tc02UpdateTelusSubWithAllUpdate.responseStatus
     #Validation
-    Then match tc02UpdateTelusSubWithAllUpdateStatus == 200
+    #Then match tc02UpdateTelusSubWithAllUpdateStatus == 200

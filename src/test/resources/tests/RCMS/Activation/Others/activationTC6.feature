@@ -9,4 +9,4 @@ Feature: TC06 Activate Telus Subscriber with DF_DB_BIB
     #Status
     * def tc06ActivateTelusSubwithDF_DB_BIBStatus = tc06ActivateTelusSubwithDF_DB_BIB.responseStatus
     #Validation
-    Then match tc06ActivateTelusSubwithDF_DB_BIBStatus == 200
+    #Then match tc06ActivateTelusSubwithDF_DB_BIBStatus == 200

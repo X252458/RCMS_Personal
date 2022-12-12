@@ -10,5 +10,5 @@ Feature: TC07 Perform adjustBalance – reasonCode=RESTORE_RETURN (amount=100) a
     #Status
     * def apiDetailsStatus = apiDetails.responseStatus
     #Validation
-    #Then match apiDetailsStatus == 500
+    ##Then match apiDetailsStatus == 500
    
