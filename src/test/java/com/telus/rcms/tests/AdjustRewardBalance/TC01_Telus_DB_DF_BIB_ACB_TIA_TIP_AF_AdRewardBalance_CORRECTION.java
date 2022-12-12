@@ -126,7 +126,7 @@ public class TC01_Telus_DB_DF_BIB_ACB_TIA_TIP_AF_AdRewardBalance_CORRECTION exte
 		System.setProperty("karate.startDate", startDate);
 		System.setProperty("karate.apiEnv", apiEnv);
 
-		Map<String, Object> apiOperation = GenericUtils.featureFileFailLoop(environment,"classpath:tests/RCMS/activation/activationTC1.feature","tc01ActivateTelusSubWithAllStatus" );
+		Map<String, Object> apiOperation = GenericUtils.featureFileFailLoop_status(environment,"classpath:tests/RCMS/activation/activationTC1.feature","tc01ActivateTelusSubWithAllStatus","200");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation.get("tc01ActivateTelusSubWithAllRequest"));
 		Reporting.logReporter(Status.INFO,
@@ -141,7 +141,7 @@ public class TC01_Telus_DB_DF_BIB_ACB_TIA_TIP_AF_AdRewardBalance_CORRECTION exte
 
 		System.setProperty("karate.itemType", "ACCESSORYFINANCE");
 
-		Map<String, Object> apiOperation2 = GenericUtils.featureFileFailLoop(environment,"classpath:tests/RCMS/AdjustRewardBalance/AdjustRewardBalanceTC1.feature","apiDetailsStatus" );
+		Map<String, Object> apiOperation2 = GenericUtils.featureFileFailLoop_status(environment,"classpath:tests/RCMS/AdjustRewardBalance/AdjustRewardBalanceTC1.feature","apiDetailsStatus","200");
 		Reporting.logReporter(Status.INFO, "API Operation Response: " + apiOperation2.get("apiDetailsResponse"));
 		Reporting.logReporter(Status.INFO, "API Operation Request: " + apiOperation2.get("apiDetailsRequest"));
 		Reporting.logReporter(Status.INFO, "API Operation status: " + apiOperation2.get("apiDetailsStatus"));

@@ -111,7 +111,7 @@ public class TC17_Telus_DF_AF_adjustBalance_LUMPSUM_PAYMENT_Return extends BaseT
 		System.setProperty("karate.startDate", startDate);
 		System.setProperty("karate.apiEnv", apiEnv);
 
-		Map<String, Object> apiOperation = GenericUtils.featureFileFailLoop(environment,"classpath:tests/RCMS/NewAdjustBalance/activationTC1.feature","tc01ActivateTelusSubWithAllStatus" );
+		Map<String, Object> apiOperation = GenericUtils.featureFileFailLoop_status(environment,"classpath:tests/RCMS/NewAdjustBalance/activationTC1.feature","tc01ActivateTelusSubWithAllStatus","200" );
 		 Reporting.logReporter(Status.INFO, "API Operation status: " +
 		 apiOperation.get("tc01ActivateTelusSubWithAllRequest"));
 		 Reporting.logReporter(Status.INFO, "API Operation Request: " +
@@ -123,7 +123,7 @@ public class TC17_Telus_DF_AF_adjustBalance_LUMPSUM_PAYMENT_Return extends BaseT
 		Reporting.setNewGroupName("ADJUST REWARD BALANCE API CALL - AF+DF_LUMSUM_PAYMENT");
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
-		Map<String, Object> apiOperation2 = GenericUtils.featureFileFailLoop(environment,"classpath:tests/RCMS/NewAdjustBalance/Scenario3/AdjustBalanceLumsumPaymentTC17.feature","apiDetailsStatus" );
+		Map<String, Object> apiOperation2 = GenericUtils.featureFileFailLoop_status(environment,"classpath:tests/RCMS/NewAdjustBalance/Scenario3/AdjustBalanceLumsumPaymentTC17.feature","apiDetailsStatus","200");
 		Reporting.logReporter(Status.INFO,
 				"API Operation Response: " + apiOperation2.get("apiDetailsResponse"));
 		Reporting.logReporter(Status.INFO,

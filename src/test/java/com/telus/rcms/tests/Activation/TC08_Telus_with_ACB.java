@@ -117,7 +117,7 @@ public class TC08_Telus_with_ACB extends BaseTest {
 		System.setProperty("karate.startDate", startDate);
 		System.setProperty("karate.apiEnv", apiEnv);
 
-		Map<String, Object> apiOperation = GenericUtils.featureFileFailLoop(environment,"classpath:tests/RCMS/activation/activationTC8.feature","tc08ActivateTelusSubACBStatus" );
+		Map<String, Object> apiOperation = GenericUtils.featureFileFailLoop_status(environment,"classpath:tests/RCMS/activation/activationTC8.feature","tc08ActivateTelusSubACBStatus","200");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation.get("tc08ActivateTelusSubACBStatus"));
 		Reporting.logReporter(Status.INFO,

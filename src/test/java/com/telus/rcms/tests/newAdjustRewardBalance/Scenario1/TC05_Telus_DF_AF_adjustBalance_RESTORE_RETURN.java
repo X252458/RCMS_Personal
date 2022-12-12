@@ -110,7 +110,7 @@ public class TC05_Telus_DF_AF_adjustBalance_RESTORE_RETURN  extends BaseTest {
 		System.setProperty("karate.startDate", startDate);
 		System.setProperty("karate.apiEnv", apiEnv);
 
-		Map<String, Object> apiOperation = GenericUtils.featureFileFailLoop(environment,"classpath:tests/RCMS/NewAdjustBalance/activationTC1.feature","tc01ActivateTelusSubWithAllStatus" );
+		Map<String, Object> apiOperation = GenericUtils.featureFileFailLoop_status(environment,"classpath:tests/RCMS/NewAdjustBalance/activationTC1.feature","tc01ActivateTelusSubWithAllStatus","200");
 		 Reporting.logReporter(Status.INFO, "API Operation status: " +
 		 apiOperation.get("tc01ActivateTelusSubWithAllRequest"));
 		 Reporting.logReporter(Status.INFO, "API Operation Request: " +
@@ -122,7 +122,7 @@ public class TC05_Telus_DF_AF_adjustBalance_RESTORE_RETURN  extends BaseTest {
 		Reporting.setNewGroupName("ADJUST REWARD BALANCE API CALL - AF+DF_CANCELLATION_PAYMENT");
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
-		Map<String, Object> apiOperation2 = GenericUtils.featureFileFailLoop(environment,"classpath:tests/RCMS/NewAdjustBalance/Scenario1/AdjustBalanceTC1.feature","apiDetailsStatus" );
+		Map<String, Object> apiOperation2 = GenericUtils.featureFileFailLoop_status(environment,"classpath:tests/RCMS/NewAdjustBalance/Scenario1/AdjustBalanceTC1.feature","apiDetailsStatus","200");
 		Reporting.logReporter(Status.INFO,
 				"API Operation Response: " + apiOperation2.get("apiDetailsResponse"));
 		Reporting.logReporter(Status.INFO,
@@ -152,7 +152,7 @@ public class TC05_Telus_DF_AF_adjustBalance_RESTORE_RETURN  extends BaseTest {
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 		System.setProperty("karate.accID", accountID);
 
-		Map<String, Object> apiOperation4 = GenericUtils.featureFileFailLoop(environment,"classpath:tests/RCMS/NewAdjustBalance/Scenario1/NotifySubscriptionReturnTC3.feature","apiDetailsStatus" );
+		Map<String, Object> apiOperation4 = GenericUtils.featureFileFailLoop_status(environment,"classpath:tests/RCMS/NewAdjustBalance/Scenario1/NotifySubscriptionReturnTC3.feature","apiDetailsStatus","200");
 		Reporting.logReporter(Status.INFO,
 				"API Operation Request: " + apiOperation4.get("apiDetailsRequest"));
 		Reporting.logReporter(Status.INFO,
@@ -180,7 +180,7 @@ public class TC05_Telus_DF_AF_adjustBalance_RESTORE_RETURN  extends BaseTest {
 		Reporting.setNewGroupName("Adjust Balance API CALL - AF+DF_RESTORE_RETURN");
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
-		Map<String, Object> apiOperation6 = GenericUtils.featureFileFailLoop(environment,"classpath:tests/RCMS/NewAdjustBalance/Scenario1/AdjustBalanceRestoreReturnTC5.feature","apiDetailsStatus" );
+		Map<String, Object> apiOperation6 = GenericUtils.featureFileFailLoop_status(environment,"classpath:tests/RCMS/NewAdjustBalance/Scenario1/AdjustBalanceRestoreReturnTC5.feature","apiDetailsStatus","200");
 		Reporting.logReporter(Status.INFO,
 				"API Operation Request: " + apiOperation6.get("apiDetailsRequest"));
 		Reporting.logReporter(Status.INFO,

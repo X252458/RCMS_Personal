@@ -102,7 +102,7 @@ public class TC10_Koodo_with_TAB_HWS_AdRewardBalance_CORRECTION extends BaseTest
 		System.setProperty("karate.startDate", startDate);
 		System.setProperty("karate.apiEnv", apiEnv);
 
-		Map<String, Object> apiOperation = GenericUtils.featureFileFailLoop(environment,"classpath:tests/RCMS/activation/activationTC2.feature","tc02ActivateKoodoTAB_HWSStatus" );
+		Map<String, Object> apiOperation = GenericUtils.featureFileFailLoop_status(environment,"classpath:tests/RCMS/activation/activationTC2.feature","tc02ActivateKoodoTAB_HWSStatus","200");
 		
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation.get("tc02ActivateKoodoTAB_HWSRequest"));
@@ -117,7 +117,7 @@ public class TC10_Koodo_with_TAB_HWS_AdRewardBalance_CORRECTION extends BaseTest
 		
 		System.setProperty("karate.itemType","TAB");
 		
-		Map<String, Object> apiOperation2 = GenericUtils.featureFileFailLoop(environment,"classpath:tests/RCMS/AdjustRewardBalance/AdjustRewardBalanceTC10.feature","apiDetailsStatus" );
+		Map<String, Object> apiOperation2 = GenericUtils.featureFileFailLoop_status(environment,"classpath:tests/RCMS/AdjustRewardBalance/AdjustRewardBalanceTC10.feature","apiDetailsStatus","200");
 		Reporting.logReporter(Status.INFO,
 				"API Operation Response: " + apiOperation2.get("apiDetailsResponse"));
 		Reporting.logReporter(Status.INFO,
@@ -139,7 +139,7 @@ public class TC10_Koodo_with_TAB_HWS_AdRewardBalance_CORRECTION extends BaseTest
 		Reporting.setNewGroupName("ADJUST REWARD BALANCE API CALL - HWS_CORRECTION ");
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 		System.setProperty("karate.itemType","HWS");
-		Map<String, Object> apiOperation3 = GenericUtils.featureFileFailLoop(environment,"classpath:tests/RCMS/AdjustRewardBalance/AdjustRewardBalanceTC10.feature","apiDetailsStatus" );
+		Map<String, Object> apiOperation3 = GenericUtils.featureFileFailLoop_status(environment,"classpath:tests/RCMS/AdjustRewardBalance/AdjustRewardBalanceTC10.feature","apiDetailsStatus","200");
 		Reporting.logReporter(Status.INFO,
 					"API Operation Response: " + apiOperation3.get("apiDetailsResponse"));
 		Reporting.logReporter(Status.INFO,

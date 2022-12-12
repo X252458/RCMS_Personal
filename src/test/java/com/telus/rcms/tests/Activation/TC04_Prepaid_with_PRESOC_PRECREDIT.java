@@ -116,7 +116,7 @@ public class TC04_Prepaid_with_PRESOC_PRECREDIT extends BaseTest {
 		System.setProperty("karate.startDate", startDate);
 		System.setProperty("karate.apiEnv", apiEnv);
 
-		Map<String, Object> apiOperation = GenericUtils.featureFileFailLoop(environment,"classpath:tests/RCMS/activation/activationTC4.feature","tc04ActivatePrepaidSubPRESOC_PRECREDITStatus" );
+		Map<String, Object> apiOperation = GenericUtils.featureFileFailLoop_status(environment,"classpath:tests/RCMS/activation/activationTC4.feature","tc04ActivatePrepaidSubPRESOC_PRECREDITStatus","200");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation.get("tc04ActivatePrepaidSubPRESOC_PRECREDITRequest"));
 		Reporting.logReporter(Status.INFO,
