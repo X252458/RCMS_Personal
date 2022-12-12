@@ -76,7 +76,7 @@ public class TC06_Telus_DB_DF_BIB_ACB_TIA_TIP_Renewal_DB_Update_Return_complete 
 	public void testMethod_updateCommitmentItem(ITestContext iTestContext) throws Exception {
 
 		parentTest = ExtentTestManager.getTest();
-		parentTest.assignCategory("UPDATE_COMMITMENT_ITEM");
+		parentTest.assignCategory("UPDATE_ITEM");
 
 		Reporting.setNewGroupName("Automation Configurations / Environment Details & Data Setup");
 		Reporting.logReporter(Status.INFO,
@@ -121,9 +121,9 @@ public class TC06_Telus_DB_DF_BIB_ACB_TIA_TIP_Renewal_DB_Update_Return_complete 
 		Map<String, Object> apiOperation = APIJava.runKarateFeature(environment,
 				"classpath:tests/RCMS/activation/Others/activationTC2.feature");
 		Reporting.logReporter(Status.INFO,
-				"API Operation Status: " + apiOperation.get("tc01ActivateTelusSubWithDF_BIB_ACB_DB_TIA_TIPRequest"));
+				"API Operation Status: " + apiOperation.get("tc01ActivateTelusSubWithDF_BIB_ACB_DB_TIASSETCREDIT_TIPROMOCREDITStatus"));
 		Reporting.logReporter(Status.INFO,
-				"API Operation Request: " + apiOperation.get("tc01ActivateTelusSubWithDF_BIB_ACB_DB_TIA_TIPStatus"));
+				"API Operation Request: " + apiOperation.get("tc01ActivateTelusSubWithDF_BIB_ACB_DB_TIASSETCREDIT_TIPROMOCREDITRequest"));
 		Reporting.printAndClearLogGroupStatements();
 
 		// UpdateItem API Call

@@ -1,4 +1,3 @@
-@Ignore
 Feature: RCMS Activation API - TC01 Call getRewardCommitment operation for Telus Subscriber having ACCESSORYFINANCE Renewed to ACCESSORYFINANCE
 
   Background: Configuration - Set up the authentication, Headers, and params

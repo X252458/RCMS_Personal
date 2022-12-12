@@ -102,8 +102,7 @@ public class TC09_Koodo_with_TAB_HWS_AdRewardBalance_BILLING extends BaseTest {
 		System.setProperty("karate.startDate", startDate);
 		System.setProperty("karate.apiEnv", apiEnv);
 
-		Map<String, Object> apiOperation = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/activation/activationTC2.feature");
+		Map<String, Object> apiOperation = GenericUtils.featureFileFailLoop(environment,"classpath:tests/RCMS/activation/activationTC2.feature","tc02ActivateKoodoTAB_HWSStatus" );
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation.get("tc02ActivateKoodoTAB_HWSRequest"));
 		Reporting.logReporter(Status.INFO,
@@ -117,8 +116,7 @@ public class TC09_Koodo_with_TAB_HWS_AdRewardBalance_BILLING extends BaseTest {
 		
 		System.setProperty("karate.itemType","TAB");
 		
-		Map<String, Object> apiOperation2 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/AdjustRewardBalance/AdjustRewardBalanceTC9.feature");
+		Map<String, Object> apiOperation2 = GenericUtils.featureFileFailLoop(environment,"classpath:tests/RCMS/AdjustRewardBalance/AdjustRewardBalanceTC9.feature","apiDetailsStatus" );
 		Reporting.logReporter(Status.INFO,
 				"API Operation Response: " + apiOperation2.get("apiDetailsResponse"));
 		Reporting.logReporter(Status.INFO,
@@ -139,8 +137,7 @@ public class TC09_Koodo_with_TAB_HWS_AdRewardBalance_BILLING extends BaseTest {
 		Reporting.setNewGroupName("ADJUST REWARD BALANCE API CALL - HWS_RETAIL ");
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 		System.setProperty("karate.itemType","HWS");
-		Map<String, Object> apiOperation3 = APIJava.runKarateFeature(environment,
-					"classpath:tests/RCMS/AdjustRewardBalance/AdjustRewardBalanceTC9.feature");
+		Map<String, Object> apiOperation3 = GenericUtils.featureFileFailLoop(environment,"classpath:tests/RCMS/AdjustRewardBalance/AdjustRewardBalanceTC9.feature","apiDetailsStatus" );
 		Reporting.logReporter(Status.INFO,
 					"API Operation Response: " + apiOperation3.get("apiDetailsResponse"));
 		Reporting.logReporter(Status.INFO,

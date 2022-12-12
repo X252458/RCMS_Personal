@@ -111,9 +111,8 @@ public class TC08_Telus_DF_AF_NotifyCancellation  extends BaseTest {
 		System.setProperty("karate.startDate", startDate);
 		System.setProperty("karate.apiEnv", apiEnv);
 
-		 Map<String, Object> apiOperation = APIJava.runKarateFeature(environment,
-		 "classpath:tests/RCMS/NewAdjustBalance/activationTC1.feature");
-		 Reporting.logReporter(Status.INFO, "API Operation status: " +
+		Map<String, Object> apiOperation = GenericUtils.featureFileFailLoop(environment,"classpath:tests/RCMS/NewAdjustBalance/activationTC1.feature","tc01ActivateTelusSubWithAllStatus" );
+		Reporting.logReporter(Status.INFO, "API Operation status: " +
 		 apiOperation.get("tc01ActivateTelusSubWithAllRequest"));
 		 Reporting.logReporter(Status.INFO, "API Operation Request: " +
 		 apiOperation.get("tc01ActivateTelusSubWithAllStatus"));
@@ -124,8 +123,7 @@ public class TC08_Telus_DF_AF_NotifyCancellation  extends BaseTest {
 		Reporting.setNewGroupName("Notify Cancellation API CALL - AF+DF_NotifyCancellation");
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
-		Map<String, Object> apiOperation2 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/NewAdjustBalance/Scenario2/NotifyCancellationTC8.feature");
+		Map<String, Object> apiOperation2 = GenericUtils.featureFileFailLoop(environment,"classpath:tests/RCMS/NewAdjustBalance/Scenario2/NotifyCancellationTC8.feature","apiDetailsStatus" );
 		Reporting.logReporter(Status.INFO,
 				"API Operation Request: " + apiOperation2.get("apiDetailsRequest"));
 		Reporting.logReporter(Status.INFO,

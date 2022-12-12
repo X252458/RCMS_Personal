@@ -1,4 +1,3 @@
-@Ignore
 Feature: RCMS Activation API - TC01 Call getRewardCommitment operation for Telus Subscriber having ACCESSORYFINANCE Renewed to ACCESSORYFINANCE
 
   Background: Configuration - Set up the authentication, Headers, and params
@@ -15,7 +14,7 @@ Feature: RCMS Activation API - TC01 Call getRewardCommitment operation for Telus
     * header X-System = 'WLS'
     * param actionName = 'ItemUpdate'
 
-  Scenario: Retrieve SPID from the LSMS
+  Scenario: Firing API
     #Set endpoint url
     Given url ENDPOINT_UPDATE_COMMITMENT_ITEM
     #Request XML passed for the operation and printing the same for verification

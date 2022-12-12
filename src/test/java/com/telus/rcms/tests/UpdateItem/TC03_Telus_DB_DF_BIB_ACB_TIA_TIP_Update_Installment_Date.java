@@ -128,9 +128,9 @@ public class TC03_Telus_DB_DF_BIB_ACB_TIA_TIP_Update_Installment_Date extends Ba
 		Map<String, Object> apiOperation = APIJava.runKarateFeature(environment,
 				"classpath:tests/RCMS/activation/Others/activationTC2.feature");
 		Reporting.logReporter(Status.INFO,
-				"API Operation Status: " + apiOperation.get("tc01ActivateTelusSubWithDF_BIB_ACB_DB_TIA_TIPRequest"));
+				"API Operation Status: " + apiOperation.get("tc01ActivateTelusSubWithDF_BIB_ACB_DB_TIASSETCREDIT_TIPROMOCREDITStatus"));
 		Reporting.logReporter(Status.INFO,
-				"API Operation Request: " + apiOperation.get("tc01ActivateTelusSubWithDF_BIB_ACB_DB_TIA_TIPStatus"));
+				"API Operation Request: " + apiOperation.get("tc01ActivateTelusSubWithDF_BIB_ACB_DB_TIASSETCREDIT_TIPROMOCREDITRequest"));
 		Reporting.printAndClearLogGroupStatements();
 
 		//UpdateItem API Call

@@ -102,8 +102,7 @@ public class TC11_Koodo_with_TAB_AdRewardBalance_GOODWILL_TAB_0 extends BaseTest
 		System.setProperty("karate.startDate", startDate);
 		System.setProperty("karate.apiEnv", apiEnv);
 
-		Map<String, Object> apiOperation = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/Activation/Others/activationTC21.feature");
+		Map<String, Object> apiOperation = GenericUtils.featureFileFailLoop(environment,"classpath:tests/RCMS/Activation/Others/activationTC21.feature","tc02ActivateKoodoTAB_HWSStatus" );
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation.get("tc02ActivateKoodoTAB_HWSRequest"));
 		Reporting.logReporter(Status.INFO,
@@ -117,8 +116,7 @@ public class TC11_Koodo_with_TAB_AdRewardBalance_GOODWILL_TAB_0 extends BaseTest
 		
 		System.setProperty("karate.itemType","TAB");
 		
-		Map<String, Object> apiOperation2 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/AdjustRewardBalance/AdjustRewardBalanceTC10.feature");
+		Map<String, Object> apiOperation2 = GenericUtils.featureFileFailLoop(environment,"classpath:tests/RCMS/AdjustRewardBalance/AdjustRewardBalanceTC10.feature","apiDetailsStatus" );
 		Reporting.logReporter(Status.INFO,
 				"API Operation Response: " + apiOperation2.get("apiDetailsResponse"));
 		Reporting.logReporter(Status.INFO,
@@ -133,8 +131,7 @@ public class TC11_Koodo_with_TAB_AdRewardBalance_GOODWILL_TAB_0 extends BaseTest
 				
 		System.setProperty("karate.itemType","TAB");
 				
-		Map<String, Object> apiOperation3 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/AdjustRewardBalance/AdjustRewardBalanceTC11.feature");
+		Map<String, Object> apiOperation3 = GenericUtils.featureFileFailLoop_status(environment,"classpath:tests/RCMS/AdjustRewardBalance/AdjustRewardBalanceTC11.feature","apiDetailsStatus","500" );
 		Reporting.logReporter(Status.INFO,
 				"API Operation Response: " + apiOperation3.get("apiDetailsResponse"));
 		Reporting.logReporter(Status.INFO,

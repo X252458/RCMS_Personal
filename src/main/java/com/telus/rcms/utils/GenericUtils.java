@@ -27,6 +27,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Random;
 import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
@@ -50,6 +51,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import com.aventstack.extentreports.Status;
+import com.telus.api.test.utils.APIJava;
 import com.telus.rcms.jsonPathLibrary.ActivationPayloadJsonPath;
 import com.telus.rcms.jsonPathLibrary.AdjustRewardBalancePayloadJsonPath;
 import com.telus.rcms.jsonPathLibrary.AgreementItem;
@@ -5722,6 +5724,8 @@ public static void responseDBCheckAccTerminationPenalty(String jsonString, Strin
 			{
 				Reporting.logReporter(Status.INFO,"Activation data in Lifecycle Table  " +""+ "---");
 				
+				Reporting.logReporter(Status.INFO,"CUST_AGRMT_STAT_LIFECYCL_ID : "+ rsCancelLyfcyc.getString("CUST_AGRMT_STAT_LIFECYCL_ID"));
+						
 				GenericUtils.validateAssertEqualsFromDB(String.valueOf(rsCancelLyfcyc.getDate("EFF_START_TS")),
 						startDate, "EFF_START_TS");
 				
@@ -5739,6 +5743,8 @@ public static void responseDBCheckAccTerminationPenalty(String jsonString, Strin
 			else if(rsCancelLyfcyc.getString("CUST_AGRMT_STAT_LIFECYCL_ID").equals("3"))
 			{
 				Reporting.logReporter(Status.INFO,"Cancellation data in Lifecycle Table  " +""+ "---");
+				
+				Reporting.logReporter(Status.INFO,"CUST_AGRMT_STAT_LIFECYCL_ID : "+ rsCancelLyfcyc.getString("CUST_AGRMT_STAT_LIFECYCL_ID"));
 				
 				GenericUtils.validateAssertEqualsFromDB(String.valueOf(rsCancelLyfcyc.getDate("EFF_START_TS")),
 						startDate, "EFF_START_TS");
@@ -7311,7 +7317,44 @@ public static void responseDBCheckAccTerminationPenalty(String jsonString, Strin
 		}
 
 	}
-
 	
+	public static Map<String, Object> featureFileFailLoop(String env, String path, String statusVar) {
+		int count = 0;
+		String status=null;
+		boolean flag = true;
+		Map<String, Object> apiOperation = null;
+		do {
+		 apiOperation = APIJava.runKarateFeature(env, path);
+		 status = apiOperation.get(statusVar).toString();
+		 if(count>5) {
+			 flag=false;
+			 
+		 }
+		 count++;
+		}while(!status.contains("20")&&(flag));
+//		Assert.assertTrue(status.contains("20"), "ResponseCode Failed");
+		Reporting.logReporter(Status.INFO, "No. of times executed : "+count);
+				
+		return apiOperation;
+	}
+	
+	public static Map<String, Object> featureFileFailLoop_status(String env, String path, String statusVar, String expectedResCode) {
+		int count = 0;
+		String actualResCode=null;
+		boolean flag = true;
+		Map<String, Object> apiOperation = null;
+		do {
+		 apiOperation = APIJava.runKarateFeature(env, path);
+		 actualResCode = apiOperation.get(statusVar).toString();
+		 if(count>4) {
+			 flag=false;	 
+		 }
+		 count++;
+		}while(!actualResCode.contains(expectedResCode)&&(flag));
+		GenericUtils.validateAssertEquals(actualResCode, expectedResCode, "RESPONSE_CODE");
+		Reporting.logReporter(Status.INFO, "No. of times executed : "+count);
+				
+		return apiOperation;
+	}
 
 }

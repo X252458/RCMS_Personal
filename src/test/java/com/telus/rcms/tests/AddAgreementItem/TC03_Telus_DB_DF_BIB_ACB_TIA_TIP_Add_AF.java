@@ -116,9 +116,9 @@ public class TC03_Telus_DB_DF_BIB_ACB_TIA_TIP_Add_AF extends BaseTest {
 		Map<String, Object> apiOperation = APIJava.runKarateFeature(environment,
 				"classpath:tests/RCMS/Activation/Others/activationTC2.feature");
 		Reporting.logReporter(Status.INFO,
-				"API Operation status: " + apiOperation.get("tc01ActivateTelusSubWithDF_BIB_ACB_DB_TIA_TIPStatus"));
+				"API Operation status: " + apiOperation.get("tc01ActivateTelusSubWithDF_BIB_ACB_DB_TIASSETCREDIT_TIPROMOCREDITStatus"));
 		Reporting.logReporter(Status.INFO,
-				"API Operation Request: " + apiOperation.get("tc01ActivateTelusSubWithDF_BIB_ACB_DB_TIA_TIPRequest"));
+				"API Operation Request: " + apiOperation.get("tc01ActivateTelusSubWithDF_BIB_ACB_DB_TIASSETCREDIT_TIPROMOCREDITRequest"));
 
 		Reporting.printAndClearLogGroupStatements();
 

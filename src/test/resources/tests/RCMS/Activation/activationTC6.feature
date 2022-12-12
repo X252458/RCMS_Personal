@@ -10,4 +10,4 @@ Feature: TC06 Activate TELUS subscriber with no reward account(SIM ONLY)
     #Status
     * def tc06ActivateTeluswithNoRewardSimOnlyStatus = tc06ActivateTeluswithNoRewardSimOnly.responseStatus
     #Validation
-    Then match tc06ActivateTeluswithNoRewardSimOnlyStatus == 200
+    #Then match tc06ActivateTeluswithNoRewardSimOnlyStatus == 200

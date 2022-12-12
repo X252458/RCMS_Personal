@@ -10,6 +10,4 @@ Feature: TC09 Koodo Subscriber active in RCMS DB having TAB and HWS - Adjustment
     #Status
     * def apiDetailsStatus = apiDetails.responseStatus
     #Validation
-    Then match apiDetailsStatus == 200
-    
-    And print url
+    #Then match apiDetailsStatus == 200

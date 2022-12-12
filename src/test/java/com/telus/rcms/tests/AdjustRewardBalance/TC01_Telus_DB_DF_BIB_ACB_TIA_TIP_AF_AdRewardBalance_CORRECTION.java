@@ -35,12 +35,12 @@ import com.test.reporting.ExtentTestManager;
 
 /**
  * 
- * Testcase Name : TC01 Activate Telus Subscriber with DB+DF+BIB+ACB+TIASSETCREDIT+TIPROMOCREDIT+ACCESSORYFINANCE
-
+ * Testcase Name : TC01 Activate Telus Subscriber with
+ * DB+DF+BIB+ACB+TIASSETCREDIT+TIPROMOCREDIT+ACCESSORYFINANCE
  *
+ * 
  */
-public class TC01_Telus_DB_DF_BIB_ACB_TIA_TIP_AF_AdRewardBalance_CORRECTION
-		extends BaseTest {
+public class TC01_Telus_DB_DF_BIB_ACB_TIA_TIP_AF_AdRewardBalance_CORRECTION extends BaseTest {
 
 	String testCaseName = null;
 	String scriptName = null;
@@ -59,11 +59,10 @@ public class TC01_Telus_DB_DF_BIB_ACB_TIA_TIP_AF_AdRewardBalance_CORRECTION
 	String subscriptionID = null;
 	String subscriberNum = null;
 	String startDate = null;
-	
+
 	ExtentTest parentTest = null;
 	String jsonString = null;
 	String jsonStrResponse = null;
-	
 
 	/**
 	 * @param iTestContext
@@ -77,13 +76,14 @@ public class TC01_Telus_DB_DF_BIB_ACB_TIA_TIP_AF_AdRewardBalance_CORRECTION
 		environment = SystemProperties.EXECUTION_ENVIRONMENT;
 	}
 
-	@Test(groups = {"Loyalty_Management","Adjust_Reward_Balance","TC01_Telus_DB_DF_BIB_ACB_TIA_TIP_AF_AdRewardBalance_CORRECTION","CompleteRegressionSuite" })
+	@Test(groups = { "Loyalty_Management", "Adjust_Reward_Balance",
+			"TC01_Telus_DB_DF_BIB_ACB_TIA_TIP_AF_AdRewardBalance_CORRECTION", "CompleteRegressionSuite" })
 
 	public void testMethod_Activation(ITestContext iTestContext) throws Exception {
 
-		 parentTest = ExtentTestManager.getTest();
-		 parentTest.assignCategory("ADJUST_REWARD_BALANCE");
-		 
+		parentTest = ExtentTestManager.getTest();
+		parentTest.assignCategory("ADJUST_REWARD_BALANCE");
+
 		Reporting.setNewGroupName("Automation Configurations / Environment Details & Data Setup");
 		Reporting.logReporter(Status.INFO,
 				"Automation Configuration - Environment Configured for Automation Execution [" + environment + "]");
@@ -102,8 +102,8 @@ public class TC01_Telus_DB_DF_BIB_ACB_TIA_TIP_AF_AdRewardBalance_CORRECTION
 		/*** Test Case - Activation 1 ***/
 
 		Reporting.setNewGroupName("ACCESS TOKEN GENERATION");
-		String rewardAccessToken = APIUtils.getAccessToken(environment,"rewardService");
-		String managementAccessToken = APIUtils.getAccessToken(environment,"management");
+		String rewardAccessToken = APIUtils.getAccessToken(environment, "rewardService");
+		String managementAccessToken = APIUtils.getAccessToken(environment, "management");
 		Reporting.logReporter(Status.INFO, "ACCESS_TOKEN: " + rewardAccessToken);
 		Reporting.logReporter(Status.INFO, "ACCESS_TOKEN: " + managementAccessToken);
 		Reporting.printAndClearLogGroupStatements();
@@ -117,7 +117,7 @@ public class TC01_Telus_DB_DF_BIB_ACB_TIA_TIP_AF_AdRewardBalance_CORRECTION
 		subscriptionID = GenericUtils.getUniqueSubscriptionID(apiEnv);
 		subscriberNum = GenericUtils.getUniqueSubscriberNumber(apiEnv);
 		startDate = JSONUtils.getGMTStartDate();
-		
+
 		System.setProperty("karate.auth_token", rewardAccessToken);
 		System.setProperty("karate.auth_token_management", managementAccessToken);
 		System.setProperty("karate.accID", accountID);
@@ -126,35 +126,30 @@ public class TC01_Telus_DB_DF_BIB_ACB_TIA_TIP_AF_AdRewardBalance_CORRECTION
 		System.setProperty("karate.startDate", startDate);
 		System.setProperty("karate.apiEnv", apiEnv);
 
-		 Map<String, Object> apiOperation = APIJava.runKarateFeature(environment,
-		 "classpath:tests/RCMS/activation/activationTC1.feature");
-		 Reporting.logReporter(Status.INFO, "API Operation status: " +
-		 apiOperation.get("tc01ActivateTelusSubWithAllRequest"));
-		 Reporting.logReporter(Status.INFO, "API Operation Request: " +
-		 apiOperation.get("tc01ActivateTelusSubWithAllStatus"));
+		Map<String, Object> apiOperation = GenericUtils.featureFileFailLoop(environment,"classpath:tests/RCMS/activation/activationTC1.feature","tc01ActivateTelusSubWithAllStatus" );
+		Reporting.logReporter(Status.INFO,
+				"API Operation status: " + apiOperation.get("tc01ActivateTelusSubWithAllRequest"));
+		Reporting.logReporter(Status.INFO,
+				"API Operation Request: " + apiOperation.get("tc01ActivateTelusSubWithAllStatus"));
 		Reporting.printAndClearLogGroupStatements();
-		
+
 		// Adjust Reward Balance API Call
 
-				Reporting.setNewGroupName("ADJUST REWARD BALANCE API CALL - DB+DF+BIB+ACB+TIAssetCredit+TIPromoCredit+AccessoryFinance_Correction");
-				Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
-				
-				System.setProperty("karate.itemType","ACCESSORYFINANCE");
+		Reporting.setNewGroupName(
+				"ADJUST REWARD BALANCE API CALL - DB+DF+BIB+ACB+TIAssetCredit+TIPromoCredit+AccessoryFinance_Correction");
+		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
-				Map<String, Object> apiOperation2 = APIJava.runKarateFeature(environment,
-						"classpath:tests/RCMS/AdjustRewardBalance/AdjustRewardBalanceTC1.feature");
-				Reporting.logReporter(Status.INFO,
-						"API Operation Response: " + apiOperation2.get("apiDetailsResponse"));
-				Reporting.logReporter(Status.INFO,
-						"API Operation Request: " + apiOperation2.get("apiDetailsRequest"));
-				Reporting.logReporter(Status.INFO,
-						"API Operation status: " + apiOperation2.get("apiDetailsStatus"));
+		System.setProperty("karate.itemType", "ACCESSORYFINANCE");
 
-				jsonString = String.valueOf(apiOperation2.get("apiDetailsRequest")).replace("=", ":");
-				jsonStrResponse = String.valueOf(apiOperation2.get("apiDetailsResponse")).replace("=", ":");
-				
-				
-				Reporting.printAndClearLogGroupStatements();
+		Map<String, Object> apiOperation2 = GenericUtils.featureFileFailLoop(environment,"classpath:tests/RCMS/AdjustRewardBalance/AdjustRewardBalanceTC1.feature","apiDetailsStatus" );
+		Reporting.logReporter(Status.INFO, "API Operation Response: " + apiOperation2.get("apiDetailsResponse"));
+		Reporting.logReporter(Status.INFO, "API Operation Request: " + apiOperation2.get("apiDetailsRequest"));
+		Reporting.logReporter(Status.INFO, "API Operation status: " + apiOperation2.get("apiDetailsStatus"));
+
+		jsonString = String.valueOf(apiOperation2.get("apiDetailsRequest")).replace("=", ":");
+		jsonStrResponse = String.valueOf(apiOperation2.get("apiDetailsResponse")).replace("=", ":");
+
+		Reporting.printAndClearLogGroupStatements();
 
 		/*** DB VALIDATION ***/
 		Reporting.setNewGroupName("DB VERIFICATION - TC01");
@@ -166,20 +161,17 @@ public class TC01_Telus_DB_DF_BIB_ACB_TIA_TIP_AF_AdRewardBalance_CORRECTION
 	public void payloadAndDbCheck() throws SQLException, IOException {
 
 		DBUtils.callDBConnect();
-		
+
 		/**
 		 * DB Verification Steps
 		 */
 		// Get Remaining balance from response
-		String balanceAmount = String.valueOf(
-				JSONUtils.checkValue(jsonStrResponse, "$.quantity.balance"));
+		String balanceAmount = String.valueOf(JSONUtils.checkValue(jsonStrResponse, "$.quantity.balance"));
 		Reporting.logReporter(Status.INFO, "Pretty Payload: " + jsonString);
-		
 
 		// Declaring variable from payload
 		GenericUtils.responseDBCheckAdjustRewardBalance(jsonString, balanceAmount, 17);
-		
-		
+
 		Reporting.logReporter(Status.INFO, "--------------------DB Validation Completed--------------------");
 
 	}
@@ -187,17 +179,22 @@ public class TC01_Telus_DB_DF_BIB_ACB_TIA_TIP_AF_AdRewardBalance_CORRECTION
 	/**
 	 * Close DB Connection
 	 */
-	
-	  @AfterMethod(alwaysRun = true) public void afterTest() {
-	  Reporting.setNewGroupName("Close DB Connection"); try {
-	  DBUtils.dbDisConnect(); } catch (SQLException e) {
-	  Reporting.logReporter(Status.INFO, "DB Connection Closed Successfully!"); }
-	  Reporting.printAndClearLogGroupStatements(); }
-	 
+
+	@AfterMethod(alwaysRun = true)
+	public void afterTest() {
+		Reporting.setNewGroupName("Close DB Connection");
+		try {
+			DBUtils.dbDisConnect();
+		} catch (SQLException e) {
+			Reporting.logReporter(Status.INFO, "DB Connection Closed Successfully!");
+		}
+		Reporting.printAndClearLogGroupStatements();
+	}
+
 	/**
 	 * Close any opened browser instances
 	 */
-	//@AfterMethod(alwaysRun = true)
+	// @AfterMethod(alwaysRun = true)
 	public void afterTest1() {
 		Reporting.setNewGroupName("Close All Connection");
 		try {
@@ -205,7 +202,7 @@ public class TC01_Telus_DB_DF_BIB_ACB_TIA_TIP_AF_AdRewardBalance_CORRECTION
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} 
+		}
 		Reporting.logReporter(Status.INFO, "DB Connection Closed Successfully!");
 		WebDriverSteps.closeTheBrowser();
 		Reporting.printAndClearLogGroupStatements();

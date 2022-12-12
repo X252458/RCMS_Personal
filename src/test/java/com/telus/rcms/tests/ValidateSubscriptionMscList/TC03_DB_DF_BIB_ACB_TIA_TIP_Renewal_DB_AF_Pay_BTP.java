@@ -1,4 +1,4 @@
-package com.telus.rcms.tests.Activation;
+package com.telus.rcms.tests.ValidateSubscriptionMscList;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -16,9 +16,9 @@ import org.testng.annotations.Test;
 
 import com.aventstack.extentreports.Status;
 import com.telus.api.test.utils.APIJava;
-import com.telus.rcms.jsonPathLibrary.All;
 import com.telus.rcms.jsonPathLibrary.ActivationPayloadJsonPath;
 import com.telus.rcms.jsonPathLibrary.AgreementItem;
+import com.telus.rcms.jsonPathLibrary.All;
 import com.telus.rcms.utils.APIUtils;
 import com.telus.rcms.utils.DBUtils;
 import com.telus.rcms.utils.GenericUtils;
@@ -34,10 +34,13 @@ import com.test.reporting.ExtentTestManager;
 
 /**
  * 
- * Testcase name : TC04 Activate Prepaid subscriber with PRESOC+PRECREDIT
+ * TestCase name : TC03 Call getReturnPenaltyAdjustmentList for a Telus
+ * Subscriber having DB+DF+BIB+ACB+TIASSETCREDIT+TIPROMOCREDIT - Renewed to
+ * DB+AF with Payment Method as BIB_TELUS_PENDING(TRADE_IN_PENDING and
+ * BIB_TELUS_PENDING can only be used to pay off BIB.)
  *
  */
-public class TC04_Prepaid_with_PRESOC_PRECREDIT extends BaseTest {
+public class TC03_DB_DF_BIB_ACB_TIA_TIP_Renewal_DB_AF_Pay_BTP extends BaseTest {
 
 	String testCaseName = null;
 	String scriptName = null;
@@ -51,8 +54,12 @@ public class TC04_Prepaid_with_PRESOC_PRECREDIT extends BaseTest {
 	String accountID = null;
 	String subscriptionID = null;
 	String subscriberNum = null;
+
 	String startDate = null;
-	
+	String jsonString = null;
+	String src_jsonString = null;
+	String paymentMech = null;
+
 	ExtentTest parentTest = null;
 
 	/**
@@ -64,19 +71,17 @@ public class TC04_Prepaid_with_PRESOC_PRECREDIT extends BaseTest {
 		testCaseName = this.getClass().getName();
 		scriptName = GenericUtils.getTestCaseName(testCaseName);
 		testCaseDescription = "The purpose of this test case is to verify \"" + scriptName + "\" workflow";
-		requestPayloadFilePath = System.getProperty("user.dir")
-				+ "\\src\\test\\resources\\testSpecs\\RCMS\\Activation\\" + scriptName + ".json";
 		environment = SystemProperties.EXECUTION_ENVIRONMENT;
-
 	}
 
-	@Test(groups = {"Loyalty_Agreement", "Activation","TC04_Prepaid_with_PRESOC_PRECREDIT","CompleteRegressionSuite" })
+	@Test(groups = { "StatusChange", "Return_TC03_DB_DF_BIB_ACB_TIA_TIP_Renewal_DB_AF_Pay_BTP",
+			"CompleteRegressionSuite" })
 
-	public void testMethod_activation(ITestContext iTestContext) throws Exception {
+	public void testMethod_validateSubscriptionMscList(ITestContext iTestContext) throws Exception {
 
 		parentTest = ExtentTestManager.getTest();
-		parentTest.assignCategory("ACTIVATION");
-		
+		parentTest.assignCategory("SUBSCRIPTION_MSC_LIST");
+
 		Reporting.setNewGroupName("Automation Configurations / Environment Details & Data Setup");
 		Reporting.logReporter(Status.INFO,
 				"Automation Configuration - Environment Configured for Automation Execution [" + environment + "]");
@@ -86,73 +91,96 @@ public class TC04_Prepaid_with_PRESOC_PRECREDIT extends BaseTest {
 		Reporting.setNewGroupName("Test Case Details");
 		Reporting.logReporter(Status.INFO, "Test Case Name : [" + scriptName + "]");
 		Reporting.logReporter(Status.INFO, "Test Case Description : [" + testCaseDescription + "]");
-		Reporting.logReporter(Status.INFO, "Request Payload Path : [" + requestPayloadFilePath + "]");
 		Reporting.printAndClearLogGroupStatements();
 
-		/**
-		 * API Call Steps
-		 */
-
-		/*** Test Case - Activation 4 ***/
-
 		Reporting.setNewGroupName("ACCESS TOKEN GENERATION");
-		String accessToken = APIUtils.getAccessToken(environment,"rewardService");
-		Reporting.logReporter(Status.INFO, "ACCESS_TOKEN: " + accessToken);
+		String rewardServiceaccessToken = APIUtils.getAccessToken(environment, "rewardService");
+		String violationaccessToken = APIUtils.getAccessToken(environment, "violation");
+		Reporting.logReporter(Status.INFO, "ACCESS_TOKEN FOR REWARD SERVICE: " + rewardServiceaccessToken);
+		Reporting.logReporter(Status.INFO, "ACCESS_TOKEN FOR VIOLATION SERVICE: " + violationaccessToken);
 		Reporting.printAndClearLogGroupStatements();
 
 		// Activation API Call
-
-		Reporting.setNewGroupName("ACTIVATION SERVICE API CALL - TC04");
+		Reporting.setNewGroupName("ACTIVATION SERVICE API CALL");
 		String apiEnv = GenericUtils.getAPIEnvironment(environment);
-		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 		accountID = GenericUtils.getUniqueAccountID(apiEnv);
 		subscriptionID = GenericUtils.getUniqueSubscriptionID(apiEnv);
 		subscriberNum = GenericUtils.getUniqueSubscriberNumber(apiEnv);
 		startDate = JSONUtils.getGMTStartDate();
-		System.setProperty("karate.auth_token", accessToken);
+		System.setProperty("karate.auth_token", rewardServiceaccessToken);
+		System.setProperty("karate.auth_token_reward", rewardServiceaccessToken);
+		System.setProperty("karate.auth_token_violation", violationaccessToken);
 		System.setProperty("karate.accID", accountID);
 		System.setProperty("karate.subID", subscriptionID);
 		System.setProperty("karate.subNum", subscriberNum);
 		System.setProperty("karate.startDate", startDate);
 		System.setProperty("karate.apiEnv", apiEnv);
 
-		Map<String, Object> apiOperation = GenericUtils.featureFileFailLoop(environment,"classpath:tests/RCMS/activation/activationTC4.feature","tc04ActivatePrepaidSubPRESOC_PRECREDITStatus" );
-		Reporting.logReporter(Status.INFO,
-				"API Operation status: " + apiOperation.get("tc04ActivatePrepaidSubPRESOC_PRECREDITRequest"));
-		Reporting.logReporter(Status.INFO,
-				"API Operation Request: " + apiOperation.get("tc04ActivatePrepaidSubPRESOC_PRECREDITStatus"));
+		// Activation API Call
+
+		Map<String, Object> apiOperation1 = APIJava.runKarateFeature(environment,
+				"classpath:tests/RCMS/Activation/Others/activationTC2.feature");
+		Reporting.logReporter(Status.INFO, "API Operation status: "
+				+ apiOperation1.get("tc01ActivateTelusSubWithDF_BIB_ACB_DB_TIASSETCREDIT_TIPROMOCREDITStatus"));
+		Reporting.logReporter(Status.INFO, "API Operation Request: "
+				+ apiOperation1.get("tc01ActivateTelusSubWithDF_BIB_ACB_DB_TIASSETCREDIT_TIPROMOCREDITRequest"));
 
 		Reporting.printAndClearLogGroupStatements();
 
+		// Renewal API Call
+
+		Reporting.setNewGroupName("RENEWAL SERVICE API CALL - AccessoryFinance");
+		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
+
+		Map<String, Object> apiOperation2 = APIJava.runKarateFeature(environment,
+				"classpath:tests/RCMS/Renewal/notifySubscriptionRenewalTC02.feature");
+		Reporting.logReporter(Status.INFO, "API Operation status: " + apiOperation2.get("tc02RenewalStatus"));
+		Reporting.logReporter(Status.INFO, "API Operation Request: " + apiOperation2.get("tc02RenewalRequest"));
+
+		src_jsonString = String.valueOf(apiOperation2.get("tc02RenewalRequest")).replace("=", ":");
+		Reporting.printAndClearLogGroupStatements();
+
+		// GetReturnPenalty API Call
+
+		Reporting.setNewGroupName("GET RETURN PENALTY SERVICE API CALL");
+		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
+
+		Map<String, Object> apiOperation3 = APIJava.runKarateFeature(environment,
+				"classpath:tests/RCMS/GetReturnPenalty/GetReturnPenaltyTC03.feature");
+		Reporting.logReporter(Status.INFO, "API Operation status: " + apiOperation3.get("getReturnPenaltyStatus"));
+		Reporting.logReporter(Status.INFO, "API Operation Request: " + apiOperation3.get("getReturnPenaltyResponse"));
+
+		jsonString = String.valueOf(apiOperation3.get("getReturnPenaltyResponse")).replace("=", ":");
+		Reporting.printAndClearLogGroupStatements();
+
 		/*** DB VALIDATION ***/
-		Reporting.setNewGroupName("DB VERIFICATION - TC04");
-		payloadAndDbCheck();
+		Reporting.setNewGroupName("DB VERIFICATION - TC03");
+		responseAndDbCheck();
 		Reporting.printAndClearLogGroupStatements();
 
 	}
 
-	public void payloadAndDbCheck() throws SQLException, IOException {
+	public void responseAndDbCheck() throws SQLException, IOException, InterruptedException {
 
 		DBUtils.callDBConnect();
+
 		/**
 		 * DB Verification Steps
 		 */
 
-		ActivationPayloadJsonPath jsonPath = new ActivationPayloadJsonPath();
-
-		String jsonString = GenericUtils.readFileAsString(requestPayloadFilePath);
-		jsonString = jsonString.replace("#(subID)", subscriptionID).replace("#(subNum)", subscriberNum)
-				.replace("#(accID)", accountID).replace("#(startDate)", startDate);
 		Reporting.logReporter(Status.INFO, "Pretty Payload: " + jsonString);
 
 		// Declaring variable from payload
-		GenericUtils.payloadValueDeclaration(jsonString);
-		GenericUtils.payloadnDBCheckAgrmtItem(jsonString, 2);
-		GenericUtils.extraDBvalidation(jsonString, "activation", 2);
+
+//		GenericUtils.responseDBCheckReturnAdjustment(jsonString, src_jsonString);
+		
+		GenericUtils.responseDBCheckReturnAdjustment(jsonString, src_jsonString);
+
+		Reporting.logReporter(Status.INFO, "--------------------DB Validation Completed--------------------");
 	}
 
 	/**
-	 * Close DB Connection
+	 * Close Connections
 	 */
 
 	@AfterMethod(alwaysRun = true)
@@ -164,15 +192,9 @@ public class TC04_Prepaid_with_PRESOC_PRECREDIT extends BaseTest {
 			Reporting.logReporter(Status.INFO, "DB Connection Closed Successfully!");
 		}
 		Reporting.printAndClearLogGroupStatements();
-	}
-
-	/**
-	 * Close any opened browser instances
-	 */
-	@AfterMethod(alwaysRun = true)
-	public void afterTest1() {
 		Reporting.setNewGroupName("Close All Browser");
 		WebDriverSteps.closeTheBrowser();
 		Reporting.printAndClearLogGroupStatements();
 	}
+
 }

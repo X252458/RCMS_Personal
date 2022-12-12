@@ -120,9 +120,9 @@ public class TC04_Telus_DB_DF_BIB_TIA_TIP_Renewal_DB_AF_Pay_BTP_ReturnAgrmt exte
 		Map<String, Object> apiOperation1 = APIJava.runKarateFeature(environment,
 				"classpath:tests/RCMS/Activation/Others/activationTC2.feature");
 		Reporting.logReporter(Status.INFO, "API Operation status: "
-				+ apiOperation1.get("tc01ActivateTelusSubWithDF_BIB_ACB_DB_TIA_TIPRequest"));
+				+ apiOperation1.get("tc01ActivateTelusSubWithDF_BIB_ACB_DB_TIASSETCREDIT_TIPROMOCREDITStatus"));
 		Reporting.logReporter(Status.INFO, "API Operation Request: "
-				+ apiOperation1.get("tc01ActivateTelusSubWithDF_BIB_ACB_DB_TIA_TIPStatus"));
+				+ apiOperation1.get("tc01ActivateTelusSubWithDF_BIB_ACB_DB_TIASSETCREDIT_TIPROMOCREDITRequest"));
 
 		Reporting.printAndClearLogGroupStatements();
 		// Renewal API Call

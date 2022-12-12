@@ -41,10 +41,10 @@ public class TC13_Telus_DB_DF_BIB_ACB_AdRewardBalance_FINANCE_CORRECTION extends
 
 	String startDate = null;
 	String jsonString = null;
-	String jsonStrResponse= null;
+	String jsonStrResponse = null;
 
-	String paymentMech=null;
-	
+	String paymentMech = null;
+
 	ExtentTest parentTest = null;
 
 	/**
@@ -59,7 +59,8 @@ public class TC13_Telus_DB_DF_BIB_ACB_AdRewardBalance_FINANCE_CORRECTION extends
 		environment = SystemProperties.EXECUTION_ENVIRONMENT;
 	}
 
-	@Test(groups = {"Loyalty_Management","Adjust_Reward_Balance","TC13_Telus_DB_DF_BIB_ACB_AdRewardBalance_FINANCE_CORRECTION","CompleteRegressionSuite"})
+	@Test(groups = { "Loyalty_Management", "Adjust_Reward_Balance",
+			"TC13_Telus_DB_DF_BIB_ACB_AdRewardBalance_FINANCE_CORRECTION", "CompleteRegressionSuite" })
 
 	public void testMethod_Termination(ITestContext iTestContext) throws Exception {
 
@@ -86,7 +87,7 @@ public class TC13_Telus_DB_DF_BIB_ACB_AdRewardBalance_FINANCE_CORRECTION extends
 		Reporting.setNewGroupName("ACCESS TOKEN GENERATION");
 		String rewardServiceaccessToken = APIUtils.getAccessToken(environment, "rewardService");
 		String violationaccessToken = APIUtils.getAccessToken(environment, "violation");
-		String managementAccessToken = APIUtils.getAccessToken(environment,"management");
+		String managementAccessToken = APIUtils.getAccessToken(environment, "management");
 		Reporting.logReporter(Status.INFO, "ACCESS_TOKEN FOR REWARD SERVICE: " + rewardServiceaccessToken);
 		Reporting.logReporter(Status.INFO, "ACCESS_TOKEN FOR VIOLATION SERVICE: " + violationaccessToken);
 		Reporting.logReporter(Status.INFO, "ACCESS_TOKEN: " + managementAccessToken);
@@ -111,64 +112,58 @@ public class TC13_Telus_DB_DF_BIB_ACB_AdRewardBalance_FINANCE_CORRECTION extends
 		System.setProperty("karate.startDate", startDate);
 		System.setProperty("karate.apiEnv", apiEnv);
 
-		Map<String, Object> apiOperation1 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/Activation/Others/activationTC7.feature");
+		Map<String, Object> apiOperation1 = GenericUtils.featureFileFailLoop(environment,
+				"classpath:tests/RCMS/Activation/Others/activationTC7.feature",
+				"tc07ActivateTelusSubwithDF_DB_BIB_ACBStatus");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation1.get("tc07ActivateTelusSubwithDF_DB_BIB_ACBStatus"));
 		Reporting.logReporter(Status.INFO,
 				"API Operation Request: " + apiOperation1.get("tc07ActivateTelusSubwithDF_DB_BIB_ACBRequest"));
 		Reporting.printAndClearLogGroupStatements();
-		
-		
+
 		// Adjust Reward Balance API Call to Make DF balance 0.
-		
+
 		Reporting.setNewGroupName("ADJUST REWARD BALANCE API CALL - DB+DF+BIB+ACB_Adjust_DF");
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
-		
-		System.setProperty("karate.itemType","FINANCE");
 
-		Map<String, Object> apiOperation2 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/AdjustRewardBalance/AdjustRewardBalanceTC13.feature");
-		Reporting.logReporter(Status.INFO,
-				"API Operation Response: " + apiOperation2.get("apiDetailsResponse"));
-		Reporting.logReporter(Status.INFO,
-				"API Operation Request: " + apiOperation2.get("apiDetailsRequest"));
-		Reporting.logReporter(Status.INFO,
-				"API Operation status: " + apiOperation2.get("apiDetailsStatus"));
-		
-		String apiDetailsResponse=String.valueOf(apiOperation2.get("apiDetailsResponse"));
-		String AdjBalStatus_Api1= String.valueOf(apiOperation2.get("apiDetailsStatus"));
-		
+		System.setProperty("karate.itemType", "FINANCE");
+
+		Map<String, Object> apiOperation2 = GenericUtils.featureFileFailLoop(environment,
+				"classpath:tests/RCMS/AdjustRewardBalance/AdjustRewardBalanceTC13.feature", "apiDetailsStatus");
+		Reporting.logReporter(Status.INFO, "API Operation Response: " + apiOperation2.get("apiDetailsResponse"));
+		Reporting.logReporter(Status.INFO, "API Operation Request: " + apiOperation2.get("apiDetailsRequest"));
+		Reporting.logReporter(Status.INFO, "API Operation status: " + apiOperation2.get("apiDetailsStatus"));
+
+		String apiDetailsResponse = String.valueOf(apiOperation2.get("apiDetailsResponse"));
+		String AdjBalStatus_Api1 = String.valueOf(apiOperation2.get("apiDetailsStatus"));
+
 		if (AdjBalStatus_Api1.equals("200")) {
 			Reporting.printAndClearLogGroupStatements();
 		} else {
 			Assert.fail(apiDetailsResponse);
 		}
-		
+
 		// Adjust Reward Balance API Call to Make DF balance 0 to -ve.
-		
-		
+
 		Reporting.setNewGroupName("ADJUST REWARD BALANCE API CALL - DB+DF+BIB+ACB_DF_Correction");
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
-		
-		System.setProperty("karate.itemType","FINANCE");
-		Map<String, Object> apiOperation3 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/AdjustRewardBalance/AdjustRewardBalanceTC13.feature");
-		
-		Reporting.logReporter(Status.INFO,
-				"API Operation Request: " + apiOperation3.get("apiDetailsRequest"));
-		Reporting.logReporter(Status.INFO,
-				"API Operation status: " + apiOperation3.get("apiDetailsStatus"));
-		
-		String apiDetailsResponse1=String.valueOf(apiOperation3.get("apiDetailsResponse"));
-		String AdjBalStatus_Api2= String.valueOf(apiOperation3.get("apiDetailsStatus"));
-		
+
+		System.setProperty("karate.itemType", "FINANCE");
+
+		Map<String, Object> apiOperation3 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/AdjustRewardBalance/AdjustRewardBalanceTC13.feature", "apiDetailsStatus", "500");
+		Reporting.logReporter(Status.INFO, "API Operation Request: " + apiOperation3.get("apiDetailsRequest"));
+		Reporting.logReporter(Status.INFO, "API Operation status: " + apiOperation3.get("apiDetailsStatus"));
+
+		String apiDetailsResponse1 = String.valueOf(apiOperation3.get("apiDetailsResponse"));
+		String AdjBalStatus_Api2 = String.valueOf(apiOperation3.get("apiDetailsStatus"));
+
 		if (AdjBalStatus_Api2.equals("500")) {
-			
-			Reporting.logReporter(Status.INFO, "Expected http response is 500 because" 
-					+apiOperation3.get("apiDetailsResponse"));
+
+			Reporting.logReporter(Status.INFO,
+					"Expected http response is 500 because" + apiOperation3.get("apiDetailsResponse"));
 			Reporting.printAndClearLogGroupStatements();
-		}else {
+		} else {
 			Assert.fail(apiDetailsResponse1);
 		}
 	}
@@ -176,17 +171,22 @@ public class TC13_Telus_DB_DF_BIB_ACB_AdRewardBalance_FINANCE_CORRECTION extends
 	/**
 	 * Close DB Connection
 	 */
-	
-	  @AfterMethod(alwaysRun = true) public void afterTest() {
-	  Reporting.setNewGroupName("Close DB Connection"); try {
-	  DBUtils.dbDisConnect(); } catch (SQLException e) {
-	  Reporting.logReporter(Status.INFO, "DB Connection Closed Successfully!"); }
-	  Reporting.printAndClearLogGroupStatements(); }
-	 
+
+	@AfterMethod(alwaysRun = true)
+	public void afterTest() {
+		Reporting.setNewGroupName("Close DB Connection");
+		try {
+			DBUtils.dbDisConnect();
+		} catch (SQLException e) {
+			Reporting.logReporter(Status.INFO, "DB Connection Closed Successfully!");
+		}
+		Reporting.printAndClearLogGroupStatements();
+	}
+
 	/**
 	 * Close any opened browser instances
 	 */
-	//@AfterMethod(alwaysRun = true)
+	// @AfterMethod(alwaysRun = true)
 	public void afterTest1() {
 		Reporting.setNewGroupName("Close All Connection");
 		try {
@@ -194,7 +194,7 @@ public class TC13_Telus_DB_DF_BIB_ACB_AdRewardBalance_FINANCE_CORRECTION extends
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} 
+		}
 		Reporting.logReporter(Status.INFO, "DB Connection Closed Successfully!");
 		WebDriverSteps.closeTheBrowser();
 		Reporting.printAndClearLogGroupStatements();

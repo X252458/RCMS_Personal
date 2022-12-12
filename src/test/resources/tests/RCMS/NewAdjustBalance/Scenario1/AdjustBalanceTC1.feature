@@ -11,5 +11,5 @@ Feature: TC01 Telus Sub with DF+ACCESSORYFINANCE_Update AF_Adjustment reason CAN
     #Status
     * def apiDetailsStatus = apiDetails.responseStatus
     #Validation
-    Then match apiDetailsStatus == 200
+    #Then match apiDetailsStatus == 200
    

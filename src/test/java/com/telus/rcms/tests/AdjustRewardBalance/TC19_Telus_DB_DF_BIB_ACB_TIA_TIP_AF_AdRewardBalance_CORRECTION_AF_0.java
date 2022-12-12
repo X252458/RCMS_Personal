@@ -108,8 +108,7 @@ public class TC19_Telus_DB_DF_BIB_ACB_TIA_TIP_AF_AdRewardBalance_CORRECTION_AF_0
 		System.setProperty("karate.startDate", startDate);
 		System.setProperty("karate.apiEnv", apiEnv);
 
-		 Map<String, Object> apiOperation = APIJava.runKarateFeature(environment,
-		 "classpath:tests/RCMS/Activation/Others/activationTC20.feature");
+		Map<String, Object> apiOperation = GenericUtils.featureFileFailLoop(environment,"classpath:tests/RCMS/Activation/Others/activationTC20.feature","tc01ActivateTelusSubWithAllStatus" );
 		 Reporting.logReporter(Status.INFO, "API Operation status: " +
 		 apiOperation.get("tc01ActivateTelusSubWithAllRequest"));
 		 Reporting.logReporter(Status.INFO, "API Operation Request: " +
@@ -123,8 +122,7 @@ public class TC19_Telus_DB_DF_BIB_ACB_TIA_TIP_AF_AdRewardBalance_CORRECTION_AF_0
 		
 		System.setProperty("karate.itemType","ACCESSORYFINANCE");
 
-		Map<String, Object> apiOperation2 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/AdjustRewardBalance/AdjustRewardBalanceTC1.feature");
+		Map<String, Object> apiOperation2 = GenericUtils.featureFileFailLoop(environment,"classpath:tests/RCMS/AdjustRewardBalance/AdjustRewardBalanceTC1.feature","apiDetailsStatus" );
 		Reporting.logReporter(Status.INFO,
 				"API Operation Response: " + apiOperation2.get("apiDetailsResponse"));
 		Reporting.logReporter(Status.INFO,
@@ -137,8 +135,7 @@ public class TC19_Telus_DB_DF_BIB_ACB_TIA_TIP_AF_AdRewardBalance_CORRECTION_AF_0
 		Reporting.setNewGroupName("ADJUST REWARD BALANCE API CALL - DB+DF+BIB+ACB+TIAssetCredit+TIPromoCredit+AccessoryFinance_CORRECTION");
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
-		Map<String, Object> apiOperation3 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/AdjustRewardBalance/AdjustRewardBalanceTC19.feature");
+		Map<String, Object> apiOperation3 = GenericUtils.featureFileFailLoop_status(environment,"classpath:tests/RCMS/AdjustRewardBalance/AdjustRewardBalanceTC19.feature","apiDetailsStatus","500" );
 		Reporting.logReporter(Status.INFO,
 				"API Operation Response: " + apiOperation3.get("apiDetailsResponse"));
 		Reporting.logReporter(Status.INFO,

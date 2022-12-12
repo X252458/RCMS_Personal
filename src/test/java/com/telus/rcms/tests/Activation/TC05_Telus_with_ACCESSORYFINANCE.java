@@ -119,8 +119,7 @@ public class TC05_Telus_with_ACCESSORYFINANCE extends BaseTest {
 		System.setProperty("karate.startDate", startDate);
 		System.setProperty("karate.apiEnv", apiEnv);
 
-		Map<String, Object> apiOperation = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/Activation/activationTC5.feature");
+		Map<String, Object> apiOperation = GenericUtils.featureFileFailLoop(environment,"classpath:tests/RCMS/activation/activationTC5.feature","tc05ActivateTelusSubwithAFStatus" );
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation.get("tc05ActivateTelusSubwithAFStatus"));
 		Reporting.logReporter(Status.INFO,

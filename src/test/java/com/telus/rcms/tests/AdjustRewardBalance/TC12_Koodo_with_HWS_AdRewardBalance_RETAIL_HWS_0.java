@@ -102,8 +102,7 @@ public class TC12_Koodo_with_HWS_AdRewardBalance_RETAIL_HWS_0  extends BaseTest 
 		System.setProperty("karate.startDate", startDate);
 		System.setProperty("karate.apiEnv", apiEnv);
 
-		Map<String, Object> apiOperation = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/Activation/Others/activationTC21.feature");
+		Map<String, Object> apiOperation = GenericUtils.featureFileFailLoop(environment,"classpath:tests/RCMS/Activation/Others/activationTC21.feature","tc02ActivateKoodoTAB_HWSStatus" );
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation.get("tc02ActivateKoodoTAB_HWSRequest"));
 		Reporting.logReporter(Status.INFO,
@@ -117,8 +116,7 @@ public class TC12_Koodo_with_HWS_AdRewardBalance_RETAIL_HWS_0  extends BaseTest 
 		
 		System.setProperty("karate.itemType","HWS");
 		
-		Map<String, Object> apiOperation2 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/AdjustRewardBalance/AdjustRewardBalanceTC10.feature");
+		Map<String, Object> apiOperation2 = GenericUtils.featureFileFailLoop(environment,"classpath:tests/RCMS/AdjustRewardBalance/AdjustRewardBalanceTC10.feature","apiDetailsStatus" );
 		Reporting.logReporter(Status.INFO,
 				"API Operation Response: " + apiOperation2.get("apiDetailsResponse"));
 		Reporting.logReporter(Status.INFO,
@@ -132,9 +130,8 @@ public class TC12_Koodo_with_HWS_AdRewardBalance_RETAIL_HWS_0  extends BaseTest 
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 				
 		System.setProperty("karate.itemType","HWS");
-				
-		Map<String, Object> apiOperation3 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/AdjustRewardBalance/AdjustRewardBalanceTC12.feature");
+		
+		Map<String, Object> apiOperation3 = GenericUtils.featureFileFailLoop(environment,"classpath:tests/RCMS/AdjustRewardBalance/AdjustRewardBalanceTC12.feature","apiDetailsStatus" );
 		Reporting.logReporter(Status.INFO,
 				"API Operation Response: " + apiOperation3.get("apiDetailsResponse"));
 		Reporting.logReporter(Status.INFO,

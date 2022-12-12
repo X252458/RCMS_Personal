@@ -10,4 +10,4 @@ Feature: TC12 Koodo Subscriber active in RCMS DB having HWS - Adjustment with Re
     #Status
     * def apiDetailsStatus = apiDetails.responseStatus
     #Validation
-    Then match apiDetailsStatus == 200
+    #Then match apiDetailsStatus == 200

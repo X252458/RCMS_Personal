@@ -111,8 +111,7 @@ public class TC17_Telus_DF_AF_adjustBalance_LUMPSUM_PAYMENT_Return extends BaseT
 		System.setProperty("karate.startDate", startDate);
 		System.setProperty("karate.apiEnv", apiEnv);
 
-		 Map<String, Object> apiOperation = APIJava.runKarateFeature(environment,
-		 "classpath:tests/RCMS/NewAdjustBalance/activationTC1.feature");
+		Map<String, Object> apiOperation = GenericUtils.featureFileFailLoop(environment,"classpath:tests/RCMS/NewAdjustBalance/activationTC1.feature","tc01ActivateTelusSubWithAllStatus" );
 		 Reporting.logReporter(Status.INFO, "API Operation status: " +
 		 apiOperation.get("tc01ActivateTelusSubWithAllRequest"));
 		 Reporting.logReporter(Status.INFO, "API Operation Request: " +
@@ -124,8 +123,7 @@ public class TC17_Telus_DF_AF_adjustBalance_LUMPSUM_PAYMENT_Return extends BaseT
 		Reporting.setNewGroupName("ADJUST REWARD BALANCE API CALL - AF+DF_LUMSUM_PAYMENT");
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
-		Map<String, Object> apiOperation2 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/NewAdjustBalance/Scenario3/AdjustBalanceLumsumPaymentTC17.feature");
+		Map<String, Object> apiOperation2 = GenericUtils.featureFileFailLoop(environment,"classpath:tests/RCMS/NewAdjustBalance/Scenario3/AdjustBalanceLumsumPaymentTC17.feature","apiDetailsStatus" );
 		Reporting.logReporter(Status.INFO,
 				"API Operation Response: " + apiOperation2.get("apiDetailsResponse"));
 		Reporting.logReporter(Status.INFO,
@@ -145,8 +143,7 @@ public class TC17_Telus_DF_AF_adjustBalance_LUMPSUM_PAYMENT_Return extends BaseT
 		Reporting.setNewGroupName("Return Agreement Item API CALL - AF+DF_ReturnAgreementItem");
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
-		Map<String, Object> apiOperation3 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/NewAdjustBalance/Scenario3/ReturnAgreementItemTC17.feature");
+		Map<String, Object> apiOperation3 = GenericUtils.featureFileFailLoop_status(environment,"classpath:tests/RCMS/NewAdjustBalance/Scenario3/ReturnAgreementItemTC17.feature","apiDetailsStatus","500" );
 		Reporting.logReporter(Status.INFO,
 				"API Operation Response: " + apiOperation3.get("apiDetailsResponse"));
 		Reporting.logReporter(Status.INFO,

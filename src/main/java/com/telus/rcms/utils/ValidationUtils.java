@@ -6040,21 +6040,21 @@ public class ValidationUtils {
 				switch(itemUpdate_installmentAppliedNumValue) {
 				case "0":
 					GenericUtils.validateAssertEqualsFromDB(
-							String.valueOf(rsAgreementItem.getString("COMMITMENT_EFF_END_DT")),
+							String.valueOf(rsAgreementItem.getDate("COMMITMENT_EFF_END_DT")),
 							itemUpdate_itemDurationEndDateTime, "COMMITMENT_EFF_END_DT");
 					GenericUtils.validateAssertEqualsFromDB(String.valueOf(rsAgreementItem.getString("INCENTIVE_AMT")),
 							itemUpdate_incentiveAmount, "INCENTIVE_AMT");
 					break;
 				case "1":
 					GenericUtils.validateAssertEqualsFromDB(
-							String.valueOf(rsAgreementItem.getString("COMMITMENT_EFF_END_DT")),
-							rsAgreementItem.getString("COMMITMENT_EFF_END_DT"), "COMMITMENT_EFF_END_DT");
+							rsAgreementItem.getDate("COMMITMENT_EFF_END_DT"),
+							rsAgreementItem.getDate("COMMITMENT_EFF_END_DT"), "COMMITMENT_EFF_END_DT");
 					GenericUtils.validateAssertEqualsFromDB(
-							String.valueOf(rsAgreementItem.getString("REWARD_INSTLMNT_END_DT")),
-							rsAgreementItem.getString("REWARD_INSTLMNT_END_DT"), "REWARD_INSTLMNT_END_DT");
+							rsAgreementItem.getDate("REWARD_INSTLMNT_END_DT"),
+							rsAgreementItem.getDate("REWARD_INSTLMNT_END_DT"), "REWARD_INSTLMNT_END_DT");
 					GenericUtils.validateAssertEqualsFromDB(
-							String.valueOf(rsAgreementItem.getString("REWARD_INSTLMNT_START_DT")),
-							rsAgreementItem.getString("REWARD_INSTLMNT_START_DT"), "REWARD_INSTLMNT_START_DT");
+							rsAgreementItem.getDate("REWARD_INSTLMNT_START_DT"),
+							rsAgreementItem.getDate("REWARD_INSTLMNT_START_DT"), "REWARD_INSTLMNT_START_DT");
 					break;
 				// and incentive_amt
 				}
@@ -6095,9 +6095,6 @@ public class ValidationUtils {
 
 			String agreementItem_itemDurationEndDateTime = JSONUtils.checkValue(jsonString,
 					agrmtItem.agreementItem_itemDurationEndDateTime);
-			
-			agreementItem_itemDurationEndDateTime = JSONUtils.getEndDate(agreementItem_itemDurationEndDateTime,
-					agreementItem_itemDurationStartDateTime, agreementItem_itemType, agreementItem_itemDurationAmount);
 
 			String agreementItem_incentiveAmount = String.valueOf(
 					JSONUtils.getJSONKeyValueUsingJsonPath(jsonString, agrmtItem.agreementItem_incentiveAmount));
@@ -6114,9 +6111,6 @@ public class ValidationUtils {
 			String agreementItem_installmentEndDateTime = JSONUtils.checkValue(jsonString,
 					agrmtItem.agreementItem_installmentEndDateTime);
 			
-			agreementItem_installmentEndDateTime = JSONUtils.getEndDate(agreementItem_installmentEndDateTime,
-					agreementItem_installmentStartDateTime, agreementItem_itemType, agreementItem_itemDurationAmount);
-
 			String agreementItem_installmentLeftNumValue = String.valueOf(JSONUtils
 					.getJSONKeyValueUsingJsonPath(jsonString, agrmtItem.agreementItem_installmentLeftNumValue));
 
@@ -6236,20 +6230,21 @@ public class ValidationUtils {
 					"FROM  CUSTOMER_SERVICE_AGREEMENT agrmt \r\n" + 
 					"inner join CUST_SRVC_AGRMT_ITEM item \r\n" + 
 					"on agrmt.CUSTOMER_SVC_AGREEMENT_ID = item.customer_svc_agreement_id \r\n" + 
-					"and agrmt.subscriber_no ='4264186097' \r\n" + 
+					"and agrmt.SUBSCRIPTION_ID ='"+relatedParty_Subid+"' \r\n" + 
 					"and agrmt.current_ind='Y' \r\n" + 
 					"and item.REWARD_PROGRAM_TYP_ID='17'\r\n" + 
 					"inner join REWARD_ACCOUNT rewAcc \r\n" + 
 					"on agrmt.SUBSCRIPTION_ID = rewAcc.BUSINESS_OBJECT_ID \r\n" + 
 					"inner join REWARD_TXN rewTxn \r\n" + 
 					"on rewAcc.REWARD_ACCOUNT_ID = rewTxn.REWARD_ACCOUNT_ID\r\n" + 
-					"and rewTxn.REWARD_TXN_RSN_ID !='1'\r\n" + 
+					"and rewTxn.REWARD_TXN_RSN_ID !='1' and rewAcc.STATUS_LIFECYCLE_ID='3'\r\n" + 
 					"inner join CUST_AGRMT_LIFECYCL agmtLyf\r\n" + 
 					"on agmtLyf.CUSTOMER_SVC_AGREEMENT_ID=item.CUSTOMER_SVC_AGREEMENT_ID\r\n" + 
 					"inner join REWARD_TXN_RSN rewTxnRsn\r\n" + 
 					"on rewTxn.REWARD_TXN_RSN_ID = rewTxnRsn.REWARD_TXN_RSN_ID\r\n" + 
 					"inner join REWARD_TXN_TYP rewTxnTyp\r\n" + 
-					"on rewTxnTyp.REWARD_TXN_TYP_ID=rewTxnRsn.REWARD_TXN_TYP_ID\r\n" + 
+					"on rewTxnTyp.REWARD_TXN_TYP_ID=rewTxnRsn.REWARD_TXN_TYP_ID\r\n" +
+					"and rewTxn.REWARD_TXN_RSN_ID ='220'\r\n" +
 					"inner join REWARD_RSN_TYP rsnTyp\r\n" + 
 					"on rewTxnRsn.REWARD_RSN_TYP_ID=rsnTyp.REWARD_RSN_TYP_ID\r\n");
 
@@ -6293,9 +6288,6 @@ public class ValidationUtils {
 
 				GenericUtils.validateAssertEquals(String.valueOf(rsAgreementItem.getString("REWARD_ACC_CURRENCY_BAL_AMT")),
 						"0", "REWARD_ACCOUNT_CURRENCY_BAL_AMT");
-				
-				GenericUtils.validateAssertEquals(String.valueOf(rsAgreementItem.getString("REWARD_TXN_RSN_ID")),
-						"220", "REWARD_TXN_RSN_ID");
 				
 				GenericUtils.validateAssertEquals(String.valueOf(rsAgreementItem.getString("TYP_CD")),
 						"RETURN_REVERSAL", "REASON_TYPE");

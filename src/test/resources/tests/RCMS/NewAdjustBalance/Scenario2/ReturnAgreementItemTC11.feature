@@ -10,5 +10,5 @@ Feature: TC11 Perfome Adjustbalance to Update AF_Adjustment reason CANCELLATION_
     #Status
     * def apiDetailsStatus = apiDetails.responseStatus
     #Validation
-    Then match apiDetailsStatus == 500
+    #Then match apiDetailsStatus == 500
    

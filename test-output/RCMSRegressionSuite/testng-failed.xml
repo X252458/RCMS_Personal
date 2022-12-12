@@ -7,66 +7,17 @@
   <test thread-count="1" name="RCMSRegressionTests(failed)" parallel="methods">
     <groups>
       <run>
-        <include name="updateItem"/>
+        <include name="Adjust_Reward_Balance"/>
       </run>
     </groups>
     <classes>
-      <class name="com.telus.rcms.tests.UpdateItem.TC03_Telus_DB_DF_BIB_ACB_TIA_TIP_Update_Installment_Date">
+      <class name="com.telus.rcms.tests.AdjustRewardBalance.TC018_Telus_DF_DB_RCB_AdRewardBalance_RCB_MANUAL_INSTALLMENT">
         <methods>
-          <include name="testMethod_updateCommitmentItem" invocation-numbers="0"/>
-          <include name="afterTest"/>
-          <include name="BeforeMethod"/>
-        </methods>
-      </class> <!-- com.telus.rcms.tests.UpdateItem.TC03_Telus_DB_DF_BIB_ACB_TIA_TIP_Update_Installment_Date -->
-      <class name="com.telus.rcms.tests.UpdateItem.TC02_Telus_TIA_TIP_Update_Installment_Date_and_Post_inspection">
-        <methods>
-          <include name="afterTest"/>
-          <include name="BeforeMethod"/>
-          <include name="testMethod_getupdateCommitmentItem" invocation-numbers="0"/>
-        </methods>
-      </class> <!-- com.telus.rcms.tests.UpdateItem.TC02_Telus_TIA_TIP_Update_Installment_Date_and_Post_inspection -->
-      <class name="com.telus.rcms.tests.UpdateItem.TC01_Telus_TIA_Update_Due_Date">
-        <methods>
-          <include name="testMethod_updateCommitmentItem" invocation-numbers="0"/>
-          <include name="afterTest"/>
-          <include name="BeforeMethod"/>
-        </methods>
-      </class> <!-- com.telus.rcms.tests.UpdateItem.TC01_Telus_TIA_Update_Due_Date -->
-      <class name="com.telus.rcms.tests.UpdateItem.TC04_Telus_DB_DF_BIB_ACB_TIA_TIP_Update_Return_complete">
-        <methods>
-          <include name="afterTest"/>
-          <include name="BeforeMethod"/>
-          <include name="testMethod_updateCommitmentItem" invocation-numbers="0"/>
-        </methods>
-      </class> <!-- com.telus.rcms.tests.UpdateItem.TC04_Telus_DB_DF_BIB_ACB_TIA_TIP_Update_Return_complete -->
-      <class name="com.telus.rcms.tests.UpdateItem.TC05_Telus_DB_DF_BIB_ACB_TIA_TIP_Renewal_DB_Update_Due_date">
-        <methods>
-          <include name="testMethod_updateCommitmentItem" invocation-numbers="0"/>
-          <include name="afterTest"/>
-          <include name="BeforeMethod"/>
-        </methods>
-      </class> <!-- com.telus.rcms.tests.UpdateItem.TC05_Telus_DB_DF_BIB_ACB_TIA_TIP_Renewal_DB_Update_Due_date -->
-      <class name="com.telus.rcms.tests.UpdateItem.TC07_Telus_TIA_Update_Due_Date">
-        <methods>
+          <include name="testMethod_Termination" invocation-numbers="0"/>
           <include name="BeforeMethod"/>
           <include name="afterTest"/>
-          <include name="testMethod_updateCommitmentItem" invocation-numbers="0"/>
         </methods>
-      </class> <!-- com.telus.rcms.tests.UpdateItem.TC07_Telus_TIA_Update_Due_Date -->
-      <class name="com.telus.rcms.tests.UpdateItem.TC08_Telus_TIA_Return_complete_Update_Due_date">
-        <methods>
-          <include name="BeforeMethod"/>
-          <include name="testMethod_updateCommitmentItem" invocation-numbers="0"/>
-          <include name="afterTest"/>
-        </methods>
-      </class> <!-- com.telus.rcms.tests.UpdateItem.TC08_Telus_TIA_Return_complete_Update_Due_date -->
-      <class name="com.telus.rcms.tests.UpdateItem.TC06_Telus_DB_DF_BIB_ACB_TIA_TIP_Renewal_DB_Update_Return_complete">
-        <methods>
-          <include name="afterTest"/>
-          <include name="testMethod_updateCommitmentItem" invocation-numbers="0"/>
-          <include name="BeforeMethod"/>
-        </methods>
-      </class> <!-- com.telus.rcms.tests.UpdateItem.TC06_Telus_DB_DF_BIB_ACB_TIA_TIP_Renewal_DB_Update_Return_complete -->
+      </class> <!-- com.telus.rcms.tests.AdjustRewardBalance.TC018_Telus_DF_DB_RCB_AdRewardBalance_RCB_MANUAL_INSTALLMENT -->
     </classes>
   </test> <!-- RCMSRegressionTests(failed) -->
 </suite> <!-- Failed suite [RCMSRegressionSuite] -->

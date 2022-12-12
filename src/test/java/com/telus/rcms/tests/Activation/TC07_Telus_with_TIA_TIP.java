@@ -115,8 +115,7 @@ public class TC07_Telus_with_TIA_TIP extends BaseTest {
 		System.setProperty("karate.startDate", startDate);
 		System.setProperty("karate.apiEnv", apiEnv);
 
-		Map<String, Object> apiOperation = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/Activation/activationTC7.feature");
+		Map<String, Object> apiOperation = GenericUtils.featureFileFailLoop(environment,"classpath:tests/RCMS/activation/activationTC7.feature","tc07ActivatePrepaidSubTIASSETCREDIT_TIPROMOCREDITStatus" );
 		Reporting.logReporter(Status.INFO, "API Operation status: "
 				+ apiOperation.get("tc07ActivatePrepaidSubTIASSETCREDIT_TIPROMOCREDITRequest"));
 		Reporting.logReporter(Status.INFO, "API Operation Request: "

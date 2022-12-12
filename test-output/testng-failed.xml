@@ -1,15 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
-  <test thread-count="5" name="Default test(failed)">
+<suite thread-count="1" guice-stage="DEVELOPMENT" name="Failed suite [RCMSRegressionSuite]" parallel="methods">
+  <listeners>
+    <listener class-name="com.test.reporting.AnnotationTransformer"/>
+  </listeners>
+  <test thread-count="1" name="RCMSRegressionTests(failed)" parallel="methods">
+    <groups>
+      <run>
+        <include name="Adjust_Reward_Balance"/>
+      </run>
+    </groups>
     <classes>
-      <class name="com.telus.rcms.tests.Migration.TC03_Post_DB_DF_BIB_ACB_AF_TIA_TIP_to_Pre_PRECREDIT">
+      <class name="com.telus.rcms.tests.AdjustRewardBalance.TC018_Telus_DF_DB_RCB_AdRewardBalance_RCB_MANUAL_INSTALLMENT">
         <methods>
+          <include name="testMethod_Termination" invocation-numbers="0"/>
           <include name="BeforeMethod"/>
           <include name="afterTest"/>
-          <include name="testMethod_migration" invocation-numbers="0"/>
         </methods>
-      </class> <!-- com.telus.rcms.tests.Migration.TC03_Post_DB_DF_BIB_ACB_AF_TIA_TIP_to_Pre_PRECREDIT -->
+      </class> <!-- com.telus.rcms.tests.AdjustRewardBalance.TC018_Telus_DF_DB_RCB_AdRewardBalance_RCB_MANUAL_INSTALLMENT -->
     </classes>
-  </test> <!-- Default test(failed) -->
-</suite> <!-- Failed suite [Default suite] -->
+  </test> <!-- RCMSRegressionTests(failed) -->
+</suite> <!-- Failed suite [RCMSRegressionSuite] -->

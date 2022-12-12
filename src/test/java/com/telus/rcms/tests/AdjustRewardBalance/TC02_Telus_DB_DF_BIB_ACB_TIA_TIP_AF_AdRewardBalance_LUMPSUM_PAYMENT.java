@@ -125,8 +125,7 @@ public class TC02_Telus_DB_DF_BIB_ACB_TIA_TIP_AF_AdRewardBalance_LUMPSUM_PAYMENT
 		System.setProperty("karate.startDate", startDate);
 		System.setProperty("karate.apiEnv", apiEnv);
 
-		 Map<String, Object> apiOperation = APIJava.runKarateFeature(environment,
-		 "classpath:tests/RCMS/activation/activationTC1.feature");
+		Map<String, Object> apiOperation = GenericUtils.featureFileFailLoop(environment,"classpath:tests/RCMS/activation/activationTC1.feature","tc01ActivateTelusSubWithAllStatus" );
 		 Reporting.logReporter(Status.INFO, "API Operation status: " +
 		 apiOperation.get("tc01ActivateTelusSubWithAllRequest"));
 		 Reporting.logReporter(Status.INFO, "API Operation Request: " +
@@ -140,8 +139,7 @@ public class TC02_Telus_DB_DF_BIB_ACB_TIA_TIP_AF_AdRewardBalance_LUMPSUM_PAYMENT
 		
 		System.setProperty("karate.itemType","ACCESSORYFINANCE");
 
-		Map<String, Object> apiOperation2 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/AdjustRewardBalance/AdjustRewardBalanceTC2.feature");
+		Map<String, Object> apiOperation2 = GenericUtils.featureFileFailLoop(environment,"classpath:tests/RCMS/AdjustRewardBalance/AdjustRewardBalanceTC2.feature","apiDetailsStatus" );
 		Reporting.logReporter(Status.INFO,
 				"API Operation Response: " + apiOperation2.get("apiDetailsResponse"));
 		Reporting.logReporter(Status.INFO,

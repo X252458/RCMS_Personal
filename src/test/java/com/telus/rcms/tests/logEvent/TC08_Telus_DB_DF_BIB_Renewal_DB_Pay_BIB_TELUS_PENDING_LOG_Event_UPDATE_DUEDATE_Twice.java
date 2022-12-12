@@ -58,8 +58,11 @@ public class TC08_Telus_DB_DF_BIB_Renewal_DB_Pay_BIB_TELUS_PENDING_LOG_Event_UPD
 		environment = SystemProperties.EXECUTION_ENVIRONMENT;
 	}
 
-	@Test(groups = {"Loyalty_Management", "logEvent", "TC08_Telus_DB_DF_BIB_Renewal_DB_Pay_BIB_TELUS_PENDING_LOG_Event_UPDATE_DUEDATE_Twice",
-			"CompleteRegressionSuite" })
+	/*
+	 * @Test(groups = {"Loyalty_Management", "logEvent",
+	 * "TC08_Telus_DB_DF_BIB_Renewal_DB_Pay_BIB_TELUS_PENDING_LOG_Event_UPDATE_DUEDATE_Twice",
+	 * "CompleteRegressionSuite" })
+	 */
 
 	public void testMethod_LogEvent(ITestContext iTestContext) throws Exception {
 
@@ -112,7 +115,7 @@ public class TC08_Telus_DB_DF_BIB_Renewal_DB_Pay_BIB_TELUS_PENDING_LOG_Event_UPD
 		System.setProperty("karate.subID", subscriptionID);
 		System.setProperty("karate.subNum", subscriberNum);
 		System.setProperty("karate.startDate", startDate);
-		System.setProperty("karate.startDateUpdate", startDateUpdate);
+		System.setProperty("karate.startDateUpdate", startDate);
 		System.setProperty("karate.apiEnv", apiEnv);
 
 		Map<String, Object> apiOperation1 = APIJava.runKarateFeature(environment,

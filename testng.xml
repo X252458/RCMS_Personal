@@ -7,12 +7,14 @@
 	<listeners>
 		<listener
 			class-name="com.test.reporting.AnnotationTransformer" />
+		<!-- <listener 
+			class-name="com.test.listeners.ReportPortalListener" /> -->
 	</listeners>
 	<test name="RCMSRegressionTests">
 		<groups>
 			<run>
-				<include name="CompleteRegressionSuite" />
-
+				<include name="Adjust_Reward_Balance" />
+				<include name="Activation" />
 			</run>
 		</groups>
 		<packages>
