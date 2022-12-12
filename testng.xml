@@ -13,8 +13,7 @@
 	<test name="RCMSRegressionTests">
 		<groups>
 			<run>
-				<include name="Adjust_Reward_Balance" />
-				<include name="Activation" />
+				<include name="Cancellation" />
 			</run>
 		</groups>
 		<packages>

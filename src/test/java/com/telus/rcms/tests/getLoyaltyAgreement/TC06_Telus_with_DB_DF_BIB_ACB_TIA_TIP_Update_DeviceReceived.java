@@ -114,8 +114,8 @@ public class TC06_Telus_with_DB_DF_BIB_ACB_TIA_TIP_Update_DeviceReceived extends
 		System.setProperty("karate.startDate", startDate);
 		System.setProperty("karate.apiEnv", apiEnv);
 
-		Map<String, Object> apiOperation1 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/Activation/activationTC1.feature");
+		Map<String, Object> apiOperation1 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/Activation/activationTC1.feature","tc01ActivateTelusSubWithAllStatus","200");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation1.get("tc01ActivateTelusSubWithAllStatus"));
 		Reporting.logReporter(Status.INFO,
@@ -130,8 +130,8 @@ public class TC06_Telus_with_DB_DF_BIB_ACB_TIA_TIP_Update_DeviceReceived extends
 		Reporting.setNewGroupName("UPDATE SERVICE API CALL - TIASSETCREDIT, TIPROMOCREDIT - Installment date");
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
-		Map<String, Object> apiOperation2 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/UpdateItem/getLoyaltyAgreement/updateTC2.feature");
+		Map<String, Object> apiOperation2 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/UpdateItem/getLoyaltyAgreement/updateTC2.feature","tc02UpdateTelusSubWithAllUpdateStatus","200");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation2.get("tc02UpdateTelusSubWithAllUpdateStatus"));
 		Reporting.logReporter(Status.INFO,
@@ -144,8 +144,8 @@ public class TC06_Telus_with_DB_DF_BIB_ACB_TIA_TIP_Update_DeviceReceived extends
 		Reporting.setNewGroupName("GET REWARD SERVICE API CALL - DB+DF+BIB+ACB+TIASSETCREDIT+TIPROMOCREDIT - Device Received");
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
-		Map<String, Object> apiOperation3 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/GetRewardCommitment/GetRewardCommTC6.feature");
+		Map<String, Object> apiOperation3 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/GetRewardCommitment/GetRewardCommTC6.feature","getRewardCommStatus","200");
 		Reporting.logReporter(Status.INFO, "API Operation status: " + apiOperation3.get("getRewardCommStatus"));
 		Reporting.logReporter(Status.INFO, "API Operation Request: " + apiOperation3.get("getRewardCommResponse"));
 

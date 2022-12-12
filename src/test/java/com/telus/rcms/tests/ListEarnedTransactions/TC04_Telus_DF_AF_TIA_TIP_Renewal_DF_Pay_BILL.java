@@ -128,8 +128,8 @@ public class TC04_Telus_DF_AF_TIA_TIP_Renewal_DF_Pay_BILL extends BaseTest {
 		System.setProperty("karate.startDate", startDate);
 		System.setProperty("karate.apiEnv", apiEnv);
 
-		Map<String, Object> apiOperation1 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/Activation/Others/activationTC1.feature");
+		Map<String, Object> apiOperation1 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/Activation/Others/activationTC1.feature","tc01ActivateTelusSubWithDF_AF_TIASSETCREDIT_TIPROMOCREDITStatus","200");
 		Reporting.logReporter(Status.INFO, "API Operation status: "
 				+ apiOperation1.get("tc01ActivateTelusSubWithDF_AF_TIASSETCREDIT_TIPROMOCREDITStatus"));
 		Reporting.logReporter(Status.INFO, "API Operation Request: "
@@ -147,8 +147,8 @@ public class TC04_Telus_DF_AF_TIA_TIP_Renewal_DF_Pay_BILL extends BaseTest {
 		Reporting.setNewGroupName("RENEWAL SERVICE API CALL-DF WITH PAYMENT BILL");
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
-		Map<String, Object> apiOperation2 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/Renewal/notifySubscriptionRenewalTC01.feature");
+		Map<String, Object> apiOperation2 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/Renewal/notifySubscriptionRenewalTC01.feature","tc01RenewalStatus","200");
 		Reporting.logReporter(Status.INFO, "API Operation status: " + apiOperation2.get("tc01RenewalStatus"));
 		Reporting.logReporter(Status.INFO, "API Operation Request: " + apiOperation2.get("tc01RenewalRequest"));
 
@@ -157,8 +157,8 @@ public class TC04_Telus_DF_AF_TIA_TIP_Renewal_DF_Pay_BILL extends BaseTest {
 		Reporting.setNewGroupName("LIST EARNED TRANSACTION SERVICE API CALL");
 		type = "FINANCE";
 		System.setProperty("karate.type", type);
-		Map<String, Object> apiOperation3 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/ListEarnedTransaction/ListEarnedTransactionTC01.feature");
+		Map<String, Object> apiOperation3 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/ListEarnedTransaction/ListEarnedTransactionTC01.feature","apiStatus","200");
 		Reporting.logReporter(Status.INFO, "API Operation status: " + apiOperation3.get("apiStatus"));
 		Reporting.logReporter(Status.INFO, "API Operation Request: " + apiOperation3.get("apiResponse"));
 		Reporting.printAndClearLogGroupStatements();

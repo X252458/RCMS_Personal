@@ -117,8 +117,8 @@ public class TC04_Telus_DB_DF_BIB extends BaseTest {
 		
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 		
-		Map<String, Object> apiOperation = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/Activation/Others/activationTC6.feature");
+		Map<String, Object> apiOperation = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/Activation/Others/activationTC6.feature","tc06ActivateTelusSubwithDF_DB_BIBStatus","200");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation.get("tc06ActivateTelusSubwithDF_DB_BIBStatus"));
 		Reporting.logReporter(Status.INFO,
@@ -129,8 +129,8 @@ public class TC04_Telus_DB_DF_BIB extends BaseTest {
 		//Reward Account information API Call
 		
 		Reporting.setNewGroupName("GET LOYALTY ACCOUNT SERVICE API CALL");
-		Map<String, Object> apiOperation1 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/GetLoyaltyAccount/GetLoyaltyAccountTC01.feature");
+		Map<String, Object> apiOperation1 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/GetLoyaltyAccount/GetLoyaltyAccountTC01.feature","apiStatus","200");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation1.get("apiStatus"));
 		Reporting.logReporter(Status.INFO,

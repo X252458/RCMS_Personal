@@ -122,8 +122,8 @@ public class TC03_Telus_DB_DF_BIB_ACB_TIA_TIP_AF_Cancel
 		System.setProperty("karate.startDate", startDate);
 		System.setProperty("karate.apiEnv", apiEnv);
 
-		 Map<String, Object> apiOperation = APIJava.runKarateFeature(environment,
-		 "classpath:tests/RCMS/activation/activationTC1.feature");
+		 Map<String, Object> apiOperation = GenericUtils.featureFileFailLoop_status(environment,
+		 "classpath:tests/RCMS/activation/activationTC1.feature","tc01ActivateTelusSubWithAllStatus","200");
 		 Reporting.logReporter(Status.INFO, "API Operation status: " +
 		 apiOperation.get("tc01ActivateTelusSubWithAllRequest"));
 		 Reporting.logReporter(Status.INFO, "API Operation Request: " +
@@ -131,8 +131,8 @@ public class TC03_Telus_DB_DF_BIB_ACB_TIA_TIP_AF_Cancel
 		Reporting.printAndClearLogGroupStatements();
 
 		Reporting.setNewGroupName("CANCELLATION SERVICE API CALL");
-		Map<String, Object> apiOperation1 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/Cancel/cancelTC3.feature");
+		Map<String, Object> apiOperation1 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/Cancel/cancelTC3.feature","apiDetailsStatus","200");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation1.get("apiDetailsStatus"));
 		Reporting.logReporter(Status.INFO,

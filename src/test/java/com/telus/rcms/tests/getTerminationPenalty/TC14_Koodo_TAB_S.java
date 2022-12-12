@@ -117,8 +117,8 @@ public class TC14_Koodo_TAB_S extends BaseTest {
 		Reporting.setNewGroupName("GET TERMINATION SERVICE API CALL");
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
-		Map<String, Object> apiOperation4 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/GetTerminationPenalty/GetTerminationPenaltyTC14.feature");
+		Map<String, Object> apiOperation4 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/GetTerminationPenalty/GetTerminationPenaltyTC14.feature","getTerminationPenaltyStatus","201");
 		Reporting.logReporter(Status.INFO, "API Operation status: " + apiOperation4.get("getTerminationPenaltyStatus"));
 		Reporting.logReporter(Status.INFO,
 				"API Operation Request: " + apiOperation4.get("getTerminationPenaltyResponse"));

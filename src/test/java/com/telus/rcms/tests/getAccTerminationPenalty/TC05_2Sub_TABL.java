@@ -118,8 +118,8 @@ public class TC05_2Sub_TABL extends BaseTest {
 		Reporting.setNewGroupName("GET BILLING ACC TERMINATION PENALTY SERVICE API CALL");
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
-		Map<String, Object> apiOperation3 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/GetAccTerminationPenalty/GetAccTerminationPenaltyTC01.feature");
+		Map<String, Object> apiOperation3 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/GetAccTerminationPenalty/GetAccTerminationPenaltyTC01.feature","apiStatus","200");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation3.get("apiStatus"));
 		Reporting.logReporter(Status.INFO,

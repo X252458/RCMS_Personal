@@ -123,8 +123,8 @@ public class TC06_Telus_DB_DF_BIB_Renewal_DB_Pay_TIP extends BaseTest {
 		System.setProperty("karate.startDate", startDate);
 		System.setProperty("karate.apiEnv", apiEnv);
 
-		Map<String, Object> apiOperation1 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/Activation/Others/activationTC6.feature");
+		Map<String, Object> apiOperation1 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/Activation/Others/activationTC6.feature","tc06ActivateTelusSubwithDF_DB_BIBStatus","200");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation1.get("tc06ActivateTelusSubwithDF_DB_BIBStatus"));
 		Reporting.logReporter(Status.INFO,
@@ -137,8 +137,8 @@ public class TC06_Telus_DB_DF_BIB_Renewal_DB_Pay_TIP extends BaseTest {
 		Reporting.setNewGroupName("RENEWAL SERVICE API CALL");
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
-		Map<String, Object> apiOperation2 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/Renewal/notifySubscriptionRenewalTC05.feature");
+		Map<String, Object> apiOperation2 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/Renewal/notifySubscriptionRenewalTC05.feature","tc05RenewalStatus","200");
 		Reporting.logReporter(Status.INFO, "API Operation status: " + apiOperation2.get("tc05RenewalStatus"));
 		Reporting.logReporter(Status.INFO, "API Operation Request: " + apiOperation2.get("tc05RenewalRequest"));
 		paymentMech="TRADE_IN_PENDING";
@@ -148,8 +148,8 @@ public class TC06_Telus_DB_DF_BIB_Renewal_DB_Pay_TIP extends BaseTest {
 		Reporting.setNewGroupName("GET TERMINATION SERVICE API CALL");
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
-		Map<String, Object> apiOperation3 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/GetTerminationPenalty/GetTerminationPenaltyTC06.feature");
+		Map<String, Object> apiOperation3 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/GetTerminationPenalty/GetTerminationPenaltyTC06.feature","getTerminationPenaltyStatus","201");
 		Reporting.logReporter(Status.INFO, "API Operation status: " + apiOperation3.get("getTerminationPenaltyStatus"));
 		Reporting.logReporter(Status.INFO,
 				"API Operation Request: " + apiOperation3.get("getTerminationPenaltyResponse"));

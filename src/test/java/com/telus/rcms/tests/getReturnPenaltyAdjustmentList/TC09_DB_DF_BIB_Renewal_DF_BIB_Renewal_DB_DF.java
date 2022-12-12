@@ -118,8 +118,8 @@ public class TC09_DB_DF_BIB_Renewal_DF_BIB_Renewal_DB_DF extends BaseTest {
 
 		// Activation API Call
 
-		Map<String, Object> apiOperation1 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/Activation/Others/activationTC7.feature");
+		Map<String, Object> apiOperation1 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/Activation/Others/activationTC7.feature","tc07ActivateTelusSubwithDF_DB_BIB_ACBStatus","200");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation1.get("tc07ActivateTelusSubwithDF_DB_BIB_ACBStatus"));
 		Reporting.logReporter(Status.INFO,
@@ -132,8 +132,8 @@ public class TC09_DB_DF_BIB_Renewal_DF_BIB_Renewal_DB_DF extends BaseTest {
 		Reporting.setNewGroupName("RENEWAL SERVICE API CALL - DB+BIB");
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
-		Map<String, Object> apiOperation2 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/Renewal/notifySubscriptionRenewalTC08_1.feature");
+		Map<String, Object> apiOperation2 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/Renewal/notifySubscriptionRenewalTC08_1.feature","tc08_1RenewalStatus","200");
 		Reporting.logReporter(Status.INFO, "API Operation status: " + apiOperation2.get("tc08_1RenewalStatus"));
 		Reporting.logReporter(Status.INFO, "API Operation Request: " + apiOperation2.get("tc08_1RenewalRequest"));
 
@@ -144,8 +144,8 @@ public class TC09_DB_DF_BIB_Renewal_DF_BIB_Renewal_DB_DF extends BaseTest {
 		Reporting.setNewGroupName("RENEWAL SERVICE API CALL - DB+DF");
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
-		Map<String, Object> apiOperation3 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/Renewal/notifySubscriptionRenewalTC08.feature");
+		Map<String, Object> apiOperation3 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/Renewal/notifySubscriptionRenewalTC08.feature","tc08RenewalStatus","200");
 		Reporting.logReporter(Status.INFO, "API Operation status: " + apiOperation3.get("tc08RenewalStatus"));
 		Reporting.logReporter(Status.INFO, "API Operation Request: " + apiOperation3.get("tc08RenewalRequest"));
 		
@@ -158,8 +158,8 @@ public class TC09_DB_DF_BIB_Renewal_DF_BIB_Renewal_DB_DF extends BaseTest {
 		Reporting.setNewGroupName("GET RETURN PENALTY SERVICE API CALL");
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
-		Map<String, Object> apiOperation4 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/GetReturnPenalty/GetReturnPenaltyTC09.feature");
+		Map<String, Object> apiOperation4 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/GetReturnPenalty/GetReturnPenaltyTC09.feature","getReturnPenaltyStatus","201");
 		Reporting.logReporter(Status.INFO, "API Operation status: " + apiOperation4.get("getReturnPenaltyStatus"));
 		Reporting.logReporter(Status.INFO, "API Operation Request: " + apiOperation4.get("getReturnPenaltyResponse"));
 

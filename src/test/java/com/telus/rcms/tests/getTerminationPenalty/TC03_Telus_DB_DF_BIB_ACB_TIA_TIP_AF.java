@@ -120,8 +120,8 @@ public class TC03_Telus_DB_DF_BIB_ACB_TIA_TIP_AF extends BaseTest {
 		System.setProperty("karate.startDate", startDate);
 		System.setProperty("karate.apiEnv", apiEnv);
 
-		Map<String, Object> apiOperation = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/activation/activationTC1.feature");
+		Map<String, Object> apiOperation = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/activation/activationTC1.feature","tc01ActivateTelusSubWithAllStatus","200");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation.get("tc01ActivateTelusSubWithAllRequest"));
 		Reporting.logReporter(Status.INFO,
@@ -134,8 +134,8 @@ public class TC03_Telus_DB_DF_BIB_ACB_TIA_TIP_AF extends BaseTest {
 		Reporting.setNewGroupName("GET TERMINATION SERVICE API CALL");
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
-		Map<String, Object> apiOperation3 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/GetTerminationPenalty/GetTerminationPenaltyTC03.feature");
+		Map<String, Object> apiOperation3 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/GetTerminationPenalty/GetTerminationPenaltyTC03.feature","getTerminationPenaltyStatus","201");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation3.get("getTerminationPenaltyStatus"));
 		Reporting.logReporter(Status.INFO,

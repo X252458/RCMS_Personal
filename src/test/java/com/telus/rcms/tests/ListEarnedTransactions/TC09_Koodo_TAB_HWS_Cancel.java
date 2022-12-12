@@ -120,8 +120,8 @@ public class TC09_Koodo_TAB_HWS_Cancel extends BaseTest {
 		System.setProperty("karate.startDate", startDate);
 		System.setProperty("karate.apiEnv", apiEnv);
 
-		Map<String, Object> apiOperation = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/activation/activationTC2.feature");
+		Map<String, Object> apiOperation = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/activation/activationTC2.feature","apiStatus","200");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation.get("tc02ActivateKoodoTAB_HWSRequest"));
 		Reporting.logReporter(Status.INFO,
@@ -132,8 +132,8 @@ public class TC09_Koodo_TAB_HWS_Cancel extends BaseTest {
 		// Cancel API call
 
 		Reporting.setNewGroupName("CANCELLATION SERVICE API CALL");
-		Map<String, Object> apiOperation3 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/Cancel/cancelTC6.feature");
+		Map<String, Object> apiOperation3 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/Cancel/cancelTC6.feature","apiDetailsStatus","200");
 		Reporting.logReporter(Status.INFO, "API Operation status: " + apiOperation3.get("apiDetailsStatus"));
 		Reporting.logReporter(Status.INFO, "API Operation Request: " + apiOperation3.get("apiDetailsRequest"));
 		Reporting.printAndClearLogGroupStatements();
@@ -141,8 +141,8 @@ public class TC09_Koodo_TAB_HWS_Cancel extends BaseTest {
 		Reporting.setNewGroupName("LIST EARNED TRANSACTION SERVICE API CALL");
 		type = "TAB";
 		System.setProperty("karate.type", type);
-		Map<String, Object> apiOperation4 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/ListEarnedTransaction/ListEarnedTransactionTC01.feature");
+		Map<String, Object> apiOperation4 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/ListEarnedTransaction/ListEarnedTransactionTC01.feature","apiStatus","200");
 		Reporting.logReporter(Status.INFO, "API Operation status: " + apiOperation4.get("apiStatus"));
 		Reporting.logReporter(Status.INFO, "API Operation Request: " + apiOperation4.get("apiResponse"));
 		Reporting.printAndClearLogGroupStatements();

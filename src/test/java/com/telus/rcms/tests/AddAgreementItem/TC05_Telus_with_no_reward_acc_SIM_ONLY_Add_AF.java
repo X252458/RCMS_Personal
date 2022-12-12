@@ -113,8 +113,8 @@ public class TC05_Telus_with_no_reward_acc_SIM_ONLY_Add_AF extends BaseTest {
 		System.setProperty("karate.endDate", endDate);
 		System.setProperty("karate.apiEnv", apiEnv);
 
-		Map<String, Object> apiOperation = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/Activation/activationTC6.feature");
+		Map<String, Object> apiOperation = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/Activation/activationTC6.feature","tc06ActivateTeluswithNoRewardSimOnlyStatus","200");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation.get("tc06ActivateTeluswithNoRewardSimOnlyRequest"));
 		Reporting.logReporter(Status.INFO,
@@ -128,8 +128,8 @@ public class TC05_Telus_with_no_reward_acc_SIM_ONLY_Add_AF extends BaseTest {
 		Reporting.setNewGroupName("ADD AGREEMENT ITEM API CALL");
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
-		Map<String, Object> apiOperation3 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/AddAgreementItem/addAgreementItemTC5.feature");
+		Map<String, Object> apiOperation3 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/AddAgreementItem/addAgreementItemTC5.feature","apiStatus","500");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation3.get("apiRequest"));
 		Reporting.logReporter(Status.INFO,

@@ -113,8 +113,8 @@ public class TC01_Prepaid_PRESOC_to_Postpaid_DB_DF extends BaseTest {
 		System.setProperty("karate.startDate", startDate);
 		System.setProperty("karate.apiEnv", apiEnv);
 
-		Map<String, Object> apiOperation = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/Activation/Others/activationTC9.feature");
+		Map<String, Object> apiOperation = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/Activation/Others/activationTC9.feature","apiStatus","200");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation.get("apiStatus"));
 		Reporting.logReporter(Status.INFO,
@@ -128,8 +128,8 @@ public class TC01_Prepaid_PRESOC_to_Postpaid_DB_DF extends BaseTest {
 		Reporting.setNewGroupName("GET MIGRATION SERVICE API CALL");
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
-		Map<String, Object> apiOperation3 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/GetMigrationPenalty/GetMigrationPenaltyTC01.feature");
+		Map<String, Object> apiOperation3 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/GetMigrationPenalty/GetMigrationPenaltyTC01.feature","apiStatus","201");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation3.get("apiStatus"));
 		Reporting.logReporter(Status.INFO,

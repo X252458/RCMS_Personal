@@ -117,8 +117,8 @@ public class TC04_Postpaid_DB_DF_BIB_Renewal_DF_Pay_BTP_to_Prepaid extends BaseT
 		Reporting.setNewGroupName("ACTIVATION SERVICE API CALL");
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 		
-		Map<String, Object> apiOperation1 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/Activation/Others/activationTC6.feature");
+		Map<String, Object> apiOperation1 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/Activation/Others/activationTC6.feature","tc06ActivateTelusSubwithDF_DB_BIBStatus","200");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation1.get("tc06ActivateTelusSubwithDF_DB_BIBStatus"));
 		Reporting.logReporter(Status.INFO,
@@ -130,8 +130,8 @@ public class TC04_Postpaid_DB_DF_BIB_Renewal_DF_Pay_BTP_to_Prepaid extends BaseT
 		Reporting.setNewGroupName("RENEWAL SERVICE API CALL - AccessoryFinance");
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
-		Map<String, Object> apiOperation2 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/Renewal/getMigrationPenalty/renewalTC2.feature");
+		Map<String, Object> apiOperation2 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/Renewal/getMigrationPenalty/renewalTC2.feature","apiStatus","200");
 		Reporting.logReporter(Status.INFO, "API Operation status: " + apiOperation2.get("apiStatus"));
 		Reporting.logReporter(Status.INFO, "API Operation Request: " + apiOperation2.get("apiRequest"));
 		paymentMech="BIB_TELUS_PENDING";
@@ -142,8 +142,8 @@ public class TC04_Postpaid_DB_DF_BIB_Renewal_DF_Pay_BTP_to_Prepaid extends BaseT
 		Reporting.setNewGroupName("GET MIGRATION SERVICE API CALL");
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
-		Map<String, Object> apiOperation3 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/GetMigrationPenalty/GetMigrationPenaltyTC04.feature");
+		Map<String, Object> apiOperation3 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/GetMigrationPenalty/GetMigrationPenaltyTC04.feature","apiStatus","201");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation3.get("apiStatus"));
 		Reporting.logReporter(Status.INFO,

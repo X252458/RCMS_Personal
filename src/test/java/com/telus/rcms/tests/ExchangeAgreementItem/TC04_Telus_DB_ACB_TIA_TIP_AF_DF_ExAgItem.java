@@ -112,8 +112,8 @@ public class TC04_Telus_DB_ACB_TIA_TIP_AF_DF_ExAgItem extends BaseTest {
 		System.setProperty("karate.endDate", endDate);
 		System.setProperty("karate.apiEnv", apiEnv);
 
-		Map<String, Object> apiOperation1 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/Activation/Others/activationTC18.feature");
+		Map<String, Object> apiOperation1 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/Activation/Others/activationTC18.feature","apiStatus","200");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation1.get("apiStatus"));
 		Reporting.logReporter(Status.INFO,
@@ -128,8 +128,8 @@ public class TC04_Telus_DB_ACB_TIA_TIP_AF_DF_ExAgItem extends BaseTest {
 
 				System.setProperty("karate.itemType","ACCESSORYFINANCE");
 				
-				Map<String, Object> apiOperation3 = APIJava.runKarateFeature(environment,
-						"classpath:tests/RCMS/ExchangeAgreementItem/AdjustBalanceTC4a.feature");
+				Map<String, Object> apiOperation3 = GenericUtils.featureFileFailLoop_status(environment,
+						"classpath:tests/RCMS/ExchangeAgreementItem/AdjustBalanceTC4a.feature","apiDetailsStatus","200");
 				Reporting.logReporter(Status.INFO,
 						"API Operation Request: " + apiOperation3.get("apiDetailsRequest"));
 				Reporting.logReporter(Status.INFO,
@@ -146,8 +146,8 @@ public class TC04_Telus_DB_ACB_TIA_TIP_AF_DF_ExAgItem extends BaseTest {
 		Reporting.setNewGroupName("EXCHANGEAGREEMENTITEM SERVICE API CALL - AccessoryFinance");
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
-		Map<String, Object> apiOperation2 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/ExchangeAgreementItem/ExchangeAgreementItemTC4.feature");
+		Map<String, Object> apiOperation2 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/ExchangeAgreementItem/ExchangeAgreementItemTC4.feature","apiDetailsStatus","500");
 		Reporting.logReporter(Status.INFO,
 				"API Operation Request: " + apiOperation2.get("apiDetailsRequest"));
 		Reporting.logReporter(Status.INFO,

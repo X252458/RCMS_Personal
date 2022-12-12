@@ -117,8 +117,8 @@ public class TC03_Postpaid_DB_DF_BIB_ACB_TIA_TIP_to_Prepaid_PRESOC extends BaseT
 		
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 		
-		Map<String, Object> apiOperation1 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/Activation/Others/activationTC2.feature");
+		Map<String, Object> apiOperation1 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/Activation/Others/activationTC2.feature","tc01ActivateTelusSubWithDF_BIB_ACB_DB_TIASSETCREDIT_TIPROMOCREDITStatus","200");
 		Reporting.logReporter(Status.INFO, "API Operation status: "
 				+ apiOperation1.get("tc01ActivateTelusSubWithDF_BIB_ACB_DB_TIASSETCREDIT_TIPROMOCREDITStatus"));
 		Reporting.logReporter(Status.INFO, "API Operation Request: "
@@ -131,8 +131,8 @@ public class TC03_Postpaid_DB_DF_BIB_ACB_TIA_TIP_to_Prepaid_PRESOC extends BaseT
 		Reporting.setNewGroupName("GET MIGRATION SERVICE API CALL");
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
-		Map<String, Object> apiOperation3 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/GetMigrationPenalty/GetMigrationPenaltyTC03.feature");
+		Map<String, Object> apiOperation3 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/GetMigrationPenalty/GetMigrationPenaltyTC03.feature","apiStatus","201");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation3.get("apiStatus"));
 		Reporting.logReporter(Status.INFO,

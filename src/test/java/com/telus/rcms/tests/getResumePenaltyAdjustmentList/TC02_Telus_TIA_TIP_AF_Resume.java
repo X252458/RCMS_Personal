@@ -113,8 +113,8 @@ public class TC02_Telus_TIA_TIP_AF_Resume extends BaseTest {
 		System.setProperty("karate.startDate", startDate);
 		System.setProperty("karate.apiEnv", apiEnv);
 
-		Map<String, Object> apiOperation = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/Activation/Others/activationTC4.feature");
+		Map<String, Object> apiOperation = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/Activation/Others/activationTC4.feature","tc04ActivateTelusSubwithTIA_TIP_AFStatus","200");
 		Reporting.logReporter(Status.INFO, "API Operation status: "
 				+ apiOperation.get("tc04ActivateTelusSubwithTIA_TIP_AFStatus"));
 		Reporting.logReporter(Status.INFO, "API Operation Request: "
@@ -129,8 +129,8 @@ public class TC02_Telus_TIA_TIP_AF_Resume extends BaseTest {
 		Reporting.setNewGroupName("CANCEL SERVICE API CALL - AccessoryFinance");
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
-		Map<String, Object> apiOperation2 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/Cancel/cancelTC2.feature");
+		Map<String, Object> apiOperation2 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/Cancel/cancelTC2.feature","apiDetailsStatus","200");
 		Reporting.logReporter(Status.INFO,
 				"API Operation Request: " + apiOperation2.get("apiDetailsRequest"));
 		Reporting.logReporter(Status.INFO,
@@ -142,8 +142,8 @@ public class TC02_Telus_TIA_TIP_AF_Resume extends BaseTest {
 				Reporting.setNewGroupName("RESUME PENALTY SERVICE API CALL");
 				Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
-				Map<String, Object> apiOperation3 = APIJava.runKarateFeature(environment,
-						"classpath:tests/RCMS/GetResumePenalty/GetResumePenaltyTC02.feature");
+				Map<String, Object> apiOperation3 = GenericUtils.featureFileFailLoop_status(environment,
+						"classpath:tests/RCMS/GetResumePenalty/GetResumePenaltyTC02.feature","apiStatus","201");
 				Reporting.logReporter(Status.INFO,
 						"API Operation status: " + apiOperation3.get("apiStatus"));
 				Reporting.logReporter(Status.INFO,

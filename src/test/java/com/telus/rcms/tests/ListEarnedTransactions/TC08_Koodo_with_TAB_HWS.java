@@ -120,8 +120,8 @@ public class TC08_Koodo_with_TAB_HWS extends BaseTest {
 		System.setProperty("karate.startDate", startDate);
 		System.setProperty("karate.apiEnv", apiEnv);
 
-		Map<String, Object> apiOperation = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/activation/activationTC2.feature");
+		Map<String, Object> apiOperation = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/activation/activationTC2.feature","tc02ActivateKoodoTAB_HWSStatus","200");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation.get("tc02ActivateKoodoTAB_HWSRequest"));
 		Reporting.logReporter(Status.INFO,
@@ -132,8 +132,8 @@ public class TC08_Koodo_with_TAB_HWS extends BaseTest {
 		Reporting.setNewGroupName("LIST EARNED TRANSACTION SERVICE API CALL");
 		type = "HWS";
 		System.setProperty("karate.type", type);
-		Map<String, Object> apiOperation4 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/ListEarnedTransaction/ListEarnedTransactionTC01.feature");
+		Map<String, Object> apiOperation4 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/ListEarnedTransaction/ListEarnedTransactionTC01.feature","apiStatus","200");
 		Reporting.logReporter(Status.INFO, "API Operation status: " + apiOperation4.get("apiStatus"));
 		Reporting.logReporter(Status.INFO, "API Operation Request: " + apiOperation4.get("apiResponse"));
 		Reporting.printAndClearLogGroupStatements();

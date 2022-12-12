@@ -115,8 +115,8 @@ public class TC17_Telus_DB_DF_BIB_Return extends BaseTest {
 		System.setProperty("karate.startDate", startDate);
 		System.setProperty("karate.apiEnv", apiEnv);
 
-		Map<String, Object> apiOperation1 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/Activation/Others/activationTC6.feature");
+		Map<String, Object> apiOperation1 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/Activation/Others/activationTC6.feature","apiStatus","200");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation1.get("tc06ActivateTelusSubwithDF_DB_BIBStatus"));
 		Reporting.logReporter(Status.INFO,
@@ -130,8 +130,8 @@ public class TC17_Telus_DB_DF_BIB_Return extends BaseTest {
 				Reporting.setNewGroupName("RETURN SERVICE API CALL");
 				Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
-				Map<String, Object> apiOperation5 = APIJava.runKarateFeature(environment,
-						"classpath:tests/RCMS/Return/returnTC2.feature");
+				Map<String, Object> apiOperation5 = GenericUtils.featureFileFailLoop_status(environment,
+						"classpath:tests/RCMS/Return/returnTC2.feature","apiStatus","200");
 				Reporting.logReporter(Status.INFO, "API Operation Request: " + apiOperation5.get("apiResponse"));
 				Reporting.logReporter(Status.INFO, "API Operation status: " + apiOperation5.get("apiStatus"));
 

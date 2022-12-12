@@ -113,8 +113,8 @@ public class TC08_Telus_TIA_TIP_Add_AF_EndDate extends BaseTest {
 		System.setProperty("karate.endDate", endDate);
 		System.setProperty("karate.apiEnv", apiEnv);
 
-		Map<String, Object> apiOperation = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/Activation/activationTC7.feature");
+		Map<String, Object> apiOperation = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/Activation/activationTC7.feature","tc07ActivatePrepaidSubTIASSETCREDIT_TIPROMOCREDITStatus","200");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation.get("tc07ActivatePrepaidSubTIASSETCREDIT_TIPROMOCREDITStatus"));
 		Reporting.logReporter(Status.INFO,
@@ -127,8 +127,8 @@ public class TC08_Telus_TIA_TIP_Add_AF_EndDate extends BaseTest {
 		Reporting.setNewGroupName("ADD AGREEMENT ITEM API CALL");
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
-		Map<String, Object> apiOperation3 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/AddAgreementItem/addAgreementItemTC8.feature");
+		Map<String, Object> apiOperation3 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/AddAgreementItem/addAgreementItemTC8.feature","apiStatus","500");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation3.get("apiRequest"));
 		Reporting.logReporter(Status.INFO,

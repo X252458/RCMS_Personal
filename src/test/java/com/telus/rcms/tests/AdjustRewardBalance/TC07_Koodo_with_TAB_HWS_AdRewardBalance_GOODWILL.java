@@ -152,8 +152,8 @@ public class TC07_Koodo_with_TAB_HWS_AdRewardBalance_GOODWILL extends BaseTest {
 		Reporting.setNewGroupName("ADJUST REWARD BALANCE API CALL - HWS_GOODWILL ");
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 		System.setProperty("karate.itemType","HWS");
-		Map<String, Object> apiOperation3 = APIJava.runKarateFeature(environment,
-					"classpath:tests/RCMS/AdjustRewardBalance/AdjustRewardBalanceTC7.feature");
+		Map<String, Object> apiOperation3 = GenericUtils.featureFileFailLoop_status(environment,
+					"classpath:tests/RCMS/AdjustRewardBalance/AdjustRewardBalanceTC7.feature","apiDetailsStatus","200");
 		Reporting.logReporter(Status.INFO,
 					"API Operation Response: " + apiOperation3.get("apiDetailsResponse"));
 		Reporting.logReporter(Status.INFO,

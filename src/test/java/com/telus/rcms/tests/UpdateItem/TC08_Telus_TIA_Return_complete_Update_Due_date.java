@@ -126,8 +126,8 @@ public class TC08_Telus_TIA_Return_complete_Update_Due_date extends BaseTest {
 		System.setProperty("karate.endDate", endDate);
 		System.setProperty("karate.apiEnv", apiEnv);
 
-		Map<String, Object> apiOperation = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/activation/Others/activationTC25.feature");
+		Map<String, Object> apiOperation = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/activation/Others/activationTC25.feature","apiStatus","200");
 		Reporting.logReporter(Status.INFO, "API Operation Status: " + apiOperation.get("apiStatus"));
 		Reporting.logReporter(Status.INFO, "API Operation Request: " + apiOperation.get("apiRequest"));
 
@@ -136,8 +136,8 @@ public class TC08_Telus_TIA_Return_complete_Update_Due_date extends BaseTest {
 		// UpdateItem API Call
 		Reporting.setNewGroupName("UPDATE ITEM  API CALL 1");
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
-		Map<String, Object> apiOperation1 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/UpdateItem/updateItemTC8a.feature");
+		Map<String, Object> apiOperation1 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/UpdateItem/updateItemTC8a.feature","apiStatus","200");
 		Reporting.logReporter(Status.INFO, "API Operation status: " + apiOperation1.get("apiStatus"));
 		Reporting.logReporter(Status.INFO, "API Operation Request: " + apiOperation1.get("apiRequest"));
 		Reporting.printAndClearLogGroupStatements();
@@ -146,8 +146,8 @@ public class TC08_Telus_TIA_Return_complete_Update_Due_date extends BaseTest {
 		Reporting.setNewGroupName("UPDATE ITEM  API CALL 2");
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
-		Map<String, Object> apiOperation2 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/UpdateItem/updateItemTC8b.feature");
+		Map<String, Object> apiOperation2 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/UpdateItem/updateItemTC8b.feature","apiStatus","200");
 		Reporting.logReporter(Status.INFO, "API Operation status: " + apiOperation2.get("apiStatus"));
 		Reporting.logReporter(Status.INFO, "API Operation Response: " + apiOperation2.get("apiRequest"));
 		Reporting.logReporter(Status.INFO,

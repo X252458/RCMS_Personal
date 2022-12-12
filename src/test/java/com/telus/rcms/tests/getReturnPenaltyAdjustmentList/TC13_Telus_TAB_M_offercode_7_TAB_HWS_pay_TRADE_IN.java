@@ -124,8 +124,8 @@ public class TC13_Telus_TAB_M_offercode_7_TAB_HWS_pay_TRADE_IN extends BaseTest 
 		
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
-		Map<String, Object> apiOperation4 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/GetReturnPenalty/GetReturnPenaltyTC13.feature");
+		Map<String, Object> apiOperation4 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/GetReturnPenalty/GetReturnPenaltyTC13.feature","getReturnPenaltyStatus","201");
 		Reporting.logReporter(Status.INFO, "API Operation status: " + apiOperation4.get("getReturnPenaltyStatus"));
 		Reporting.logReporter(Status.INFO, "API Operation Request: " + apiOperation4.get("getReturnPenaltyResponse"));
 

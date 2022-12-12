@@ -116,8 +116,8 @@ public class TC02_DB_AF_TIA_TIP_Renewal_DF_Pay_BILL extends BaseTest {
 		
 		//Activation API Call 
 		
-		Map<String, Object> apiOperation1 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/Activation/Others/activationTC1.feature");
+		Map<String, Object> apiOperation1 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/Activation/Others/activationTC1.feature","apiStatus","200");
 		Reporting.logReporter(Status.INFO, "API Operation status: "
 				+ apiOperation1.get("tc01ActivateTelusSubWithDF_AF_TIASSETCREDIT_TIPROMOCREDITStatus"));
 		Reporting.logReporter(Status.INFO, "API Operation Request: "
@@ -130,8 +130,8 @@ public class TC02_DB_AF_TIA_TIP_Renewal_DF_Pay_BILL extends BaseTest {
 		Reporting.setNewGroupName("RENEWAL SERVICE API CALL - AccessoryFinance");
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
-		Map<String, Object> apiOperation2 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/Renewal/getRewardCommitment/renewalTC2.feature");
+		Map<String, Object> apiOperation2 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/Renewal/getRewardCommitment/renewalTC2.feature","apiStatus","200");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation2.get("apiStatus"));
 		Reporting.logReporter(Status.INFO,
@@ -145,8 +145,8 @@ public class TC02_DB_AF_TIA_TIP_Renewal_DF_Pay_BILL extends BaseTest {
 		Reporting.setNewGroupName("GET RETURN PENALTY SERVICE API CALL");
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
-		Map<String, Object> apiOperation3 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/GetReturnPenalty/GetReturnPenaltyTC02.feature");
+		Map<String, Object> apiOperation3 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/GetReturnPenalty/GetReturnPenaltyTC02.feature","apiStatus","200");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation3.get("getReturnPenaltyStatus"));
 		Reporting.logReporter(Status.INFO,

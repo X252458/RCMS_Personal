@@ -114,8 +114,8 @@ public class TC05_Telus_DB_DF_BIB_ACB extends BaseTest {
 		System.setProperty("karate.startDate", startDate);
 		System.setProperty("karate.apiEnv", apiEnv);
 
-		Map<String, Object> apiOperation = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/FutureActivation/futureActivationTC4.feature");
+		Map<String, Object> apiOperation = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/FutureActivation/futureActivationTC4.feature","apiStatus","200");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation.get("apiResponse"));
 		Reporting.logReporter(Status.INFO,

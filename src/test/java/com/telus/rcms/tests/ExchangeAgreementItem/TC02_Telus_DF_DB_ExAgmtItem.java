@@ -109,8 +109,8 @@ public class TC02_Telus_DF_DB_ExAgmtItem extends BaseTest {
 		System.setProperty("karate.endDate", endDate);
 		System.setProperty("karate.apiEnv", apiEnv);
 
-		Map<String, Object> apiOperation1 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/Activation/Others/activationTC16.feature");
+		Map<String, Object> apiOperation1 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/Activation/Others/activationTC16.feature","apiStatus","200");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation1.get("apiStatus"));
 		Reporting.logReporter(Status.INFO,
@@ -125,8 +125,8 @@ public class TC02_Telus_DF_DB_ExAgmtItem extends BaseTest {
 		Reporting.setNewGroupName("EXCHANGEAGREEMENTITEM SERVICE API CALL - AccessoryFinance");
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
-		Map<String, Object> apiOperation2 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/ExchangeAgreementItem/ExchangeAgreementItemTC2.feature");
+		Map<String, Object> apiOperation2 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/ExchangeAgreementItem/ExchangeAgreementItemTC2.feature","apiDetailsStatus","500");
 		Reporting.logReporter(Status.INFO,
 				"API Operation Request: " + apiOperation2.get("apiDetailsRequest"));
 		Reporting.logReporter(Status.INFO,

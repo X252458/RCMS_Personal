@@ -114,8 +114,8 @@ public class TC03_Telus_DB_DF_BIB_RCB_AF_CMT_Broken extends BaseTest {
 		System.setProperty("karate.startDate", startDate);
 		System.setProperty("karate.apiEnv", apiEnv);
 
-		Map<String, Object> apiOperation = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/activation/activationTC2.feature");
+		Map<String, Object> apiOperation = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/activation/activationTC2.feature","tc02ActivateKoodoTAB_HWSStatus","200");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation.get("tc02ActivateKoodoTAB_HWSRequest"));
 		Reporting.logReporter(Status.INFO,
@@ -131,8 +131,8 @@ public class TC03_Telus_DB_DF_BIB_RCB_AF_CMT_Broken extends BaseTest {
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 		
 
-		Map<String, Object> apiOperation3 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/GetChangeServCommitmentPenalty/GetChangeServCommitmentPenaltyTC01.feature");
+		Map<String, Object> apiOperation3 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/GetChangeServCommitmentPenalty/GetChangeServCommitmentPenaltyTC01.feature","apiStatus","200");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation3.get("apiStatus"));
 		Reporting.logReporter(Status.INFO,

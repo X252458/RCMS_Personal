@@ -139,8 +139,8 @@ public class TC07_Telus_TAB_M_Renewal_TAB_HWS_Pay_TIP_Cancel extends BaseTest {
 		Reporting.setNewGroupName("RENEWAL SERVICE API CALL");
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
-		Map<String, Object> apiOperation1 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/Renewal/notifySubscriptionRenewalTC13.feature");
+		Map<String, Object> apiOperation1 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/Renewal/notifySubscriptionRenewalTC13.feature","tc13RenewalStatus","200");
 		Reporting.logReporter(Status.INFO, "API Operation status: " + apiOperation1.get("tc13RenewalStatus"));
 		Reporting.logReporter(Status.INFO, "API Operation Request: " + apiOperation1.get("tc13RenewalRequest"));
 
@@ -149,8 +149,8 @@ public class TC07_Telus_TAB_M_Renewal_TAB_HWS_Pay_TIP_Cancel extends BaseTest {
 		// Cancel API call
 
 		Reporting.setNewGroupName("CANCELLATION SERVICE API CALL");
-		Map<String, Object> apiOperation3 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/Cancel/cancelTC7.feature");
+		Map<String, Object> apiOperation3 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/Cancel/cancelTC7.feature","apiDetailsStatus","200");
 		Reporting.logReporter(Status.INFO, "API Operation status: " + apiOperation3.get("apiDetailsStatus"));
 		Reporting.logReporter(Status.INFO, "API Operation Request: " + apiOperation3.get("apiDetailsRequest"));
 		Reporting.printAndClearLogGroupStatements();

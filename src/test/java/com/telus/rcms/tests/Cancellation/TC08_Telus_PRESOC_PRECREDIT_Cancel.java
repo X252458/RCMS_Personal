@@ -116,8 +116,8 @@ public class TC08_Telus_PRESOC_PRECREDIT_Cancel extends BaseTest {
 		System.setProperty("karate.startDate", startDate);
 		System.setProperty("karate.apiEnv", apiEnv);
 
-		Map<String, Object> apiOperation = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/Activation/activationTC4.feature");
+		Map<String, Object> apiOperation = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/Activation/activationTC4.feature","tc04ActivatePrepaidSubPRESOC_PRECREDITStatus","200");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation.get("tc04ActivatePrepaidSubPRESOC_PRECREDITRequest"));
 		Reporting.logReporter(Status.INFO,
@@ -128,8 +128,8 @@ public class TC08_Telus_PRESOC_PRECREDIT_Cancel extends BaseTest {
 		//Cancel API call
 		
 		Reporting.setNewGroupName("CANCELLATION SERVICE API CALL");
-		Map<String, Object> apiOperation3 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/Cancel/cancelTC8.feature");
+		Map<String, Object> apiOperation3 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/Cancel/cancelTC8.feature","apiDetailsStatus","200");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation3.get("apiDetailsStatus"));
 		Reporting.logReporter(Status.INFO,

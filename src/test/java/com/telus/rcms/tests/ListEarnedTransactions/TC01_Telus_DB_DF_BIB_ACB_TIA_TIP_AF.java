@@ -130,8 +130,8 @@ public class TC01_Telus_DB_DF_BIB_ACB_TIA_TIP_AF extends BaseTest {
 		System.setProperty("karate.startDate", startDate);
 		System.setProperty("karate.apiEnv", apiEnv);
 
-		Map<String, Object> apiOperation = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/activation/activationTC1.feature");
+		Map<String, Object> apiOperation = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/activation/activationTC1.feature","tc01ActivateTelusSubWithAllStatus","200");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation.get("tc01ActivateTelusSubWithAllStatus"));
 		Reporting.logReporter(Status.INFO,
@@ -141,8 +141,8 @@ public class TC01_Telus_DB_DF_BIB_ACB_TIA_TIP_AF extends BaseTest {
 		Reporting.setNewGroupName("LIST EARNED TRANSACTION SERVICE API CALL");
 		type = "ACCESSORYFINANCE";
 		System.setProperty("karate.type", type);
-		Map<String, Object> apiOperation1 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/ListEarnedTransaction/ListEarnedTransactionTC01.feature");
+		Map<String, Object> apiOperation1 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/ListEarnedTransaction/ListEarnedTransactionTC01.feature","apiStatus","200");
 		Reporting.logReporter(Status.INFO, "API Operation URL: " + apiOperation1.get("apiUrl"));
 		Reporting.logReporter(Status.INFO, "API Operation status: " + apiOperation1.get("apiStatus"));
 		Reporting.logReporter(Status.INFO, "API Operation Request: " + apiOperation1.get("apiResponse"));

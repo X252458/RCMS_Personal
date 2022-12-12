@@ -130,8 +130,8 @@ public class TC11_Telus_TAB_HWS_to_TAB_HWS_Pay_charge_full_waive extends BaseTes
 		System.setProperty("karate.startDate", startDate);
 		System.setProperty("karate.apiEnv", apiEnv);
 
-		Map<String, Object> apiOperation = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/activation/activationTC2.feature");
+		Map<String, Object> apiOperation = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/activation/activationTC2.feature","apiStatus","200");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation.get("tc02ActivateKoodoTAB_HWSStatus"));
 		Reporting.logReporter(Status.INFO,
@@ -146,8 +146,8 @@ public class TC11_Telus_TAB_HWS_to_TAB_HWS_Pay_charge_full_waive extends BaseTes
 		Reporting.setNewGroupName("GET REWARD SERVICE API CALL");
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
-		Map<String, Object> apiOperation2 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/GetEarlyRenewalPenalty/Renewal/GetEarlyRenewalPenaltyTC2.feature");
+		Map<String, Object> apiOperation2 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/GetEarlyRenewalPenalty/Renewal/GetEarlyRenewalPenaltyTC2.feature","apiStatus","200");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation2.get("getEarlyRenewalPenaltyResponse"));
 		Reporting.logReporter(Status.INFO,
@@ -161,8 +161,8 @@ public class TC11_Telus_TAB_HWS_to_TAB_HWS_Pay_charge_full_waive extends BaseTes
 		Reporting.setNewGroupName("RENEWAL SERVICE API CALL");
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
-		Map<String, Object> apiOperation3 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/Renewal/notifySubscriptionRenewalTC11.feature");
+		Map<String, Object> apiOperation3 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/Renewal/notifySubscriptionRenewalTC11.feature","apiStatus","200");
 		Reporting.logReporter(Status.INFO, "API Operation status: " + apiOperation3.get("tc11RenewalStatus"));
 		Reporting.logReporter(Status.INFO, "API Operation Request: " + apiOperation3.get("tc11RenewalRequest"));
 

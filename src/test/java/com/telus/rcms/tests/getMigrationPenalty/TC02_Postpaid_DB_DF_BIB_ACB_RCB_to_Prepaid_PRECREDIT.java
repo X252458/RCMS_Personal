@@ -116,8 +116,8 @@ public class TC02_Postpaid_DB_DF_BIB_ACB_RCB_to_Prepaid_PRECREDIT extends BaseTe
 		
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 		
-		Map<String, Object> apiOperation = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/Activation/Others/activationTC10.feature");
+		Map<String, Object> apiOperation = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/Activation/Others/activationTC10.feature","apiStatus","200");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation.get("apiStatus"));
 		Reporting.logReporter(Status.INFO,
@@ -130,8 +130,8 @@ public class TC02_Postpaid_DB_DF_BIB_ACB_RCB_to_Prepaid_PRECREDIT extends BaseTe
 		Reporting.setNewGroupName("RENEWAL SERVICE API CALL");
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 		
-		Map<String, Object> apiOperation2 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/Renewal/getMigrationPenalty/renewalTC1.feature");
+		Map<String, Object> apiOperation2 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/Renewal/getMigrationPenalty/renewalTC1.feature","apiStatus","200");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation2.get("apiStatus"));
 		Reporting.logReporter(Status.INFO,
@@ -145,8 +145,8 @@ public class TC02_Postpaid_DB_DF_BIB_ACB_RCB_to_Prepaid_PRECREDIT extends BaseTe
 		Reporting.setNewGroupName("GET MIGRATION SERVICE API CALL");
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
-		Map<String, Object> apiOperation3 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/GetMigrationPenalty/GetMigrationPenaltyTC02.feature");
+		Map<String, Object> apiOperation3 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/GetMigrationPenalty/GetMigrationPenaltyTC02.feature","apiStatus","201");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation3.get("apiStatus"));
 		Reporting.logReporter(Status.INFO,

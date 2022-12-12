@@ -111,8 +111,8 @@ public class TC02_Koodo_TAB_HWS_with_PromoList extends BaseTest {
 		System.setProperty("karate.startDate", startDate);
 		System.setProperty("karate.apiEnv", apiEnv);
 
-		Map<String, Object> apiOperation = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/FutureActivation/futureActivationTC2.feature");
+		Map<String, Object> apiOperation = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/FutureActivation/futureActivationTC2.feature","apiStatus","200");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation.get("apiResponse"));
 		Reporting.logReporter(Status.INFO,

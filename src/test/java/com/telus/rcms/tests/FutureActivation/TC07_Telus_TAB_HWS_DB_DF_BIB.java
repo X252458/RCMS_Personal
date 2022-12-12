@@ -116,8 +116,8 @@ public class TC07_Telus_TAB_HWS_DB_DF_BIB extends BaseTest {
 		System.setProperty("karate.startDate", startDate);
 		System.setProperty("karate.apiEnv", apiEnv);
 
-		Map<String, Object> apiOperation = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/FutureActivation/futureActivationTC7.feature");
+		Map<String, Object> apiOperation = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/FutureActivation/futureActivationTC7.feature","apiStatus","200");
 		Reporting.logReporter(Status.INFO, "API Operation status: "
 				+ apiOperation.get("apiStatus"));
 		Reporting.logReporter(Status.INFO, "API Operation Request: "

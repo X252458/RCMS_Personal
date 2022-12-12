@@ -114,8 +114,8 @@ public class TC02_Telus_TIA_TIP_AF_ReturnAgrmt extends BaseTest {
 		System.setProperty("karate.endDate", endDate);
 		System.setProperty("karate.apiEnv", apiEnv);
 
-		Map<String, Object> apiOperation = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/Activation/Others/activationTC4.feature");
+		Map<String, Object> apiOperation = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/Activation/Others/activationTC4.feature","apiStatus","200");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation.get("tc04ActivateTelusSubwithTIA_TIP_AFStatus"));
 		Reporting.logReporter(Status.INFO,
@@ -128,8 +128,8 @@ public class TC02_Telus_TIA_TIP_AF_ReturnAgrmt extends BaseTest {
 		Reporting.setNewGroupName("RETURN AGREEMENT ITEM API CALL");
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
-		Map<String, Object> apiOperation3 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/ReturnAgreementItem/returnAgreementItemTC1.feature");
+		Map<String, Object> apiOperation3 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/ReturnAgreementItem/returnAgreementItemTC1.feature","apiStatus","200");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation3.get("apiRequest"));
 		Reporting.logReporter(Status.INFO,

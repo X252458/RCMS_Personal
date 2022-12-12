@@ -120,8 +120,8 @@ public class TC05_Post_DB_DF_BIB_ACB_RCB_to_Pre_PRESOC extends BaseTest {
 		System.setProperty("karate.startDate", startDate);
 		System.setProperty("karate.apiEnv", apiEnv);
 
-		Map<String, Object> apiOperation = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/activation/Others/activationTC31.feature");
+		Map<String, Object> apiOperation = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/activation/Others/activationTC31.feature","apiStatus","200");
 		Reporting.logReporter(Status.INFO, "API Operation Status: " + apiOperation.get("apiStatus"));
 		Reporting.logReporter(Status.INFO, "API Operation Request: " + apiOperation.get("apiRequest"));
 
@@ -131,8 +131,8 @@ public class TC05_Post_DB_DF_BIB_ACB_RCB_to_Pre_PRESOC extends BaseTest {
 		Reporting.setNewGroupName("GET MIGRATION PENALTY API CALL");
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
-		Map<String, Object> apiOperation3 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/GetMigrationPenalty/GetMigrationPenaltyTC02.feature");
+		Map<String, Object> apiOperation3 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/GetMigrationPenalty/GetMigrationPenaltyTC02.feature","apiStatus","201");
 		Reporting.logReporter(Status.INFO, "API Operation status: " + apiOperation3.get("apiStatus"));
 		Reporting.logReporter(Status.INFO, "API Operation Request: " + apiOperation3.get("apiResponse"));
 		Reporting.printAndClearLogGroupStatements();
@@ -141,8 +141,8 @@ public class TC05_Post_DB_DF_BIB_ACB_RCB_to_Pre_PRESOC extends BaseTest {
 		Reporting.setNewGroupName("MIGRATION API CALL");
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
-		Map<String, Object> apiOperation2 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/Migration/migrationTC5.feature");
+		Map<String, Object> apiOperation2 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/Migration/migrationTC5.feature","apiStatus","200");
 		Reporting.logReporter(Status.INFO, "API Operation status: " + apiOperation2.get("apiStatus"));
 		Reporting.logReporter(Status.INFO, "API Operation Request: " + apiOperation2.get("apiRequest"));
 

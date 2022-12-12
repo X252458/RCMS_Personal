@@ -125,8 +125,8 @@ public class TC02_Telus_DB_DF_BIB_ACB_TIA_TIP_Renewal_DB_AF_Pay_BIB_TELUS_PENDIN
 		System.setProperty("karate.startDate", startDate);
 		System.setProperty("karate.apiEnv", apiEnv);
 
-		Map<String, Object> apiOperation1 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/Activation/Others/activationTC2.feature");
+		Map<String, Object> apiOperation1 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/Activation/Others/activationTC2.feature","apiStatus","200");
 		Reporting.logReporter(Status.INFO, "API Operation status: "
 				+ apiOperation1.get("tc01ActivateTelusSubWithDF_BIB_ACB_DB_TIASSETCREDIT_TIPROMOCREDITStatus"));
 		Reporting.logReporter(Status.INFO, "API Operation Request: "
@@ -143,8 +143,8 @@ public class TC02_Telus_DB_DF_BIB_ACB_TIA_TIP_Renewal_DB_AF_Pay_BIB_TELUS_PENDIN
 		Reporting.setNewGroupName("GET REWARD SERVICE API CALL");
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
-		Map<String, Object> apiOperation3 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/GetEarlyRenewalPenalty/Renewal/GetEarlyRenewalPenaltyTC2.feature");
+		Map<String, Object> apiOperation3 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/GetEarlyRenewalPenalty/Renewal/GetEarlyRenewalPenaltyTC2.feature","apiStatus","200");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation3.get("getEarlyRenewalPenaltyResponse"));
 		Reporting.logReporter(Status.INFO,
@@ -158,8 +158,8 @@ public class TC02_Telus_DB_DF_BIB_ACB_TIA_TIP_Renewal_DB_AF_Pay_BIB_TELUS_PENDIN
 		Reporting.setNewGroupName("RENEWAL SERVICE API CALL - DB+AF Payment BIB_TELUS_PENDING");
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
-		Map<String, Object> apiOperation2 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/Renewal/notifySubscriptionRenewalTC02.feature");
+		Map<String, Object> apiOperation2 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/Renewal/notifySubscriptionRenewalTC02.feature","apiStatus","200");
 		Reporting.logReporter(Status.INFO, "API Operation status: " + apiOperation2.get("tc02RenewalStatus"));
 		Reporting.logReporter(Status.INFO, "API Operation Request: " + apiOperation2.get("tc02RenewalRequest"));
 

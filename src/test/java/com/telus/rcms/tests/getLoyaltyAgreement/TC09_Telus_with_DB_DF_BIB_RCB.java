@@ -114,8 +114,8 @@ public class TC09_Telus_with_DB_DF_BIB_RCB extends BaseTest {
 		System.setProperty("karate.startDate", startDate);
 		System.setProperty("karate.apiEnv", apiEnv);
 
-		Map<String, Object> apiOperation1 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/Activation/Others/activationTC13.feature");
+		Map<String, Object> apiOperation1 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/Activation/Others/activationTC13.feature","apiStatus","200");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation1.get("apiStatus"));
 		Reporting.logReporter(Status.INFO,
@@ -127,8 +127,8 @@ public class TC09_Telus_with_DB_DF_BIB_RCB extends BaseTest {
 		Reporting.setNewGroupName("Renewal API CALL - DF+DB+BIB+RCB");
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
-		Map<String, Object> apiOperation2 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/Renewal/getRewardCommitment/renewalTC4.feature");
+		Map<String, Object> apiOperation2 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/Renewal/getRewardCommitment/renewalTC4.feature","tc04RenewalDBStatus","200");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation2.get("tc04RenewalDBStatus"));
 		Reporting.logReporter(Status.INFO,
@@ -141,8 +141,8 @@ public class TC09_Telus_with_DB_DF_BIB_RCB extends BaseTest {
 		Reporting.setNewGroupName("GET REWARD SERVICE API CALL");
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
-		Map<String, Object> apiOperation3 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/GetRewardCommitment/GetRewardCommTC9.feature");
+		Map<String, Object> apiOperation3 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/GetRewardCommitment/GetRewardCommTC9.feature","getRewardCommStatus","200");
 		Reporting.logReporter(Status.INFO, "API Operation status: " + apiOperation3.get("getRewardCommResponse"));
 		Reporting.logReporter(Status.INFO, "API Operation Request: " + apiOperation3.get("getRewardCommStatus"));
 

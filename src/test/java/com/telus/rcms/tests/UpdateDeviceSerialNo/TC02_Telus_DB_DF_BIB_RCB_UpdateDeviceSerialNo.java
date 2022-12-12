@@ -125,8 +125,8 @@ public class TC02_Telus_DB_DF_BIB_RCB_UpdateDeviceSerialNo
 		System.setProperty("karate.apiEnv", apiEnv);
 
 		
-		Map<String, Object> apiOperation = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/Activation/Others/activationTC8.feature");
+		Map<String, Object> apiOperation = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/Activation/Others/activationTC8.feature","apiStatus","200");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation.get("tc08ActivateTelusSubwithDFStatus"));
 		Reporting.logReporter(Status.INFO,
@@ -138,8 +138,8 @@ public class TC02_Telus_DB_DF_BIB_RCB_UpdateDeviceSerialNo
 		Reporting.setNewGroupName("RENEWAL SERVICE API CALL - DB+AF Payment BIB_TELUS_PENDING");
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
-		Map<String, Object> apiOperation2 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/Renewal/getAccTerminationPenalty/renewalTC1.feature");
+		Map<String, Object> apiOperation2 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/Renewal/getAccTerminationPenalty/renewalTC1.feature","apiStatus","200");
 		Reporting.logReporter(Status.INFO, "API Operation status: " + apiOperation2.get("apiStatus"));
 		Reporting.logReporter(Status.INFO, "API Operation Request: " + apiOperation2.get("apiRequest"));
 
@@ -152,8 +152,8 @@ public class TC02_Telus_DB_DF_BIB_RCB_UpdateDeviceSerialNo
 		GenericUtils.valuesFromDBRenewal(jsonString);
 		
 		Reporting.setNewGroupName("UPDATE DEVICE SERIALNUMBER API CALL - TC02");
-		Map<String, Object> apiOperation1 = APIJava.runKarateFeature(environment,
-				 "classpath:tests/RCMS/UpdateDeviceSerialNo/UpdateDeviceSerialNoTC2.feature");
+		Map<String, Object> apiOperation1 = GenericUtils.featureFileFailLoop_status(environment,
+				 "classpath:tests/RCMS/UpdateDeviceSerialNo/UpdateDeviceSerialNoTC2.feature","apiStatus","200");
 				 Reporting.logReporter(Status.INFO, "API Operation status: " +
 				 apiOperation1.get("apiStatus"));
 				 Reporting.logReporter(Status.INFO, "API Operation Request: " +

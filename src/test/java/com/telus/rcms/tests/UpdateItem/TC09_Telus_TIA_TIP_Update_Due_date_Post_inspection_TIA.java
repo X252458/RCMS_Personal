@@ -121,8 +121,8 @@ public class TC09_Telus_TIA_TIP_Update_Due_date_Post_inspection_TIA extends Base
 		System.setProperty("karate.endDate", endDate);
 		System.setProperty("karate.apiEnv", apiEnv);
 
-		Map<String, Object> apiOperation1 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/Activation/activationTC7.feature");
+		Map<String, Object> apiOperation1 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/Activation/activationTC7.feature","apiStatus","200");
 		Reporting.logReporter(Status.INFO, "API Operation status: "
 				+ apiOperation1.get("tc07ActivatePrepaidSubTIASSETCREDIT_TIPROMOCREDITStatus"));
 		Reporting.logReporter(Status.INFO, "API Operation Request: "
@@ -132,8 +132,8 @@ public class TC09_Telus_TIA_TIP_Update_Due_date_Post_inspection_TIA extends Base
 
 		// Update API Call
 
-		Map<String, Object> apiOperation2 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/UpdateItem/updateItemTC9.feature");
+		Map<String, Object> apiOperation2 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/UpdateItem/updateItemTC9.feature","apiStatus","200");
 		Reporting.logReporter(Status.INFO, "API Operation status: " + apiOperation2.get("apiStatus"));
 		Reporting.logReporter(Status.INFO, "API Operation Request: " + apiOperation2.get("apiRequest"));
 

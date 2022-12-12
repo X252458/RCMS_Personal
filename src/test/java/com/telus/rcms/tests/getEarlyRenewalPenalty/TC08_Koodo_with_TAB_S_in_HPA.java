@@ -112,8 +112,8 @@ public class TC08_Koodo_with_TAB_S_in_HPA extends BaseTest {
 		System.setProperty("karate.startDate", startDate);
 		System.setProperty("karate.apiEnv", apiEnv);
 
-		Map<String, Object> apiOperation3 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/GetEarlyRenewalPenalty/GetEarlyRenewalPenaltyTC8.feature");
+		Map<String, Object> apiOperation3 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/GetEarlyRenewalPenalty/GetEarlyRenewalPenaltyTC8.feature","getEarlyRenewalPenaltyStatus","200");
 		Reporting.logReporter(Status.INFO,
 				"API Operation Response: " + apiOperation3.get("getEarlyRenewalPenaltyResponse"));
 		Reporting.logReporter(Status.INFO,

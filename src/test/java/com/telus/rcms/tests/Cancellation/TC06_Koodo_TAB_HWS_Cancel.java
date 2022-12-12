@@ -113,20 +113,20 @@ public class TC06_Koodo_TAB_HWS_Cancel extends BaseTest {
 		System.setProperty("karate.startDate", startDate);
 		System.setProperty("karate.apiEnv", apiEnv);
 
-		Map<String, Object> apiOperation = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/activation/activationTC2.feature");
+		Map<String, Object> apiOperation = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/activation/activationTC2.feature","tc02ActivateKoodoTAB_HWSStatus","200");
 		Reporting.logReporter(Status.INFO,
-				"API Operation status: " + apiOperation.get("tc02ActivateKoodoTAB_HWSRequest"));
+				"API Operation status: " + apiOperation.get("tc02ActivateKoodoTAB_HWSStatus"));
 		Reporting.logReporter(Status.INFO,
-				"API Operation Request: " + apiOperation.get("tc02ActivateKoodoTAB_HWSStatus"));
+				"API Operation Request: " + apiOperation.get("tc02ActivateKoodoTAB_HWSRequest"));
 
 		Reporting.printAndClearLogGroupStatements();
 
 		//Cancel API call
 		
 				Reporting.setNewGroupName("CANCELLATION SERVICE API CALL");
-				Map<String, Object> apiOperation3 = APIJava.runKarateFeature(environment,
-						"classpath:tests/RCMS/Cancel/cancelTC6.feature");
+				Map<String, Object> apiOperation3 = GenericUtils.featureFileFailLoop_status(environment,
+						"classpath:tests/RCMS/Cancel/cancelTC6.feature","apiDetailsStatus","200");
 				Reporting.logReporter(Status.INFO,
 						"API Operation status: " + apiOperation3.get("apiDetailsStatus"));
 				Reporting.logReporter(Status.INFO,

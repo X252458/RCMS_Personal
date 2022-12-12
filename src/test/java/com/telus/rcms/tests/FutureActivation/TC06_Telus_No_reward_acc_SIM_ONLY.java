@@ -117,12 +117,12 @@ public class TC06_Telus_No_reward_acc_SIM_ONLY extends BaseTest {
 		System.setProperty("karate.startDate", startDate);
 		System.setProperty("karate.apiEnv", apiEnv);
 
-		Map<String, Object> apiOperation = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/Activation/activationTC6.feature");
+		Map<String, Object> apiOperation = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/Activation/activationTC6.feature","tc06ActivateTeluswithNoRewardSimOnlyStatus","200");
 		Reporting.logReporter(Status.INFO,
-				"API Operation status: " + apiOperation.get("tc06ActivateTeluswithNoRewardSimOnlyRequest"));
+				"API Operation Request: " + apiOperation.get("tc06ActivateTeluswithNoRewardSimOnlyRequest"));
 		Reporting.logReporter(Status.INFO,
-				"API Operation Request: " + apiOperation.get("tc06ActivateTeluswithNoRewardSimOnlyStatus"));
+				"API Operation Status: " + apiOperation.get("tc06ActivateTeluswithNoRewardSimOnlyStatus"));
 
 		Reporting.printAndClearLogGroupStatements();
 

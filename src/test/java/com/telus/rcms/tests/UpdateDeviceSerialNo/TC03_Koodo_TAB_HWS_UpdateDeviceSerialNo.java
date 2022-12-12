@@ -122,8 +122,8 @@ public class TC03_Koodo_TAB_HWS_UpdateDeviceSerialNo
 		System.setProperty("karate.startDate", startDate);
 		System.setProperty("karate.apiEnv", apiEnv);
 
-		Map<String, Object> apiOperation = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/activation/activationTC2.feature");
+		Map<String, Object> apiOperation = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/activation/activationTC2.feature","apiStatus","200");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation.get("tc02ActivateKoodoTAB_HWSRequest"));
 		Reporting.logReporter(Status.INFO,
@@ -141,8 +141,8 @@ public class TC03_Koodo_TAB_HWS_UpdateDeviceSerialNo
 		
 		
 		Reporting.setNewGroupName("UPDATE DEVICE SERIALNUMBER API CALL - TC03");
-		Map<String, Object> apiOperation1 = APIJava.runKarateFeature(environment,
-				 "classpath:tests/RCMS/UpdateDeviceSerialNo/UpdateDeviceSerialNoTC3.feature");
+		Map<String, Object> apiOperation1 = GenericUtils.featureFileFailLoop_status(environment,
+				 "classpath:tests/RCMS/UpdateDeviceSerialNo/UpdateDeviceSerialNoTC3.feature","apiStatus","200");
 				 Reporting.logReporter(Status.INFO, "API Operation status: " +
 				 apiOperation1.get("apiStatus"));
 				 Reporting.logReporter(Status.INFO, "API Operation Request: " +

@@ -125,8 +125,8 @@ public class TC08_Telus_DF_AF_TIA_TIP_Exchange_DF extends BaseTest {
 		System.setProperty("karate.startDate", startDate);
 		System.setProperty("karate.apiEnv", apiEnv);
 
-		Map<String, Object> apiOperation1 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/Activation/Others/activationTC1.feature");
+		Map<String, Object> apiOperation1 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/Activation/Others/activationTC1.feature","tc01ActivateTelusSubWithDF_AF_TIASSETCREDIT_TIPROMOCREDITStatus","200");
 		Reporting.logReporter(Status.INFO, "API Operation status: "
 				+ apiOperation1.get("tc01ActivateTelusSubWithDF_AF_TIASSETCREDIT_TIPROMOCREDITStatus"));
 		Reporting.logReporter(Status.INFO, "API Operation Request: "
@@ -139,8 +139,8 @@ public class TC08_Telus_DF_AF_TIA_TIP_Exchange_DF extends BaseTest {
 		Reporting.setNewGroupName("EXCHANGE SERVICE API CALL - DB+AF Payment BIB_TELUS_PENDING");
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
-		Map<String, Object> apiOperation2 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/Exchange/GetTerminationPenalty/exchangeTC1.feature");
+		Map<String, Object> apiOperation2 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/Exchange/GetTerminationPenalty/exchangeTC1.feature","apiStatus","200");
 		Reporting.logReporter(Status.INFO, "API Operation status: " + apiOperation2.get("apiStatus"));
 		Reporting.logReporter(Status.INFO, "API Operation Request: " + apiOperation2.get("apiRequest"));
 		paymentMech="NA";
@@ -150,8 +150,8 @@ public class TC08_Telus_DF_AF_TIA_TIP_Exchange_DF extends BaseTest {
 		Reporting.setNewGroupName("GET TERMINATION SERVICE API CALL");
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
-		Map<String, Object> apiOperation3 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/GetTerminationPenalty/GetTerminationPenaltyTC07.feature");
+		Map<String, Object> apiOperation3 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/GetTerminationPenalty/GetTerminationPenaltyTC07.feature","getTerminationPenaltyStatus","201");
 		Reporting.logReporter(Status.INFO, "API Operation status: " + apiOperation3.get("getTerminationPenaltyStatus"));
 		Reporting.logReporter(Status.INFO,
 				"API Operation Request: " + apiOperation3.get("getTerminationPenaltyResponse"));

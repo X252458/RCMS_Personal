@@ -128,8 +128,8 @@ public class TC11_Telus_TAB_HWS_Renewal_TAB_HWS_Return extends BaseTest {
 		System.setProperty("karate.startDate", startDate);
 		System.setProperty("karate.apiEnv", apiEnv);
 
-		Map<String, Object> apiOperation = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/activation/activationTC2.feature");
+		Map<String, Object> apiOperation = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/activation/activationTC2.feature","apiStatus","200");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation.get("tc02ActivateKoodoTAB_HWSStatus"));
 		Reporting.logReporter(Status.INFO,
@@ -144,8 +144,8 @@ public class TC11_Telus_TAB_HWS_Renewal_TAB_HWS_Return extends BaseTest {
 		Reporting.setNewGroupName("RETURN SERVICE API CALL - AccessoryFinance");
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
-		Map<String, Object> apiOperation3 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/Renewal/notifySubscriptionRenewalTC09.feature");
+		Map<String, Object> apiOperation3 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/Renewal/notifySubscriptionRenewalTC09.feature","apiStatus","200");
 		Reporting.logReporter(Status.INFO, "API Operation status: " + apiOperation3.get("tc09RenewalStatus"));
 		Reporting.logReporter(Status.INFO, "API Operation Request: " + apiOperation3.get("tc09RenewalRequest"));
 
@@ -156,8 +156,8 @@ public class TC11_Telus_TAB_HWS_Renewal_TAB_HWS_Return extends BaseTest {
 		Reporting.setNewGroupName("RETURN SERVICE API CALL");
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
-		Map<String, Object> apiOperation5 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/Return/returnTC3.feature");
+		Map<String, Object> apiOperation5 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/Return/returnTC3.feature","apiStatus","200");
 		Reporting.logReporter(Status.INFO, "API Operation Request: " + apiOperation5.get("apiResponse"));
 		Reporting.logReporter(Status.INFO, "API Operation status: " + apiOperation5.get("apiStatus"));
 

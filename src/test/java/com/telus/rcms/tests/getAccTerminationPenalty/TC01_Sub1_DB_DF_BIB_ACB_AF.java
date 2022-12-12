@@ -115,8 +115,8 @@ public class TC01_Sub1_DB_DF_BIB_ACB_AF extends BaseTest {
 			
 		
 		
-		Map<String, Object> apiOperation = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/Activation/Others/activationTC11.feature");
+		Map<String, Object> apiOperation = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/Activation/Others/activationTC11.feature","apiStatus","200");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation.get("apiStatus"));
 		Reporting.logReporter(Status.INFO,
@@ -130,8 +130,8 @@ public class TC01_Sub1_DB_DF_BIB_ACB_AF extends BaseTest {
 		Reporting.setNewGroupName("GET BILLING ACC TERMINATION PENALTY SERVICE API CALL");
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
-		Map<String, Object> apiOperation3 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/GetAccTerminationPenalty/GetAccTerminationPenaltyTC01.feature");
+		Map<String, Object> apiOperation3 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/GetAccTerminationPenalty/GetAccTerminationPenaltyTC01.feature","apiStatus","200");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation3.get("apiStatus"));
 		Reporting.logReporter(Status.INFO,

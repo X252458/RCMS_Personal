@@ -137,8 +137,8 @@ public class TC08_Koodo_with_TAB_HWS_AdRewardBalance_RETAIL  extends BaseTest {
 		Reporting.setNewGroupName("ADJUST REWARD BALANCE API CALL - HWS_RETAIL ");
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 		System.setProperty("karate.itemType","HWS");
-		Map<String, Object> apiOperation3 = APIJava.runKarateFeature(environment,
-					"classpath:tests/RCMS/AdjustRewardBalance/AdjustRewardBalanceTC8.feature");
+		Map<String, Object> apiOperation3 = GenericUtils.featureFileFailLoop_status(environment,
+					"classpath:tests/RCMS/AdjustRewardBalance/AdjustRewardBalanceTC8.feature","apiDetailsStatus","200");
 		Reporting.logReporter(Status.INFO,
 					"API Operation Response: " + apiOperation3.get("apiDetailsResponse"));
 		Reporting.logReporter(Status.INFO,

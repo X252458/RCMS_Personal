@@ -112,13 +112,14 @@ public class TC01_Telus_Add_AF extends BaseTest {
 		System.setProperty("karate.endDate", endDate);
 		System.setProperty("karate.apiEnv", apiEnv);
 
-		Map<String, Object> apiOperation3 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/AddAgreementItem/addAgreementItemTC1.feature");
+		Map<String, Object> apiOperation3 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/AddAgreementItem/addAgreementItemTC1.feature","apiStatus","500");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation3.get("apiRequest"));
 		Reporting.logReporter(Status.INFO,
 				"API Operation Request: " + apiOperation3.get("apiStatus"));
 
+		
 		Reporting.logReporter(Status.INFO, "--- Hence there is No Active Commitment, This expection is expected result --- ");
 		Reporting.printAndClearLogGroupStatements();	
 

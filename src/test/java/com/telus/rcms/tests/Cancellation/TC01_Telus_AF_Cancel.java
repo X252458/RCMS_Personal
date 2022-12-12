@@ -119,8 +119,8 @@ public class TC01_Telus_AF_Cancel extends BaseTest {
 		System.setProperty("karate.startDate", startDate);
 		System.setProperty("karate.apiEnv", apiEnv);
 
-		Map<String, Object> apiOperation = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/Activation/activationTC5.feature");
+		Map<String, Object> apiOperation = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/Activation/activationTC5.feature","tc05ActivateTelusSubwithAFStatus","200");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation.get("tc05ActivateTelusSubwithAFStatus"));
 		Reporting.logReporter(Status.INFO,
@@ -131,8 +131,8 @@ public class TC01_Telus_AF_Cancel extends BaseTest {
 		
 		
 		Reporting.setNewGroupName("CANCELLATION SERVICE API CALL");
-		Map<String, Object> apiOperation1 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/Cancel/cancelTC1.feature");
+		Map<String, Object> apiOperation1 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/Cancel/cancelTC1.feature","apiDetailsStatus","200");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation1.get("apiDetailsStatus"));
 		Reporting.logReporter(Status.INFO,

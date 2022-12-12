@@ -118,8 +118,8 @@ public class TC08_Telus_DB_DF_BIB_Renewal_DB_Pay_BIB_TELUS_PENDING_LOG_Event_UPD
 		System.setProperty("karate.startDateUpdate", startDate);
 		System.setProperty("karate.apiEnv", apiEnv);
 
-		Map<String, Object> apiOperation1 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/Activation/Others/activationTC6.feature");
+		Map<String, Object> apiOperation1 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/Activation/Others/activationTC6.feature","tc06ActivateTelusSubwithDF_DB_BIBStatus","200");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation1.get("tc06ActivateTelusSubwithDF_DB_BIBStatus"));
 		Reporting.logReporter(Status.INFO,
@@ -132,8 +132,8 @@ public class TC08_Telus_DB_DF_BIB_Renewal_DB_Pay_BIB_TELUS_PENDING_LOG_Event_UPD
 		Reporting.setNewGroupName("RENEWAL SERVICE API CALL");
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
-		Map<String, Object> apiOperation2 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/Renewal/notifySubscriptionRenewalTC04.feature");
+		Map<String, Object> apiOperation2 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/Renewal/notifySubscriptionRenewalTC04.feature","tc04RenewalStatus","200");
 		Reporting.logReporter(Status.INFO, "API Operation status: " + apiOperation2.get("tc04RenewalStatus"));
 		Reporting.logReporter(Status.INFO, "API Operation Request: " + apiOperation2.get("tc04RenewalRequest"));
 		paymentMech="BIB_TELUS_PENDING";
@@ -144,8 +144,8 @@ public class TC08_Telus_DB_DF_BIB_Renewal_DB_Pay_BIB_TELUS_PENDING_LOG_Event_UPD
 		Reporting.setNewGroupName("LOG EVENT UPDATE DUEDATE API CALL");
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
-		Map<String, Object> apiOperation3 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/LogEvent/LogEventTC5.feature");
+		Map<String, Object> apiOperation3 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/LogEvent/LogEventTC5.feature","apiDetailsStatus","201");
 		Reporting.logReporter(Status.INFO, 
 				"API Operation status: " + apiOperation3.get("apiDetailsStatus"));
 		Reporting.logReporter(Status.INFO,
@@ -159,8 +159,8 @@ public class TC08_Telus_DB_DF_BIB_Renewal_DB_Pay_BIB_TELUS_PENDING_LOG_Event_UPD
 		//Added for loop to call twice UPDATE DUEDATE API
 		Reporting.setNewGroupName("LOG EVENT UPDATE DUEDATE API CALL");
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
-		Map<String, Object> apiOperation4 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/LogEvent/LogEventTC8.feature");
+		Map<String, Object> apiOperation4 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/LogEvent/LogEventTC8.feature","apiDetailsStatus","201");
 		Reporting.logReporter(Status.INFO, 
 				"API Operation status: " + apiOperation4.get("apiDetailsStatus"));
 		Reporting.logReporter(Status.INFO,

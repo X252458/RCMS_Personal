@@ -124,8 +124,8 @@ public class TC02_Telus_AF_Cancelled extends BaseTest {
 		System.setProperty("karate.startDate", startDate);
 		System.setProperty("karate.apiEnv", apiEnv);
 
-		Map<String, Object> apiOperation = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/Activation/activationTC5.feature");
+		Map<String, Object> apiOperation = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/Activation/activationTC5.feature","tc05ActivateTelusSubwithAFStatus","200");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation.get("tc05ActivateTelusSubwithAFStatus"));
 		Reporting.logReporter(Status.INFO,
@@ -135,8 +135,8 @@ public class TC02_Telus_AF_Cancelled extends BaseTest {
 		
 		
 		Reporting.setNewGroupName("CANCELLATION SERVICE API CALL");
-		Map<String, Object> apiOperation1 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/Cancel/cancelTC1.feature");
+		Map<String, Object> apiOperation1 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/Cancel/cancelTC1.feature","apiDetailsStatus","200");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation1.get("apiDetailsStatus"));
 		Reporting.logReporter(Status.INFO,
@@ -146,8 +146,8 @@ public class TC02_Telus_AF_Cancelled extends BaseTest {
 		Reporting.setNewGroupName("LIST EARNED TRANSACTION SERVICE API CALL");
 		type = "ACCESSORYFINANCE";
 		System.setProperty("karate.type", type);
-		Map<String, Object> apiOperation3 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/ListEarnedTransaction/ListEarnedTransactionTC01.feature");
+		Map<String, Object> apiOperation3 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/ListEarnedTransaction/ListEarnedTransactionTC01.feature","apiStatus","200");
 		Reporting.logReporter(Status.INFO, "API Operation status: " + apiOperation3.get("apiStatus"));
 		Reporting.logReporter(Status.INFO, "API Operation Request: " + apiOperation3.get("apiResponse"));
 		Reporting.printAndClearLogGroupStatements();

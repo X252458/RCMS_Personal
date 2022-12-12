@@ -115,8 +115,8 @@ public class TC05_Telus_with_no_reward_account_SIM_ONLY_AF extends BaseTest {
 		System.setProperty("karate.apiEnv", apiEnv);
 
 		// Activation API Call
-		Map<String, Object> apiOperation1 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/Activation/Others/activationTC5.feature");
+		Map<String, Object> apiOperation1 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/Activation/Others/activationTC5.feature","tc05ActivateTelusSubwithAF_DBStatus","200");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation1.get("tc05ActivateTelusSubwithAF_DBStatus"));
 		Reporting.logReporter(Status.INFO,
@@ -130,8 +130,8 @@ public class TC05_Telus_with_no_reward_account_SIM_ONLY_AF extends BaseTest {
 		Reporting.setNewGroupName("GET EARLY RENEWAL PENALTY API CALL");
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
-		Map<String, Object> apiOperation3 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/GetEarlyRenewalPenalty/GetEarlyRenewalPenaltyTC5.feature");
+		Map<String, Object> apiOperation3 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/GetEarlyRenewalPenalty/GetEarlyRenewalPenaltyTC5.feature","getEarlyRenewalPenaltyStatus","201");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation3.get("getEarlyRenewalPenaltyResponse"));
 		Reporting.logReporter(Status.INFO,

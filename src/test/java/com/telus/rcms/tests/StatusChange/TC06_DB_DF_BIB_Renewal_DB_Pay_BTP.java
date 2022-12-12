@@ -116,8 +116,8 @@ public class TC06_DB_DF_BIB_Renewal_DB_Pay_BTP extends BaseTest {
 		// Activation API Call
 
 
-		Map<String, Object> apiOperation1 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/Activation/Others/activationTC6.feature");
+		Map<String, Object> apiOperation1 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/Activation/Others/activationTC6.feature","apiStatus","200");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation1.get("tc06ActivateTelusSubwithDF_DB_BIBStatus"));
 		Reporting.logReporter(Status.INFO,
@@ -131,8 +131,8 @@ public class TC06_DB_DF_BIB_Renewal_DB_Pay_BTP extends BaseTest {
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
 
-		Map<String, Object> apiOperation2 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/Renewal/notifySubscriptionRenewalTC04.feature");
+		Map<String, Object> apiOperation2 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/Renewal/notifySubscriptionRenewalTC04.feature","apiStatus","200");
 		Reporting.logReporter(Status.INFO, "API Operation status: " + apiOperation2.get("tc04RenewalStatus"));
 		Reporting.logReporter(Status.INFO, "API Operation Request: " + apiOperation2.get("tc04RenewalRequest"));
 
@@ -144,8 +144,8 @@ public class TC06_DB_DF_BIB_Renewal_DB_Pay_BTP extends BaseTest {
 		Reporting.setNewGroupName("GET RETURN PENALTY SERVICE API CALL");
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
-		Map<String, Object> apiOperation3 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/GetReturnPenalty/GetReturnPenaltyTC06.feature");
+		Map<String, Object> apiOperation3 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/GetReturnPenalty/GetReturnPenaltyTC06.feature","apiStatus","200");
 		Reporting.logReporter(Status.INFO, "API Operation status: " + apiOperation3.get("getReturnPenaltyStatus"));
 		Reporting.logReporter(Status.INFO, "API Operation Request: " + apiOperation3.get("getReturnPenaltyResponse"));
 

@@ -118,12 +118,12 @@ public class TC03_Koodo_SIM_ONLY extends BaseTest {
 		  System.setProperty("karate.startDate", startDate);
 		  System.setProperty("karate.apiEnv", apiEnv);
 		  
-		  Map<String, Object> apiOperation = APIJava.runKarateFeature(environment,
-		  "classpath:tests/RCMS/activation/activationTC3.feature");
+		  Map<String, Object> apiOperation = GenericUtils.featureFileFailLoop_status(environment,
+		  "classpath:tests/RCMS/activation/activationTC3.feature","tc03ActivateKoodoWithSimOnlyStatus","200");
 		  Reporting.logReporter(Status.INFO, "API Operation status: " +
-		  apiOperation.get("tc03ActivateKoodoWithSimOnlyRequest"));
-		  Reporting.logReporter(Status.INFO, "API Operation Request: " +
 		  apiOperation.get("tc03ActivateKoodoWithSimOnlyStatus"));
+		  Reporting.logReporter(Status.INFO, "API Operation Request: " +
+		  apiOperation.get("tc03ActivateKoodoWithSimOnlyRequest"));
 		  
 		  Reporting.printAndClearLogGroupStatements();
 

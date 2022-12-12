@@ -234,8 +234,8 @@ public class TC07_Telus_DF_AF_adjustBalance_ReturnAgreement  extends BaseTest {
 		Reporting.setNewGroupName("Add Agreement Item API CALL - AF+DF_ReturnAgreementItem");
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
-		Map<String, Object> apiOperation9 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/NewAdjustBalance/Scenario1/ReturnAgreementItemTC7.feature");
+		Map<String, Object> apiOperation9 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/NewAdjustBalance/Scenario1/ReturnAgreementItemTC7.feature","apiDetailsStatus","500");
 		Reporting.logReporter(Status.INFO,
 				"API Operation Request: " + apiOperation9.get("apiDetailsRequest"));
 		Reporting.logReporter(Status.INFO,

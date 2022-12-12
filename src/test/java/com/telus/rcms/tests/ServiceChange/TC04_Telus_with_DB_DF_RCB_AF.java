@@ -113,8 +113,8 @@ ExtentTest parentTest = null;
 		System.setProperty("karate.apiEnv", apiEnv);
 
 		// Activation API Call
-		Map<String, Object> apiOperation1 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/Activation/Others/activationTC3.feature");
+		Map<String, Object> apiOperation1 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/Activation/Others/activationTC3.feature","apiStatus","200");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation1.get("tc03ActivateDB_DF_RCB_AFStatus"));
 		Reporting.logReporter(Status.INFO,
@@ -127,8 +127,8 @@ ExtentTest parentTest = null;
 		Reporting.setNewGroupName("GET REWARD SERVICE API CALL - DB+DF+RCB+AF");
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
-		Map<String, Object> apiOperation3 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/GetEarlyRenewalPenalty/GetEarlyRenewalPenaltyTC4.feature");
+		Map<String, Object> apiOperation3 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/GetEarlyRenewalPenalty/GetEarlyRenewalPenaltyTC4.feature","apiStatus","200");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation3.get("getEarlyRenewalPenaltyResponse"));
 		Reporting.logReporter(Status.INFO,

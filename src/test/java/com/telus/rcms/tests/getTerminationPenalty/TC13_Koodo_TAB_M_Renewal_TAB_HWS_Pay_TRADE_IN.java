@@ -118,8 +118,8 @@ public class TC13_Koodo_TAB_M_Renewal_TAB_HWS_Pay_TRADE_IN extends BaseTest {
 		Reporting.setNewGroupName("GET TERMINATION SERVICE API CALL");
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
-		Map<String, Object> apiOperation4 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/GetTerminationPenalty/GetTerminationPenaltyTC13.feature");
+		Map<String, Object> apiOperation4 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/GetTerminationPenalty/GetTerminationPenaltyTC13.feature","getTerminationPenaltyStatus","201");
 		Reporting.logReporter(Status.INFO, "API Operation status: " + apiOperation4.get("getTerminationPenaltyStatus"));
 		Reporting.logReporter(Status.INFO,
 				"API Operation Request: " + apiOperation4.get("getTerminationPenaltyResponse"));

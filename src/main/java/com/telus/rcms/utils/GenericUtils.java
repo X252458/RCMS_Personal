@@ -7351,9 +7351,10 @@ public static void responseDBCheckAccTerminationPenalty(String jsonString, Strin
 		 }
 		 count++;
 		}while(!actualResCode.contains(expectedResCode)&&(flag));
-		GenericUtils.validateAssertEquals(actualResCode, expectedResCode, "RESPONSE_CODE");
 		Reporting.logReporter(Status.INFO, "No. of times executed : "+count);
-				
+		Reporting.logReporter(Status.INFO, apiOperation.toString());
+		GenericUtils.validateAssertEquals(actualResCode, expectedResCode, "RESPONSE_CODE");	
+		
 		return apiOperation;
 	}
 

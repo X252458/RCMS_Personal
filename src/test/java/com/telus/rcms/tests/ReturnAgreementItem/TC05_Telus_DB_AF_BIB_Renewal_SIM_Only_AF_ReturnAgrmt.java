@@ -115,8 +115,8 @@ public class TC05_Telus_DB_AF_BIB_Renewal_SIM_Only_AF_ReturnAgrmt extends BaseTe
 		System.setProperty("karate.endDate", endDate);
 		System.setProperty("karate.apiEnv", apiEnv);
 
-		Map<String, Object> apiOperation1 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/Activation/Others/activationTC6.feature");
+		Map<String, Object> apiOperation1 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/Activation/Others/activationTC6.feature","apiStatus","200");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation1.get("tc06ActivateTelusSubwithDF_DB_BIBStatus"));
 		Reporting.logReporter(Status.INFO,
@@ -127,8 +127,8 @@ public class TC05_Telus_DB_AF_BIB_Renewal_SIM_Only_AF_ReturnAgrmt extends BaseTe
 		// Renewal API Call
 
 		Reporting.setNewGroupName("RENEWAL ITEM API CALL");
-		Map<String, Object> apiOperation2 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/Renewal/notifySubscriptionRenewalTC03.feature");
+		Map<String, Object> apiOperation2 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/Renewal/notifySubscriptionRenewalTC03.feature","apiStatus","200");
 		Reporting.logReporter(Status.INFO, "API Operation status: " + apiOperation2.get("tc03RenewalStatus"));
 		Reporting.logReporter(Status.INFO, "API Operation Request: " + apiOperation2.get("tc03RenewalRequest"));
 		Reporting.printAndClearLogGroupStatements();
@@ -138,8 +138,8 @@ public class TC05_Telus_DB_AF_BIB_Renewal_SIM_Only_AF_ReturnAgrmt extends BaseTe
 		Reporting.setNewGroupName("RETURN AGREEMENT ITEM API CALL");
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
-		Map<String, Object> apiOperation3 = APIJava.runKarateFeature(environment,
-				"classpath:tests/RCMS/ReturnAgreementItem/returnAgreementItemTC1.feature");
+		Map<String, Object> apiOperation3 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/ReturnAgreementItem/returnAgreementItemTC1.feature","apiStatus","200");
 		Reporting.logReporter(Status.INFO, "API Operation status: " + apiOperation3.get("apiRequest"));
 		Reporting.logReporter(Status.INFO, "API Operation Request: " + apiOperation3.get("apiStatus"));
 
