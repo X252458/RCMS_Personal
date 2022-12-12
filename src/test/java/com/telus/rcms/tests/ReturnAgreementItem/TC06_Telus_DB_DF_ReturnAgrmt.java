@@ -129,7 +129,7 @@ public class TC06_Telus_DB_DF_ReturnAgrmt extends BaseTest {
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
 		Map<String, Object> apiOperation3 = GenericUtils.featureFileFailLoop_status(environment,
-				"classpath:tests/RCMS/ReturnAgreementItem/returnAgreementItemTC6.feature","apiStatus","200");
+				"classpath:tests/RCMS/ReturnAgreementItem/returnAgreementItemTC6.feature","apiStatus","500");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation3.get("apiRequest"));
 		Reporting.logReporter(Status.INFO,

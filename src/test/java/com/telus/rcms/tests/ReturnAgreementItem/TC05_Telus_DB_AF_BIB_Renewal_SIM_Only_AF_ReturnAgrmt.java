@@ -116,7 +116,7 @@ public class TC05_Telus_DB_AF_BIB_Renewal_SIM_Only_AF_ReturnAgrmt extends BaseTe
 		System.setProperty("karate.apiEnv", apiEnv);
 
 		Map<String, Object> apiOperation1 = GenericUtils.featureFileFailLoop_status(environment,
-				"classpath:tests/RCMS/Activation/Others/activationTC6.feature","apiStatus","200");
+				"classpath:tests/RCMS/Activation/Others/activationTC6.feature","tc06ActivateTelusSubwithDF_DB_BIBStatus","200");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation1.get("tc06ActivateTelusSubwithDF_DB_BIBStatus"));
 		Reporting.logReporter(Status.INFO,
@@ -128,7 +128,7 @@ public class TC05_Telus_DB_AF_BIB_Renewal_SIM_Only_AF_ReturnAgrmt extends BaseTe
 
 		Reporting.setNewGroupName("RENEWAL ITEM API CALL");
 		Map<String, Object> apiOperation2 = GenericUtils.featureFileFailLoop_status(environment,
-				"classpath:tests/RCMS/Renewal/notifySubscriptionRenewalTC03.feature","apiStatus","200");
+				"classpath:tests/RCMS/Renewal/notifySubscriptionRenewalTC03.feature","tc03RenewalStatus","200");
 		Reporting.logReporter(Status.INFO, "API Operation status: " + apiOperation2.get("tc03RenewalStatus"));
 		Reporting.logReporter(Status.INFO, "API Operation Request: " + apiOperation2.get("tc03RenewalRequest"));
 		Reporting.printAndClearLogGroupStatements();

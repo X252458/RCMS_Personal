@@ -112,7 +112,7 @@ public class TC04_Telus_DF_Renewal_DB_TIA_AF_Exchange_DF_DB_TIA_TIP extends Base
 		System.setProperty("karate.apiEnv", apiEnv);
 
 		Map<String, Object> apiOperation1 = GenericUtils.featureFileFailLoop_status(environment,
-				"classpath:tests/RCMS/Activation/Others/activationTC8.feature","apiStatus","200");
+				"classpath:tests/RCMS/Activation/Others/activationTC8.feature","tc08ActivateTelusSubwithDFStatus","200");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation1.get("tc08ActivateTelusSubwithDFStatus"));
 		Reporting.logReporter(Status.INFO,

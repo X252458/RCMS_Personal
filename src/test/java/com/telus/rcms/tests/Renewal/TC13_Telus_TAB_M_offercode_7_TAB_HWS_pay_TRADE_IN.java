@@ -130,7 +130,7 @@ public class TC13_Telus_TAB_M_offercode_7_TAB_HWS_pay_TRADE_IN extends BaseTest 
 		System.setProperty("karate.apiEnv", apiEnv);
 
 		Map<String, Object> apiOperation = GenericUtils.featureFileFailLoop_status(environment,
-				"classpath:tests/RCMS/activation/activationTC2.feature","apiStatus","200");
+				"classpath:tests/RCMS/activation/activationTC2.feature","tc02ActivateKoodoTAB_HWSStatus","200");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation.get("tc02ActivateKoodoTAB_HWSStatus"));
 		Reporting.logReporter(Status.INFO,
@@ -146,7 +146,7 @@ public class TC13_Telus_TAB_M_offercode_7_TAB_HWS_pay_TRADE_IN extends BaseTest 
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
 		Map<String, Object> apiOperation2 = GenericUtils.featureFileFailLoop_status(environment,
-				"classpath:tests/RCMS/GetEarlyRenewalPenalty/Renewal/GetEarlyRenewalPenaltyTC2.feature","apiStatus","200");
+				"classpath:tests/RCMS/GetEarlyRenewalPenalty/Renewal/GetEarlyRenewalPenaltyTC2.feature","getEarlyRenewalPenaltyStatus","201");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation2.get("getEarlyRenewalPenaltyResponse"));
 		Reporting.logReporter(Status.INFO,
@@ -161,7 +161,7 @@ public class TC13_Telus_TAB_M_offercode_7_TAB_HWS_pay_TRADE_IN extends BaseTest 
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
 		Map<String, Object> apiOperation3 = GenericUtils.featureFileFailLoop_status(environment,
-				"classpath:tests/RCMS/Renewal/notifySubscriptionRenewalTC11.feature","apiStatus","200");
+				"classpath:tests/RCMS/Renewal/notifySubscriptionRenewalTC11.feature","tc11RenewalStatus","200");
 		Reporting.logReporter(Status.INFO, "API Operation status: " + apiOperation3.get("tc11RenewalStatus"));
 		Reporting.logReporter(Status.INFO, "API Operation Request: " + apiOperation3.get("tc11RenewalRequest"));
 

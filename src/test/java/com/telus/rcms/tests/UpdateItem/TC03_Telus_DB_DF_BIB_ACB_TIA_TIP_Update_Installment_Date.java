@@ -126,7 +126,7 @@ public class TC03_Telus_DB_DF_BIB_ACB_TIA_TIP_Update_Installment_Date extends Ba
 		System.setProperty("karate.apiEnv", apiEnv);
 
 		Map<String, Object> apiOperation = GenericUtils.featureFileFailLoop_status(environment,
-				"classpath:tests/RCMS/activation/Others/activationTC2.feature","apiStatus","200");
+				"classpath:tests/RCMS/activation/Others/activationTC2.feature","tc01ActivateTelusSubWithDF_BIB_ACB_DB_TIASSETCREDIT_TIPROMOCREDITStatus","200");
 		Reporting.logReporter(Status.INFO,
 				"API Operation Status: " + apiOperation.get("tc01ActivateTelusSubWithDF_BIB_ACB_DB_TIASSETCREDIT_TIPROMOCREDITStatus"));
 		Reporting.logReporter(Status.INFO,

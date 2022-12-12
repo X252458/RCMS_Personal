@@ -147,7 +147,7 @@ public class TC08_Telus_TIA_Return_complete_Update_Due_date extends BaseTest {
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
 		Map<String, Object> apiOperation2 = GenericUtils.featureFileFailLoop_status(environment,
-				"classpath:tests/RCMS/UpdateItem/updateItemTC8b.feature","apiStatus","200");
+				"classpath:tests/RCMS/UpdateItem/updateItemTC8b.feature","apiStatus","500");
 		Reporting.logReporter(Status.INFO, "API Operation status: " + apiOperation2.get("apiStatus"));
 		Reporting.logReporter(Status.INFO, "API Operation Response: " + apiOperation2.get("apiRequest"));
 		Reporting.logReporter(Status.INFO,

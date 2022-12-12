@@ -11,4 +11,4 @@ Feature: Generation of OAuth Token for RCMS API
      #token
     * def access_token = accessTokenResponse.access_token
     #Validation
-    #Then match accessTokenStatus == 200
+    Then match accessTokenStatus == 200

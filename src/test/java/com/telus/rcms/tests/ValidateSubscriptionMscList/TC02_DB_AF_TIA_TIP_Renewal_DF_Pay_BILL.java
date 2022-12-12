@@ -117,7 +117,7 @@ public class TC02_DB_AF_TIA_TIP_Renewal_DF_Pay_BILL extends BaseTest {
 		//Activation API Call 
 		
 		Map<String, Object> apiOperation1 = GenericUtils.featureFileFailLoop_status(environment,
-				"classpath:tests/RCMS/Activation/Others/activationTC1.feature","apiStatus","200");
+				"classpath:tests/RCMS/Activation/Others/activationTC1.feature","tc01ActivateTelusSubWithDF_AF_TIASSETCREDIT_TIPROMOCREDITStatus","200");
 		Reporting.logReporter(Status.INFO, "API Operation status: "
 				+ apiOperation1.get("tc01ActivateTelusSubWithDF_AF_TIASSETCREDIT_TIPROMOCREDITStatus"));
 		Reporting.logReporter(Status.INFO, "API Operation Request: "
@@ -146,7 +146,7 @@ public class TC02_DB_AF_TIA_TIP_Renewal_DF_Pay_BILL extends BaseTest {
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
 		Map<String, Object> apiOperation3 = GenericUtils.featureFileFailLoop_status(environment,
-				"classpath:tests/RCMS/GetReturnPenalty/GetReturnPenaltyTC02.feature","apiStatus","200");
+				"classpath:tests/RCMS/GetReturnPenalty/GetReturnPenaltyTC02.feature","getReturnPenaltyStatus","201");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation3.get("getReturnPenaltyStatus"));
 		Reporting.logReporter(Status.INFO,

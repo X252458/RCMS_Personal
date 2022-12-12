@@ -116,7 +116,7 @@ public class TC02_Telus_with_TIA_TIP_AF extends BaseTest {
 		System.setProperty("karate.apiEnv", apiEnv);
 
 		Map<String, Object> apiOperation = GenericUtils.featureFileFailLoop_status(environment,
-				"classpath:tests/RCMS/Activation/Others/activationTC4.feature","apiStatus","200");
+				"classpath:tests/RCMS/Activation/Others/activationTC4.feature","tc04ActivateTelusSubwithTIA_TIP_AFStatus","200");
 		Reporting.logReporter(Status.INFO, "API Operation status: "
 				+ apiOperation.get("tc04ActivateTelusSubwithTIA_TIP_AFStatus"));
 		Reporting.logReporter(Status.INFO, "API Operation Request: "
@@ -130,7 +130,7 @@ public class TC02_Telus_with_TIA_TIP_AF extends BaseTest {
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
 		Map<String, Object> apiOperation3 = GenericUtils.featureFileFailLoop_status(environment,
-				"classpath:tests/RCMS/GetEarlyRenewalPenalty/GetEarlyRenewalPenaltyTC1.feature","apiStatus","200");
+				"classpath:tests/RCMS/GetEarlyRenewalPenalty/GetEarlyRenewalPenaltyTC1.feature","getEarlyRenewalPenaltyStatus","201");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation3.get("getEarlyRenewalPenaltyResponse"));
 		Reporting.logReporter(Status.INFO,

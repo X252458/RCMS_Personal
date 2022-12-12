@@ -126,7 +126,7 @@ public class TC02_Telus_DB_DF_BIB_RCB_UpdateDeviceSerialNo
 
 		
 		Map<String, Object> apiOperation = GenericUtils.featureFileFailLoop_status(environment,
-				"classpath:tests/RCMS/Activation/Others/activationTC8.feature","apiStatus","200");
+				"classpath:tests/RCMS/Activation/Others/activationTC8.feature","tc08ActivateTelusSubwithDFStatus","200");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation.get("tc08ActivateTelusSubwithDFStatus"));
 		Reporting.logReporter(Status.INFO,

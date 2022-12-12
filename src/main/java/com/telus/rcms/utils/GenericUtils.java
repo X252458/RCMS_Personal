@@ -7338,7 +7338,7 @@ public static void responseDBCheckAccTerminationPenalty(String jsonString, Strin
 		return apiOperation;
 	}
 	
-	public static Map<String, Object> featureFileFailLoop_status(String env, String path, String statusVar, String expectedResCode) {
+	public static Map<String, Object> featureFileFailLoop_status(String env, String path, String statusVar, String expectedResCode) throws InterruptedException {
 		int count = 0;
 		String actualResCode=null;
 		boolean flag = true;
@@ -7347,12 +7347,24 @@ public static void responseDBCheckAccTerminationPenalty(String jsonString, Strin
 		 apiOperation = APIJava.runKarateFeature(env, path);
 		 actualResCode = apiOperation.get(statusVar).toString();
 		 if(count>4) {
-			 flag=false;	 
+			 flag=false;
+			 Thread.sleep(10000);
+			 Reporting.logReporter(Status.INFO, "Generating AccessToken again and firing API");
+				String rewardServiceaccessToken = APIUtils.getAccessToken(env, "rewardService");
+				String violationaccessToken = APIUtils.getAccessToken(env, "violation");
+				String managementaccessToken = APIUtils.getAccessToken(env, "management");
+				
+				System.setProperty("karate.auth_token", rewardServiceaccessToken);
+				System.setProperty("karate.auth_token_reward", rewardServiceaccessToken);
+				System.setProperty("karate.auth_token_violation", violationaccessToken);
+				System.setProperty("karate.auth_token_management", managementaccessToken);
+			 
+				apiOperation = APIJava.runKarateFeature(env, path);
+			 
 		 }
 		 count++;
 		}while(!actualResCode.contains(expectedResCode)&&(flag));
 		Reporting.logReporter(Status.INFO, "No. of times executed : "+count);
-		Reporting.logReporter(Status.INFO, apiOperation.toString());
 		GenericUtils.validateAssertEquals(actualResCode, expectedResCode, "RESPONSE_CODE");	
 		
 		return apiOperation;

@@ -115,7 +115,7 @@ public class TC01_Telus_AF_Return extends BaseTest {
 		System.setProperty("karate.apiEnv", apiEnv);
 
 		Map<String, Object> apiOperation1 = GenericUtils.featureFileFailLoop_status(environment,
-				"classpath:tests/RCMS/Activation/activationTC5.feature","apiStatus","200");
+				"classpath:tests/RCMS/Activation/activationTC5.feature","tc05ActivateTelusSubwithAFStatus","200");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation1.get("tc05ActivateTelusSubwithAFStatus"));
 		Reporting.logReporter(Status.INFO,

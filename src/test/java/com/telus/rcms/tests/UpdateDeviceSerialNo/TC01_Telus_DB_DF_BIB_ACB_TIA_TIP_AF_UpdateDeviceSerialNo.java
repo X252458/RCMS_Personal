@@ -123,7 +123,7 @@ public class TC01_Telus_DB_DF_BIB_ACB_TIA_TIP_AF_UpdateDeviceSerialNo
 		System.setProperty("karate.apiEnv", apiEnv);
 
 		 Map<String, Object> apiOperation = GenericUtils.featureFileFailLoop_status(environment,
-		 "classpath:tests/RCMS/activation/activationTC1.feature","apiStatus","200");
+		 "classpath:tests/RCMS/activation/activationTC1.feature","tc01ActivateTelusSubWithAllStatus","200");
 		 Reporting.logReporter(Status.INFO, "API Operation status: " +
 		 apiOperation.get("tc01ActivateTelusSubWithAllRequest"));
 		 Reporting.logReporter(Status.INFO, "API Operation Request: " +

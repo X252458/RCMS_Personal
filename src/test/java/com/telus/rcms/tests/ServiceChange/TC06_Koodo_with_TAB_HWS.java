@@ -113,7 +113,7 @@ public class TC06_Koodo_with_TAB_HWS extends BaseTest {
 		System.setProperty("karate.apiEnv", apiEnv);
 
 		Map<String, Object> apiOperation1 = GenericUtils.featureFileFailLoop_status(environment,
-				"classpath:tests/RCMS/Activation/activationTC2.feature","apiStatus","200");
+				"classpath:tests/RCMS/Activation/activationTC2.feature","tc02ActivateKoodoTAB_HWSStatus","200");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation1.get("tc02ActivateKoodoTAB_HWSStatus"));
 		Reporting.logReporter(Status.INFO,
@@ -128,7 +128,7 @@ public class TC06_Koodo_with_TAB_HWS extends BaseTest {
 				Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
 				Map<String, Object> apiOperation3 = GenericUtils.featureFileFailLoop_status(environment,
-						"classpath:tests/RCMS/GetEarlyRenewalPenalty/GetEarlyRenewalPenaltyTC1.feature","apiStatus","200");
+						"classpath:tests/RCMS/GetEarlyRenewalPenalty/GetEarlyRenewalPenaltyTC1.feature","getEarlyRenewalPenaltyStatus","201");
 				Reporting.logReporter(Status.INFO,
 						"API Operation Response: " + apiOperation3.get("getEarlyRenewalPenaltyResponse"));
 				Reporting.logReporter(Status.INFO,

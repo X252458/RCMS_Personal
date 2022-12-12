@@ -115,7 +115,7 @@ public class TC02_Telus_TIA_TIP_AF_ReturnAgrmt extends BaseTest {
 		System.setProperty("karate.apiEnv", apiEnv);
 
 		Map<String, Object> apiOperation = GenericUtils.featureFileFailLoop_status(environment,
-				"classpath:tests/RCMS/Activation/Others/activationTC4.feature","apiStatus","200");
+				"classpath:tests/RCMS/Activation/Others/activationTC4.feature","tc04ActivateTelusSubwithTIA_TIP_AFStatus","200");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation.get("tc04ActivateTelusSubwithTIA_TIP_AFStatus"));
 		Reporting.logReporter(Status.INFO,

@@ -132,7 +132,7 @@ public class TC08_Telus_DB_DF_BIB_Renewal_DB_TIA_TIP_Pay_TIP_Return extends Base
 		System.setProperty("karate.apiEnv", apiEnv);
 
 		Map<String, Object> apiOperation1 = GenericUtils.featureFileFailLoop_status(environment,
-				"classpath:tests/RCMS/Activation/Others/activationTC6.feature","apiStatus","200");
+				"classpath:tests/RCMS/Activation/Others/activationTC6.feature","tc06ActivateTelusSubwithDF_DB_BIBStatus","200");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation1.get("tc06ActivateTelusSubwithDF_DB_BIBStatus"));
 		Reporting.logReporter(Status.INFO,
@@ -150,7 +150,7 @@ public class TC08_Telus_DB_DF_BIB_Renewal_DB_TIA_TIP_Pay_TIP_Return extends Base
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
 		Map<String, Object> apiOperation2 = GenericUtils.featureFileFailLoop_status(environment,
-				"classpath:tests/RCMS/Renewal/notifySubscriptionRenewalTC06.feature","apiStatus","200");
+				"classpath:tests/RCMS/Renewal/notifySubscriptionRenewalTC06.feature","tc06RenewalStatus","200");
 		Reporting.logReporter(Status.INFO, "API Operation status: " + apiOperation2.get("tc06RenewalStatus"));
 		Reporting.logReporter(Status.INFO, "API Operation Request: " + apiOperation2.get("tc06RenewalRequest"));
 

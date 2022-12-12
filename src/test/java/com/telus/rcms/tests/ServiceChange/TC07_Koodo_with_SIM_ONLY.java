@@ -114,7 +114,7 @@ public class TC07_Koodo_with_SIM_ONLY extends BaseTest {
 		System.setProperty("karate.apiEnv", apiEnv);
 
 		 Map<String, Object> apiOperation = GenericUtils.featureFileFailLoop_status(environment,
-				  "classpath:tests/RCMS/activation/activationTC3.feature","apiStatus","200");
+				  "classpath:tests/RCMS/activation/activationTC3.feature","tc03ActivateKoodoWithSimOnlyStatus","200");
 				  Reporting.logReporter(Status.INFO, "API Operation status: " +
 				  apiOperation.get("tc03ActivateKoodoWithSimOnlyRequest"));
 				  Reporting.logReporter(Status.INFO, "API Operation Request: " +
@@ -129,7 +129,7 @@ public class TC07_Koodo_with_SIM_ONLY extends BaseTest {
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
 		Map<String, Object> apiOperation3 = GenericUtils.featureFileFailLoop_status(environment,
-				"classpath:tests/RCMS/GetEarlyRenewalPenalty/GetEarlyRenewalPenaltyTC7.feature","apiStatus","200");
+				"classpath:tests/RCMS/GetEarlyRenewalPenalty/GetEarlyRenewalPenaltyTC7.feature","getEarlyRenewalPenaltyStatus","201");
 		Reporting.logReporter(Status.INFO,
 				"API Operation Response: " + apiOperation3.get("getEarlyRenewalPenaltyResponse"));
 		Reporting.logReporter(Status.INFO,
