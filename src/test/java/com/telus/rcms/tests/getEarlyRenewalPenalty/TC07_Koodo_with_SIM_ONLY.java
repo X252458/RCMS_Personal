@@ -129,7 +129,7 @@ public class TC07_Koodo_with_SIM_ONLY extends BaseTest {
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
 		Map<String, Object> apiOperation3 = GenericUtils.featureFileFailLoop_status(environment,
-				"classpath:tests/RCMS/GetEarlyRenewalPenalty/GetEarlyRenewalPenaltyTC7.feature","getEarlyRenewalPenaltyStatus","200");
+				"classpath:tests/RCMS/GetEarlyRenewalPenalty/GetEarlyRenewalPenaltyTC7.feature","getEarlyRenewalPenaltyStatus","201");
 		Reporting.logReporter(Status.INFO,
 				"API Operation Response: " + apiOperation3.get("getEarlyRenewalPenaltyResponse"));
 		Reporting.logReporter(Status.INFO,

@@ -132,7 +132,7 @@ public class TC03_Telus_DB_DF_BIB_RCB_AF_CMT_Broken extends BaseTest {
 		
 
 		Map<String, Object> apiOperation3 = GenericUtils.featureFileFailLoop_status(environment,
-				"classpath:tests/RCMS/GetChangeServCommitmentPenalty/GetChangeServCommitmentPenaltyTC01.feature","apiStatus","200");
+				"classpath:tests/RCMS/GetChangeServCommitmentPenalty/GetChangeServCommitmentPenaltyTC01.feature","apiStatus","201");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation3.get("apiStatus"));
 		Reporting.logReporter(Status.INFO,

@@ -132,7 +132,7 @@ public class TC02_Koodo_TAB_HWS_CMT_Broken extends BaseTest {
 		
 
 		Map<String, Object> apiOperation3 = GenericUtils.featureFileFailLoop_status(environment,
-				"classpath:tests/RCMS/GetChangeServCommitmentPenalty/GetChangeServCommitmentPenaltyTC02.feature","apiStatus","200");
+				"classpath:tests/RCMS/GetChangeServCommitmentPenalty/GetChangeServCommitmentPenaltyTC02.feature","apiStatus","201");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation3.get("apiStatus"));
 		Reporting.logReporter(Status.INFO,
