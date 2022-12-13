@@ -110,7 +110,7 @@ public class GenericUtils {
 		case "it01":
 		case "it02":
 			do {
-				accountID = accountIDPrefix02 + String.valueOf(1000 + rad.nextInt(899999));
+				accountID = accountIDPrefix02 + String.valueOf(1000 + rad.nextInt(89999));
 			} while (DBUtils.DBAccountIDAvailability(accountID));
 			break;
 
@@ -151,9 +151,9 @@ public class GenericUtils {
 
 	public static String getUniqueSubscriberNumber(String env) throws SQLException {
 
-		String subscriptionNumPrefix02 = "426";
-		String subscriptionNumPrefix03 = "426";
-		String subscriptionNumPrefix04 = "426";
+		String subscriptionNumPrefix02 = "416";
+		String subscriptionNumPrefix03 = "416";
+		String subscriptionNumPrefix04 = "416";
 
 		String subscriptionNum = null;
 		Random rad = new Random();
@@ -7346,11 +7346,11 @@ public static void responseDBCheckAccTerminationPenalty(String jsonString, Strin
 		do {
 		 apiOperation = APIJava.runKarateFeature(env, path);
 		 actualResCode = apiOperation.get(statusVar).toString();
-//		 Reporting.logReporter(Status.INFO, "Response OR Payload : "+apiOperation.get("apiRequest"));
+		 //Reporting.logReporter(Status.INFO, "Response OR Payload : "+apiOperation.get("apiRequest"));
 		 if(count>4) {
 			 flag=false;
 			 Thread.sleep(10000);
-			 Reporting.logReporter(Status.INFO, "Generating AccessToken again and firing API");
+			 //Reporting.logReporter(Status.INFO, "Generating AccessToken again and firing API");
 				String rewardServiceaccessToken = APIUtils.getAccessToken(env, "rewardService");
 				String violationaccessToken = APIUtils.getAccessToken(env, "violation");
 				String managementaccessToken = APIUtils.getAccessToken(env, "management");
@@ -7365,7 +7365,7 @@ public static void responseDBCheckAccTerminationPenalty(String jsonString, Strin
 		 }
 		 count++;
 		}while(!actualResCode.contains(expectedResCode)&&(flag));
-		Reporting.logReporter(Status.INFO, "No. of times executed : "+count);
+		//Reporting.logReporter(Status.INFO, "No. of times executed : "+count);
 		GenericUtils.validateAssertEquals(actualResCode, expectedResCode, "RESPONSE_CODE");	
 		
 		return apiOperation;

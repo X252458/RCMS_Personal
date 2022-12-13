@@ -7,7 +7,7 @@ Feature: RCMS Migration API
     * def subID = karate.properties['karate.subID']
     * def subNum = karate.properties['karate.subNum']
     * def startDate = karate.properties['karate.startDate']
-    * def payload = read(PATH_API_PAYLOAD + 'Migration/TC01_Pre_PRESOC_to_Post_DB_DF_AF.json')
+    * def payload = read(PATH_API_PAYLOAD + 'Migration/TC03_Post_DB_DF_BIB_ACB_AF_TIA_TIP_to_Pre_PRECREDIT.json')
     * header Authorization = 'Bearer ' + auth_token
     * header Content-Type = 'application/json'
     * header Env = karate.properties['karate.apiEnv']

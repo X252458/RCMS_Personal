@@ -3,13 +3,13 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.telus.rcms.tests.getAccTerminationPenalty.TC02_Sub1_DB_BIB_RCB_AF_Sub2_DB_DF_RCB_BIB_AF">
+      <class name="com.telus.rcms.tests.Migration.TC06_Post_DB_DF_BIB_ACB_AF_TIA_TIP_to_Pre_PRESOC">
         <methods>
-          <include name="BeforeMethod"/>
-          <include name="testMethod_AccTerminationPenalty" invocation-numbers="0"/>
+          <include name="testMethod_migration" invocation-numbers="0"/>
           <include name="afterTest"/>
+          <include name="BeforeMethod"/>
         </methods>
-      </class> <!-- com.telus.rcms.tests.getAccTerminationPenalty.TC02_Sub1_DB_BIB_RCB_AF_Sub2_DB_DF_RCB_BIB_AF -->
+      </class> <!-- com.telus.rcms.tests.Migration.TC06_Post_DB_DF_BIB_ACB_AF_TIA_TIP_to_Pre_PRESOC -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

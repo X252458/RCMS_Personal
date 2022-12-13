@@ -1,4 +1,4 @@
-package com.telus.rcms.tests.Migration;
+	package com.telus.rcms.tests.Migration;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -143,7 +143,7 @@ public class TC06_Post_DB_DF_BIB_ACB_AF_TIA_TIP_to_Pre_PRESOC extends BaseTest {
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
 		Map<String, Object> apiOperation2 = GenericUtils.featureFileFailLoop_status(environment,
-				"classpath:tests/RCMS/Migration/migrationTC6.feature","apiStatus","200");
+				"classpath:tests/RCMS/Migration/migrationTC3.feature","apiStatus","200");
 		Reporting.logReporter(Status.INFO, "API Operation status: " + apiOperation2.get("apiStatus"));
 		Reporting.logReporter(Status.INFO, "API Operation Request: " + apiOperation2.get("apiRequest"));
 

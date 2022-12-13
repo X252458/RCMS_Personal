@@ -4,7 +4,7 @@ Feature: Migration API
     #Operation 1
     When def apiDetails = call read(PATH_API_OPS+'Migration/callMigrationTC6.feature')
     #Request
-    * json apiRequest = apiDetails.response
+    * json apiRequest = apiDetails.payload
     #Status
     * def apiStatus = apiDetails.responseStatus
     #Validation

@@ -172,7 +172,7 @@ public class TC02_Sub1_DB_BIB_RCB_AF_Sub2_DB_DF_RCB_BIB_AF extends BaseTest {
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
 		Map<String, Object> apiOperation5 = GenericUtils.featureFileFailLoop_status(environment,
-				"classpath:tests/RCMS/GetAccTerminationPenalty/GetAccTerminationPenaltyTC01.feature","apiStatus","200");
+				"classpath:tests/RCMS/GetAccTerminationPenalty/GetAccTerminationPenaltyTC01.feature","apiStatus","201");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation5.get("apiStatus"));
 		Reporting.logReporter(Status.INFO,

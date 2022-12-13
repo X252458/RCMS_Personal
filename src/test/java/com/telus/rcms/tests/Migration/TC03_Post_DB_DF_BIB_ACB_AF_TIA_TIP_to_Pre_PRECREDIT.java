@@ -1,4 +1,4 @@
-package com.telus.rcms.tests.Migration;
+	package com.telus.rcms.tests.Migration;
 
 import java.io.IOException;
 import java.sql.Connection;

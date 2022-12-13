@@ -1,7 +1,7 @@
 {
 	"agreementCreate": {
 		"agreementDuration": {
-			"startDateTime": "2021-06-23T14:00:00-0500",
+			"startDateTime": #(startDate),
 			"endDateTime": null,
 			"quantity": {
 				"amount": 0,
@@ -10,7 +10,7 @@
 		},
 		"relatedParty": [
 			{
-				"id": "70909959",
+				"id": #(accID),
 				"role": "ACCOUNT",
 				"characteristic": [
 					{
@@ -50,7 +50,7 @@
 				]
 			},
 			{
-				"id": "8499865",
+				"id": #(subID),
 				"role": "SUBSCRIPTION",
 				"characteristic": [
 					{
@@ -63,7 +63,7 @@
 					},
 					{
 						"name": "SUBSCRIBER_NUMBER",
-						"value": "4161960904"
+						"value": #(subNum)
 					},
 					{
 						"name": "COMBO_RATE_PLAN_IND",
@@ -74,13 +74,13 @@
 		],
 		"agreementItem": [
 			{
-				"itemType": "PRECREDIT",
+				"itemType": "PRESOC",
 				"incentiveServiceCode": [
 					"257"
 				],
-				"incentiveAmount": 20,
+				"incentiveAmount": 240,
 				"itemDuration": {
-					"startDateTime": "2021-03-23T14:00:00-0500",
+					"startDateTime": #(startDate),
 					"endDateTime": null,
 					"quantity": {
 						"amount": 0,
@@ -103,7 +103,7 @@
 				"promotion": [
 					{
 						"id": "4242524",
-						"perspectiveDate": "2021-03-23T13:04:00-0500"
+						"perspectiveDate":#(startDate)
 					}
 				],
 				"product": [
@@ -146,7 +146,7 @@
 							"value": "false"
 						}
 					],
-					"perspectiveDate": "2021-03-23T14:04:00-0500",
+					"perspectiveDate": #(startDate),
 					"sourceSystemId": "15373"
 				},
 				"termOrCondition": {
@@ -182,6 +182,28 @@
 						{
 							"name": "ITEM_TYPE",
 							"value": "HARDWARE"
+						}
+					]
+				}
+			]
+		},
+		{
+			"amount": {
+				"value": 0,
+				"unit": "CAD"
+			},
+			"relatedParty": [
+				{
+					"id": "",
+					"role": "LOYALTY_AGREEMENT_ITEM",
+					"characteristic": [
+						{
+							"name": "CHARGE_TYPE",
+							"value": "ACBDB"
+						},
+						{
+							"name": "ITEM_TYPE",
+							"value": "ACTIVATIONBILLCREDIT"
 						}
 					]
 				}
@@ -252,11 +274,33 @@
 						},
 						{
 							"name": "FINANCE_COMMITMENT_ITEM_ID",
-							"value": "9166538"
+							"value": "20616"
 						},
 						{
 							"name": "ITEM_TYPE",
 							"value": "FINANCE"
+						}
+					]
+				}
+			]
+		},
+		{
+			"amount": {
+				"value": 0,
+				"unit": "CAD"
+			},
+			"relatedParty": [
+				{
+					"id": "",
+					"role": "LOYALTY_AGREEMENT_ITEM",
+					"characteristic": [
+						{
+							"name": "CHARGE_TYPE",
+							"value": "ACBECF"
+						},
+						{
+							"name": "ITEM_TYPE",
+							"value": "ACTIVATIONBILLCREDIT"
 						}
 					]
 				}

@@ -22,7 +22,7 @@ import com.test.ui.actions.BaseTest;
 import com.test.ui.actions.WebDriverSteps;
 import com.test.utils.SystemProperties;
 
-public class TC018_Telus_DF_DB_RCB_AdRewardBalance_RCB_MANUAL_INSTALLMENT extends BaseTest {
+public class TC18_Telus_DF_DB_RCB_AdRewardBalance_RCB_MANUAL_INSTALLMENT extends BaseTest {
 
 	String testCaseName = null;
 	String scriptName = null;
