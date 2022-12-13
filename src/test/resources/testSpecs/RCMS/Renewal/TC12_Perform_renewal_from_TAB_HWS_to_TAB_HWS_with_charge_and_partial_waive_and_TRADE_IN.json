@@ -324,7 +324,7 @@
 		{
 			"amount": {
 				"unit": "CAD",
-				"value": "200"
+				"value": "140"
 			},
 			"paymentMechanism": "BILL",
 			"relatedParty": [
@@ -388,7 +388,7 @@
 		{
 			"amount": {
 				"unit": "CAD",
-				"value": "200"
+				"value": "130"
 			},
 			"paymentMechanism": "BILL",
 			"relatedParty": [

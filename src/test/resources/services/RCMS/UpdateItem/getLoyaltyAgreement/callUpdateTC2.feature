@@ -21,5 +21,3 @@ Feature: RCMS Activation API - TC01 Call getRewardCommitment operation for Telus
     And request payload
     #		When REST operation post
     When method patch
-
-    updateTC2

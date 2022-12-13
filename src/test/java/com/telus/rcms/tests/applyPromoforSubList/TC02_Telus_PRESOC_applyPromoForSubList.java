@@ -158,7 +158,7 @@ public class TC02_Telus_PRESOC_applyPromoForSubList extends BaseTest {
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
 		Map<String, Object> apiOperation2 = GenericUtils.featureFileFailLoop_status(environment,
-				"classpath:tests/RCMS/Renewal/notifySubscriptionRenewalTC02.feature","apiStatus","200");
+				"classpath:tests/RCMS/Renewal/notifySubscriptionRenewalTC02.feature","tc02RenewalStatus","200");
 		Reporting.logReporter(Status.INFO, "API Operation status: " + apiOperation2.get("tc02RenewalStatus"));
 		Reporting.logReporter(Status.INFO, "API Operation Request: " + apiOperation2.get("tc02RenewalRequest"));
 

@@ -110,7 +110,7 @@ public class GenericUtils {
 		case "it01":
 		case "it02":
 			do {
-				accountID = accountIDPrefix02 + String.valueOf(1000 + rad.nextInt(89999));
+				accountID = accountIDPrefix02 + String.valueOf(1000 + rad.nextInt(899999));
 			} while (DBUtils.DBAccountIDAvailability(accountID));
 			break;
 
@@ -7346,6 +7346,7 @@ public static void responseDBCheckAccTerminationPenalty(String jsonString, Strin
 		do {
 		 apiOperation = APIJava.runKarateFeature(env, path);
 		 actualResCode = apiOperation.get(statusVar).toString();
+//		 Reporting.logReporter(Status.INFO, "Response OR Payload : "+apiOperation.get("apiRequest"));
 		 if(count>4) {
 			 flag=false;
 			 Thread.sleep(10000);

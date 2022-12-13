@@ -147,11 +147,11 @@ public class TC04_Telus_with_DF_AF_TIA_TIP_Renewal_DF_Pay_BILL_Return
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
 		Map<String, Object> apiOperation3 = GenericUtils.featureFileFailLoop_status(environment,
-				"classpath:tests/RCMS/Return/returnTC1.feature","tc01returnTelusSubWithDFAFTICreditStatus","200");
+				"classpath:tests/RCMS/Return/returnTC1.feature","apiStatus","200");
 		Reporting.logReporter(Status.INFO,
-				"API Operation status: " + apiOperation3.get("tc01returnTelusSubWithDFAFTICreditStatus"));
+				"API Operation status: " + apiOperation3.get("apiStatus"));
 		Reporting.logReporter(Status.INFO,
-				"API Operation Request: " + apiOperation3.get("tc01returnTelusSubWithDFAFTICreditRequest"));
+				"API Operation Request: " + apiOperation3.get("apiResponse"));
 
 		Reporting.printAndClearLogGroupStatements();
 

@@ -97,7 +97,7 @@ public class TC02_Sub1_DB_BIB_RCB_AF_Sub2_DB_DF_RCB_BIB_AF extends BaseTest {
 
 		// Activation API Call
 
-		Reporting.setNewGroupName("BILLING ACCOUNT TERMINATION PENALTY SERVICE API CALL");
+		Reporting.setNewGroupName("ACTIVATION SERVICE API CALL");
 		String apiEnv = GenericUtils.getAPIEnvironment(environment);
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 		accountID = GenericUtils.getUniqueAccountID(apiEnv);
@@ -123,23 +123,21 @@ public class TC02_Sub1_DB_BIB_RCB_AF_Sub2_DB_DF_RCB_BIB_AF extends BaseTest {
 				"API Operation Request: " + apiOperation.get("tc08ActivateTelusSubwithDFRequest"));
 		Reporting.printAndClearLogGroupStatements();
 
-		// Renewal API Call
+		// AetAccTerminationPenalty API Call
 
-		Reporting.setNewGroupName("RENEWAL SERVICE API CALL - DB+AF Payment BIB_TELUS_PENDING");
+		Reporting.setNewGroupName("RENEWAL SERVICE API CALL");
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
 		Map<String, Object> apiOperation2 = GenericUtils.featureFileFailLoop_status(environment,
-				"classpath:tests/RCMS/Renewal/getAccTerminationPenalty/renewalTC1.feature","apiStatus","201");
+				"classpath:tests/RCMS/Renewal/getAccTerminationPenalty/renewalTC1.feature","apiStatus","200");
 		Reporting.logReporter(Status.INFO, "API Operation status: " + apiOperation2.get("apiStatus"));
 		Reporting.logReporter(Status.INFO, "API Operation Request: " + apiOperation2.get("apiRequest"));
 
 		Reporting.printAndClearLogGroupStatements();
 		
 		
-		
-		
 		//Activation new subscriber 2
-		
+		Reporting.setNewGroupName("ACTIVATION API SERVICE CALL");
 		subscriptionID = GenericUtils.getUniqueSubscriptionID(apiEnv);
 		subscriberNum = GenericUtils.getUniqueSubscriberNumber(apiEnv);
 		
@@ -154,9 +152,9 @@ public class TC02_Sub1_DB_BIB_RCB_AF_Sub2_DB_DF_RCB_BIB_AF extends BaseTest {
 				"API Operation Request: " + apiOperation3.get("tc08ActivateTelusSubwithDFRequest"));
 		Reporting.printAndClearLogGroupStatements();
 
-		// Renewal API Call
+		// GetAccTerminationPenalty API Call
 
-		Reporting.setNewGroupName("RENEWAL SERVICE API CALL - DB+AF Payment BIB_TELUS_PENDING");
+		Reporting.setNewGroupName("RENEWAL SERVICE API CALL");
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
 		Map<String, Object> apiOperation4 = GenericUtils.featureFileFailLoop_status(environment,

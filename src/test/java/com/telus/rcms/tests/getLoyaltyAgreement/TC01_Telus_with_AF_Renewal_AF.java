@@ -131,11 +131,11 @@ public class TC01_Telus_with_AF_Renewal_AF extends BaseTest {
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
 		Map<String, Object> apiOperation2 = GenericUtils.featureFileFailLoop_status(environment,
-				"classpath:tests/RCMS/Renewal/getRewardCommitment/renewalTC1.feature","tc01RenewalTelusSubWithAFStatus","200");
+				"classpath:tests/RCMS/Renewal/getRewardCommitment/renewalTC1.feature","apiStatus","200");
 		Reporting.logReporter(Status.INFO,
-				"API Operation status: " + apiOperation2.get("tc01RenewalTelusSubWithAFRequest"));
+				"API Operation status: " + apiOperation2.get("apiStatus"));
 		Reporting.logReporter(Status.INFO,
-				"API Operation Request: " + apiOperation2.get("tc01RenewalTelusSubWithAFStatus"));
+				"API Operation Request: " + apiOperation2.get("apiRequest"));
 
 		Reporting.printAndClearLogGroupStatements();
 

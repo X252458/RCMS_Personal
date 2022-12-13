@@ -129,7 +129,7 @@ public class TC07_Telus_DB_DF_AF_Add_AF_Bal_0 extends BaseTest {
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
 		Map<String, Object> apiOperation3 = GenericUtils.featureFileFailLoop_status(environment,
-				"classpath:tests/RCMS/AddAgreementItem/addAgreementItemTC7.feature","apiStatus","200");
+				"classpath:tests/RCMS/AddAgreementItem/addAgreementItemTC7.feature","apiStatus","500");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation3.get("apiRequest"));
 		Reporting.logReporter(Status.INFO,

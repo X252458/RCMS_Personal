@@ -23,6 +23,7 @@ import com.telus.rcms.utils.APIUtils;
 import com.telus.rcms.utils.DBUtils;
 import com.telus.rcms.utils.GenericUtils;
 import com.telus.rcms.utils.JSONUtils;
+import com.telus.rcms.utils.ValidationUtils;
 import com.test.reporting.Reporting;
 import com.test.ui.actions.BaseTest;
 import com.test.ui.actions.Validate;
@@ -130,15 +131,15 @@ public class TC14_Telus_TAB_M_offercode_7_TAB_HWS_Pay_TIP_Return extends BaseTes
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
 		Map<String, Object> apiOperation2 = GenericUtils.featureFileFailLoop_status(environment,
-				"classpath:tests/RCMS/Return/returnTC1.feature","apiDetailsStatus","200");
+				"classpath:tests/RCMS/Return/returnTC1.feature","apiStatus","200");
 		Reporting.logReporter(Status.INFO,
-				"API Operation Request: " + apiOperation2.get("apiDetailsRequest"));
+				"API Operation Request: " + apiOperation2.get("apiResponse"));
 		Reporting.logReporter(Status.INFO,
-				"API Operation status: " + apiOperation2.get("apiDetailsStatus"));
+				"API Operation status: " + apiOperation2.get("apiStatus"));
 
 		Reporting.printAndClearLogGroupStatements();
 
-		jsonString = String.valueOf(apiOperation2.get("apiDetailsRequest")).replace("=", ":");
+		jsonString = String.valueOf(apiOperation2.get("apiResponse")).replace("=", ":");
 		Reporting.printAndClearLogGroupStatements();
 
 		/*** DB VALIDATION ***/
@@ -157,7 +158,7 @@ public class TC14_Telus_TAB_M_offercode_7_TAB_HWS_Pay_TIP_Return extends BaseTes
 		 */
 
 		Reporting.logReporter(Status.INFO, "Pretty Payload: " + jsonString);
-
+		ValidationUtils.payloadnDBCheckReturn(subscriptionID);
 		// Declaring variable from payload
 
 		Reporting.logReporter(Status.INFO, "--------------------DB Validation Completed--------------------");

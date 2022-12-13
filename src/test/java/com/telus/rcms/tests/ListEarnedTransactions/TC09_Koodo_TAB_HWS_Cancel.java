@@ -121,7 +121,7 @@ public class TC09_Koodo_TAB_HWS_Cancel extends BaseTest {
 		System.setProperty("karate.apiEnv", apiEnv);
 
 		Map<String, Object> apiOperation = GenericUtils.featureFileFailLoop_status(environment,
-				"classpath:tests/RCMS/activation/activationTC2.feature","apiStatus","200");
+				"classpath:tests/RCMS/activation/activationTC2.feature","tc02ActivateKoodoTAB_HWSStatus","200");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation.get("tc02ActivateKoodoTAB_HWSRequest"));
 		Reporting.logReporter(Status.INFO,
