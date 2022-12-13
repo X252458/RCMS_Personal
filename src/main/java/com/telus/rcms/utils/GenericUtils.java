@@ -99,9 +99,9 @@ public class GenericUtils {
 	 */
 	public static String getUniqueAccountID(String env) throws SQLException {
 
-		String accountIDPrefix02 = "7093";
-		String accountIDPrefix03 = "7093";
-		String accountIDPrefix04 = "7093";
+		String accountIDPrefix02 = "709";
+		String accountIDPrefix03 = "709";
+		String accountIDPrefix04 = "709";
 
 		String accountID = null;
 		Random rad = new Random();
@@ -110,7 +110,7 @@ public class GenericUtils {
 		case "it01":
 		case "it02":
 			do {
-				accountID = accountIDPrefix02 + String.valueOf(1000 + rad.nextInt(8999));
+				accountID = accountIDPrefix02 + String.valueOf(1000 + rad.nextInt(89999));
 			} while (DBUtils.DBAccountIDAvailability(accountID));
 			break;
 
@@ -124,9 +124,9 @@ public class GenericUtils {
 
 	public static String getUniqueSubscriptionID(String env) throws SQLException {
 
-		String subscriptionIDPrefix02 = "852";
-		String subscriptionIDPrefix03 = "852";
-		String subscriptionIDPrefix04 = "852";
+		String subscriptionIDPrefix02 = "86";
+		String subscriptionIDPrefix03 = "86";
+		String subscriptionIDPrefix04 = "86";
 
 		String subscriptionID = null;
 		Random rad = new Random();
@@ -135,7 +135,7 @@ public class GenericUtils {
 		case "it02":
 		case "it01":
 			do {
-				subscriptionID = subscriptionIDPrefix02 + String.valueOf(1000 + rad.nextInt(8999));
+				subscriptionID = subscriptionIDPrefix02 + String.valueOf(1000 + rad.nextInt(89999));
 			} while (DBUtils.DBSubscriptionIDAvailability(subscriptionID));
 			break;
 
@@ -151,9 +151,9 @@ public class GenericUtils {
 
 	public static String getUniqueSubscriberNumber(String env) throws SQLException {
 
-		String subscriptionNumPrefix02 = "4264";
-		String subscriptionNumPrefix03 = "4264";
-		String subscriptionNumPrefix04 = "4264";
+		String subscriptionNumPrefix02 = "426";
+		String subscriptionNumPrefix03 = "426";
+		String subscriptionNumPrefix04 = "426";
 
 		String subscriptionNum = null;
 		Random rad = new Random();
@@ -163,7 +163,7 @@ public class GenericUtils {
 		case "it02":
 		case "it01":
 			do {
-				subscriptionNum = subscriptionNumPrefix02 + String.valueOf(100000 + rad.nextInt(899999));
+				subscriptionNum = subscriptionNumPrefix02 + String.valueOf(100000 + rad.nextInt(8999999));
 			} while (DBUtils.DBSubscriptionNumberAvailability(subscriptionNum));
 			break;
 

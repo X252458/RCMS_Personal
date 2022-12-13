@@ -3,13 +3,13 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.telus.rcms.tests.newAdjustRewardBalance.Scenario2.TC15_Telus_DF_AF_ExchangeAgreementItem">
+      <class name="com.telus.rcms.tests.getLoyaltyAgreement.TC02_Telus_with_AF_Cancel">
         <methods>
+          <include name="testMethod_getLoyaltyAgreement" invocation-numbers="0"/>
           <include name="BeforeMethod"/>
           <include name="afterTest"/>
-          <include name="testMethod_Activation" invocation-numbers="0"/>
         </methods>
-      </class> <!-- com.telus.rcms.tests.newAdjustRewardBalance.Scenario2.TC15_Telus_DF_AF_ExchangeAgreementItem -->
+      </class> <!-- com.telus.rcms.tests.getLoyaltyAgreement.TC02_Telus_with_AF_Cancel -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
