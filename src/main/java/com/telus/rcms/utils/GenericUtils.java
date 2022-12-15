@@ -7364,7 +7364,7 @@ public static void responseDBCheckAccTerminationPenalty(String jsonString, Strin
 			 
 		 }
 		 count++;
-		}while(!actualResCode.contains(expectedResCode)&&(flag));
+		}while(actualResCode.contains("401")&&(flag));
 		//Reporting.logReporter(Status.INFO, "No. of times executed : "+count);
 		GenericUtils.validateAssertEquals(actualResCode, expectedResCode, "RESPONSE_CODE");	
 		

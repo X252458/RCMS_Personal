@@ -1,4 +1,4 @@
-	package com.telus.rcms.tests.Migration;
+package com.telus.rcms.tests.Migration;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -35,8 +35,7 @@ import com.test.reporting.ExtentTestManager;
 
 /**
  * 
- * Testcase Name : TC04 Call notifySubscriptionMigration to migrate from Prepaid
- * to Postpaid_FROM PRESOC and PRECREDIT to DB + DF + BIB + ACB + RCB+AF
+ * Testcase Name : TC02 Call notifySubscriptionMigration to migrate from Prepaid account with PRECREDIT to Postpaid(DB+DF+AF)
  *
  * 
  */
@@ -75,8 +74,7 @@ public class TC06_Post_DB_DF_BIB_ACB_AF_TIA_TIP_to_Pre_PRESOC extends BaseTest {
 
 	}
 
-	@Test(groups = { "Loyalty_Agreement", "Migration", "TC04_Pre_PRESOC_PRECREDIT_to_Post_DB_DF_ACB_RCB_AF",
-			"CompleteRegressionSuite" })
+	@Test(groups = { "Loyalty_Agreement", "Migration", "TC02_Pre_PRECREDIT_to_Post_DB_DF_AF", "CompleteRegressionSuite" })
 
 	public void testMethod_migration(ITestContext iTestContext) throws Exception {
 
@@ -95,9 +93,10 @@ public class TC06_Post_DB_DF_BIB_ACB_AF_TIA_TIP_to_Pre_PRESOC extends BaseTest {
 		Reporting.logReporter(Status.INFO, "Request Payload Path : [" + requestPayloadFilePath + "]");
 		Reporting.printAndClearLogGroupStatements();
 
+	
 		Reporting.setNewGroupName("ACCESS TOKEN GENERATION");
 		String accessToken = APIUtils.getAccessToken(environment, "rewardService");
-		String accessToken_violation = APIUtils.getAccessToken(environment,"violation");
+		String accessToken_violation = APIUtils.getAccessToken(environment, "violation");
 		Reporting.logReporter(Status.INFO, "ACCESS_TOKEN: " + accessToken);
 		Reporting.printAndClearLogGroupStatements();
 
@@ -111,8 +110,8 @@ public class TC06_Post_DB_DF_BIB_ACB_AF_TIA_TIP_to_Pre_PRESOC extends BaseTest {
 		subscriberNum = GenericUtils.getUniqueSubscriberNumber(apiEnv);
 		startDate = JSONUtils.getGMTStartDate();
 
+
 		System.setProperty("karate.auth_token_reward", accessToken);
-		System.setProperty("karate.auth_token", accessToken);
 		System.setProperty("karate.auth_token_violation", accessToken_violation);
 		System.setProperty("karate.accID", accountID);
 		System.setProperty("karate.subID", subscriptionID);
@@ -121,32 +120,35 @@ public class TC06_Post_DB_DF_BIB_ACB_AF_TIA_TIP_to_Pre_PRESOC extends BaseTest {
 		System.setProperty("karate.apiEnv", apiEnv);
 
 		Map<String, Object> apiOperation = GenericUtils.featureFileFailLoop_status(environment,
-				"classpath:tests/RCMS/activation/activationTC1.feature","tc01ActivateTelusSubWithAllStatus","200");
-		Reporting.logReporter(Status.INFO,
-				"API Operation status: " + apiOperation.get("tc01ActivateTelusSubWithAllRequest"));
-		Reporting.logReporter(Status.INFO,
-				"API Operation Request: " + apiOperation.get("tc01ActivateTelusSubWithAllStatus"));
+				"classpath:tests/RCMS/activation/Others/activationTC30.feature","apiStatus","200");
+		Reporting.logReporter(Status.INFO, "API Operation Status: " + apiOperation.get("apiStatus"));
+		Reporting.logReporter(Status.INFO, "API Operation Request: " + apiOperation.get("apiRequest"));
+
 		Reporting.printAndClearLogGroupStatements();
-
-		// GetMigrationPenalty API Call
-		Reporting.setNewGroupName("GET MIGRATION PENALTY API CALL");
-		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
-
+		
+		//MigrationPenalty API Call
+		Reporting.setNewGroupName("MIGRATION PENALTY API CALL");
 		Map<String, Object> apiOperation3 = GenericUtils.featureFileFailLoop_status(environment,
-				"classpath:tests/RCMS/GetMigrationPenalty/GetMigrationPenaltyTC02.feature","apiStatus","201");
-		Reporting.logReporter(Status.INFO, "API Operation status: " + apiOperation3.get("apiStatus"));
-		Reporting.logReporter(Status.INFO, "API Operation Request: " + apiOperation3.get("apiResponse"));
+				"classpath:tests/RCMS/GetMigrationPenalty/GetMigrationPenaltyTC01.feature","apiStatus","201");
+		Reporting.logReporter(Status.INFO,
+				"API Operation status: " + apiOperation3.get("apiStatus"));
+		Reporting.logReporter(Status.INFO,
+				"API Operation Request: " + apiOperation3.get("apiResponse"));
 		Reporting.printAndClearLogGroupStatements();
+
 
 		// Migration API Call
 		Reporting.setNewGroupName("MIGRATION API CALL");
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
+		
 
 		Map<String, Object> apiOperation2 = GenericUtils.featureFileFailLoop_status(environment,
-				"classpath:tests/RCMS/Migration/migrationTC3.feature","apiStatus","200");
-		Reporting.logReporter(Status.INFO, "API Operation status: " + apiOperation2.get("apiStatus"));
-		Reporting.logReporter(Status.INFO, "API Operation Request: " + apiOperation2.get("apiRequest"));
-
+				"classpath:tests/RCMS/Migration/migrationTC2.feature","apiStatus","200");
+		Reporting.logReporter(Status.INFO,
+				"API Operation status: " + apiOperation2.get("apiStatus"));
+		Reporting.logReporter(Status.INFO,
+				"API Operation Request: " + apiOperation2.get("apiRequest"));
+		
 		jsonString = String.valueOf(apiOperation2.get("apiRequest")).replace("=", ":");
 		Reporting.printAndClearLogGroupStatements();
 
@@ -164,7 +166,7 @@ public class TC06_Post_DB_DF_BIB_ACB_AF_TIA_TIP_to_Pre_PRESOC extends BaseTest {
 		 * DB Verification Steps
 		 */
 		// Declaring variable from payload
-		ValidationUtils.beforeMigrationDBcheck(subscriptionID);
+		ValidationUtils.migrationDBcheck(jsonString,1);
 
 		Reporting.logReporter(Status.INFO, "--------------------DB Validation Completed--------------------");
 

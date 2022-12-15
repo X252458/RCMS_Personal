@@ -8,7 +8,7 @@
 	"payment": [
 		{
 			"amount": {
-				"value": 255,
+				"value": 240,
 				"unit": "CAD"
 			},
 			"paymentMechanism": "BILL",

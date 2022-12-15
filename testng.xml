@@ -13,7 +13,7 @@
 	<test name="RCMSRegressionTests">
 		<groups>
 			<run>
-				<include name="Activation" />
+				<include name="Migration" />
 			</run>
 		</groups>
 		<packages>

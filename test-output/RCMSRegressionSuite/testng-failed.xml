@@ -7,76 +7,24 @@
   <test thread-count="1" name="RCMSRegressionTests(failed)" parallel="methods">
     <groups>
       <run>
-        <include name="Cancellation"/>
+        <include name="Migration"/>
       </run>
     </groups>
     <classes>
-      <class name="com.telus.rcms.tests.Cancellation.TC03_Telus_DB_DF_BIB_ACB_TIA_TIP_AF_Cancel">
-        <methods>
-          <include name="afterTest1"/>
-          <include name="BeforeMethod"/>
-          <include name="testMethod_activation" invocation-numbers="0"/>
-        </methods>
-      </class> <!-- com.telus.rcms.tests.Cancellation.TC03_Telus_DB_DF_BIB_ACB_TIA_TIP_AF_Cancel -->
-      <class name="com.telus.rcms.tests.Cancellation.TC01_Telus_AF_Cancel">
-        <methods>
-          <include name="testMethod_activation" invocation-numbers="0"/>
-          <include name="BeforeMethod"/>
-          <include name="afterTest1"/>
-          <include name="afterTest"/>
-        </methods>
-      </class> <!-- com.telus.rcms.tests.Cancellation.TC01_Telus_AF_Cancel -->
-      <class name="com.telus.rcms.tests.Cancellation.TC05_Telus_DB_DF_BIB_Renewal_DB_Pay_TIP_Cancel">
-        <methods>
-          <include name="afterTest"/>
-          <include name="BeforeMethod"/>
-          <include name="testMethod_Renewal" invocation-numbers="0"/>
-        </methods>
-      </class> <!-- com.telus.rcms.tests.Cancellation.TC05_Telus_DB_DF_BIB_Renewal_DB_Pay_TIP_Cancel -->
-      <class name="com.telus.rcms.tests.Cancellation.TC09_Telus_DB_RCB_Cancel">
-        <methods>
-          <include name="testMethod_activation" invocation-numbers="0"/>
-          <include name="afterTest"/>
-          <include name="afterTest1"/>
-          <include name="BeforeMethod"/>
-        </methods>
-      </class> <!-- com.telus.rcms.tests.Cancellation.TC09_Telus_DB_RCB_Cancel -->
-      <class name="com.telus.rcms.tests.Cancellation.TC07_Telus_TAB_M_Renewal_TAB_HWS_Pay_TIP_Cancel">
-        <methods>
-          <include name="afterTest"/>
-          <include name="testMethod_cancellation" invocation-numbers="0"/>
-          <include name="BeforeMethod"/>
-        </methods>
-      </class> <!-- com.telus.rcms.tests.Cancellation.TC07_Telus_TAB_M_Renewal_TAB_HWS_Pay_TIP_Cancel -->
-      <class name="com.telus.rcms.tests.Cancellation.TC02_Telus_TIA_TIP_AF_Cancel">
-        <methods>
-          <include name="BeforeMethod"/>
-          <include name="afterTest1"/>
-          <include name="testMethod_activation" invocation-numbers="0"/>
-        </methods>
-      </class> <!-- com.telus.rcms.tests.Cancellation.TC02_Telus_TIA_TIP_AF_Cancel -->
-      <class name="com.telus.rcms.tests.Cancellation.TC08_Telus_PRESOC_PRECREDIT_Cancel">
-        <methods>
-          <include name="afterTest1"/>
-          <include name="testMethod_activation" invocation-numbers="0"/>
-          <include name="afterTest"/>
-          <include name="BeforeMethod"/>
-        </methods>
-      </class> <!-- com.telus.rcms.tests.Cancellation.TC08_Telus_PRESOC_PRECREDIT_Cancel -->
-      <class name="com.telus.rcms.tests.Cancellation.TC06_Koodo_TAB_HWS_Cancel">
+      <class name="com.telus.rcms.tests.Migration.TC03_Post_DB_DF_BIB_ACB_AF_TIA_TIP_to_Pre_PRECREDIT">
         <methods>
           <include name="BeforeMethod"/>
           <include name="afterTest"/>
-          <include name="testMethod_activation" invocation-numbers="0"/>
+          <include name="testMethod_migration" invocation-numbers="0"/>
         </methods>
-      </class> <!-- com.telus.rcms.tests.Cancellation.TC06_Koodo_TAB_HWS_Cancel -->
-      <class name="com.telus.rcms.tests.Cancellation.TC04_Telus_DB_DF_BIB_ACB_TIA_TIP_Renewal_DB_AF_Pay_BTP_Cancel">
+      </class> <!-- com.telus.rcms.tests.Migration.TC03_Post_DB_DF_BIB_ACB_AF_TIA_TIP_to_Pre_PRECREDIT -->
+      <class name="com.telus.rcms.tests.Migration.TC06_Post_DB_DF_BIB_ACB_AF_TIA_TIP_to_Pre_PRESOC">
         <methods>
-          <include name="BeforeMethod"/>
+          <include name="testMethod_migration" invocation-numbers="0"/>
           <include name="afterTest"/>
-          <include name="testMethod_Renewal" invocation-numbers="0"/>
+          <include name="BeforeMethod"/>
         </methods>
-      </class> <!-- com.telus.rcms.tests.Cancellation.TC04_Telus_DB_DF_BIB_ACB_TIA_TIP_Renewal_DB_AF_Pay_BTP_Cancel -->
+      </class> <!-- com.telus.rcms.tests.Migration.TC06_Post_DB_DF_BIB_ACB_AF_TIA_TIP_to_Pre_PRESOC -->
     </classes>
   </test> <!-- RCMSRegressionTests(failed) -->
 </suite> <!-- Failed suite [RCMSRegressionSuite] -->

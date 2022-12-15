@@ -19,7 +19,7 @@
 				}
 			},
 			"itemType": "ACCESSORYFINANCE",
-			"incentiveAmount": 255,
+			"incentiveAmount": 240,
 			"installment": {
 				"installmentDuration": {
 					"endDateTime": null,
