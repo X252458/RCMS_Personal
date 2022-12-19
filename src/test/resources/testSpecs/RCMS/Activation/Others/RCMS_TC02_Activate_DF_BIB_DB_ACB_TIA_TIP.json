@@ -766,11 +766,11 @@
 				},
 				{
 					"name": "ACCOUNT_TYPE_CODE",
-					"value": "I"
+					"value": "C"
 				},
 				{
 					"name": "ACCOUNT_SUB_TYPE_CODE",
-					"value": "R"
+					"value": "Q"
 				}
 			]
 		},

@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.json.JSONObject;
@@ -49,6 +50,7 @@ public class TC07_Telus_TAB_M_Renewal_TAB_HWS_Pay_TRADE_IN_Resume extends BaseTe
 	String environment = null;
 	static String connectionString = null;
 
+	HashMap<String, String> hpaDetails = new HashMap<String, String>();
 	String accountID = null;
 	String subscriptionID = null;
 	String subscriberNum = null;
@@ -71,7 +73,8 @@ public class TC07_Telus_TAB_M_Renewal_TAB_HWS_Pay_TRADE_IN_Resume extends BaseTe
 		environment = SystemProperties.EXECUTION_ENVIRONMENT;
 	}
 
-	@Test(groups = { "Loyalty_Agreement_Violation","getResumePenaltyAdjustmentList", "TC07_Telus_TAB_M_Renewal_TAB_HWS_Pay_TRADE_IN_Resume", "CompleteRegressionSuite" })
+	@Test(groups = { "Loyalty_Agreement_Violation", "getResumePenaltyAdjustmentList",
+			"TC07_Telus_TAB_M_Renewal_TAB_HWS_Pay_TRADE_IN_Resume", "CompleteRegressionSuite" })
 
 	public void testMethod_getResumePenaltyAdjustmentList(ITestContext iTestContext) throws Exception {
 
@@ -101,9 +104,13 @@ public class TC07_Telus_TAB_M_Renewal_TAB_HWS_Pay_TRADE_IN_Resume extends BaseTe
 		Reporting.setNewGroupName("ACTIVATION SERVICE API CALL");
 		String apiEnv = GenericUtils.getAPIEnvironment(environment);
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
-		accountID = GenericUtils.getUniqueAccountID(apiEnv);
-		subscriptionID = GenericUtils.getUniqueSubscriptionID(apiEnv);
-		subscriberNum = GenericUtils.getUniqueSubscriberNumber(apiEnv);
+		hpaDetails = DBUtils.getHpaAllDetails("7");
+		accountID = hpaDetails.get("BAN");
+		subscriptionID = hpaDetails.get("SUBSCRIPTION_ID");
+		subscriberNum = hpaDetails.get("CELL_PHONE_NO");
+		Reporting.logReporter(Status.INFO, "Exisiting Subscription ID picked from CR DB: " + subscriptionID);
+		Reporting.logReporter(Status.INFO, "Exisiting Account ID picked from CR DB: " + accountID);
+		Reporting.logReporter(Status.INFO, "Exisiting Subscription Number picked from CR DB: " + subscriberNum);
 		startDate = JSONUtils.getGMTStartDate();
 		System.setProperty("karate.auth_token", rewardServiceaccessToken);
 		System.setProperty("karate.auth_token_reward", rewardServiceaccessToken);
@@ -114,28 +121,40 @@ public class TC07_Telus_TAB_M_Renewal_TAB_HWS_Pay_TRADE_IN_Resume extends BaseTe
 		System.setProperty("karate.startDate", startDate);
 		System.setProperty("karate.apiEnv", apiEnv);
 
-		Map<String, Object> apiOperation = GenericUtils.featureFileFailLoop_status(environment,
-				"classpath:tests/RCMS/activation/activationTC2.feature","tc02ActivateKoodoTAB_HWSStatus","200");
-		Reporting.logReporter(Status.INFO,
-				"API Operation status: " + apiOperation.get("tc02ActivateKoodoTAB_HWSStatus"));
-		Reporting.logReporter(Status.INFO,
-				"API Operation Request: " + apiOperation.get("tc02ActivateKoodoTAB_HWSRequest"));
-		
+		// Renewal API Call
+
+		Reporting.setNewGroupName("RENEWAL SERVICE API CALL");
+		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
+
+		Map<String, Object> apiOperation1 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/Renewal/notifySubscriptionRenewalTC13.feature", "tc13RenewalStatus", "200");
+		Reporting.logReporter(Status.INFO, "API Operation status: " + apiOperation1.get("tc13RenewalStatus"));
+		Reporting.logReporter(Status.INFO, "API Operation Request: " + apiOperation1.get("tc13RenewalRequest"));
+
 		Reporting.printAndClearLogGroupStatements();
 
 		// Cancel API Call
 
-		Reporting.setNewGroupName("CANCEL SERVICE API CALL - AccessoryFinance");
+		Reporting.setNewGroupName("CANCEL SERVICE API CALL");
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
 		Map<String, Object> apiOperation3 = GenericUtils.featureFileFailLoop_status(environment,
-				"classpath:tests/RCMS/Cancel/cancelTC6.feature","apiDetailsStatus","200");
+				"classpath:tests/RCMS/Cancel/cancelTC6.feature", "apiDetailsStatus", "200");
 		Reporting.logReporter(Status.INFO, "API Operation Request: " + apiOperation3.get("apiDetailsRequest"));
 		Reporting.logReporter(Status.INFO, "API Operation status: " + apiOperation3.get("apiDetailsStatus"));
 
 		Reporting.printAndClearLogGroupStatements();
+		
+		// Resume penalty API
+		Reporting.setNewGroupName("RESUME PENALTY SERVICE API CALL");
+		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
-		jsonString = String.valueOf(apiOperation3.get("apiDetailsRequest")).replace("=", ":");
+		Map<String, Object> apiOperation4 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/GetResumePenalty/GetResumePenaltyTC07.feature", "apiStatus", "201");
+		Reporting.logReporter(Status.INFO, "API Operation status: " + apiOperation4.get("apiStatus"));
+		Reporting.logReporter(Status.INFO, "API Operation Request: " + apiOperation4.get("apiResponse"));
+
+		jsonString = String.valueOf(apiOperation4.get("apiResponse")).replace("=", ":");
 		Reporting.printAndClearLogGroupStatements();
 
 		/*** DB VALIDATION ***/
@@ -156,6 +175,7 @@ public class TC07_Telus_TAB_M_Renewal_TAB_HWS_Pay_TRADE_IN_Resume extends BaseTe
 		Reporting.logReporter(Status.INFO, "Pretty Payload: " + jsonString);
 
 		// Declaring variable from payload
+		GenericUtils.responseDBCheckResumePenalty(jsonString, subscriptionID, 2);
 
 		Reporting.logReporter(Status.INFO, "--------------------DB Validation Completed--------------------");
 	}

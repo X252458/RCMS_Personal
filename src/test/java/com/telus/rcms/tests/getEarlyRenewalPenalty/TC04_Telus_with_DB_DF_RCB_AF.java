@@ -105,6 +105,7 @@ ExtentTest parentTest = null;
 		subscriberNum = GenericUtils.getUniqueSubscriberNumber(apiEnv);
 		startDate = JSONUtils.getGMTStartDate();
 		System.setProperty("karate.auth_token", rewardServiceaccessToken);
+		System.setProperty("karate.auth_token_reward", rewardServiceaccessToken);
 		System.setProperty("karate.auth_token_violation", violationaccessToken);
 		System.setProperty("karate.accID", accountID);
 		System.setProperty("karate.subID", subscriptionID);
@@ -113,14 +114,25 @@ ExtentTest parentTest = null;
 		System.setProperty("karate.apiEnv", apiEnv);
 
 		// Activation API Call
-		Map<String, Object> apiOperation1 = GenericUtils.featureFileFailLoop_status(environment,
-				"classpath:tests/RCMS/Activation/Others/activationTC3.feature","tc03ActivateDB_DF_RCB_AFStatus","200");
+		Map<String, Object> apiOperation = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/Activation/Others/activationTC8.feature","tc08ActivateTelusSubwithDFStatus","200");
 		Reporting.logReporter(Status.INFO,
-				"API Operation status: " + apiOperation1.get("tc03ActivateDB_DF_RCB_AFStatus"));
+				"API Operation status: " + apiOperation.get("tc08ActivateTelusSubwithDFStatus"));
 		Reporting.logReporter(Status.INFO,
-				"API Operation Request: " + apiOperation1.get("tc03ActivateDB_DF_RCB_AFRequest"));
+				"API Operation Request: " + apiOperation.get("tc08ActivateTelusSubwithDFRequest"));
 
 		Reporting.printAndClearLogGroupStatements();
+
+		// Renewal API Call
+
+		Reporting.setNewGroupName("RENEWAL SERVICE API CALL");
+		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
+
+		Map<String, Object> apiOperation2 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/Renewal/getEarlyRenewalPenalty/renewalTC4.feature","apiStatus","200");
+		Reporting.logReporter(Status.INFO, "API Operation status: " + apiOperation2.get("apiStatus"));
+		Reporting.logReporter(Status.INFO, "API Operation Request: " + apiOperation2.get("apiRequest"));
+
 
 		// GetEarlyRenewalPenalty API Call
 

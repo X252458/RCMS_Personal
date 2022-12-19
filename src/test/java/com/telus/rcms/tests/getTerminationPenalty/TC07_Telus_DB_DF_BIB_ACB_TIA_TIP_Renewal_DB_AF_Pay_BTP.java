@@ -144,6 +144,18 @@ public class TC07_Telus_DB_DF_BIB_ACB_TIA_TIP_Renewal_DB_AF_Pay_BTP extends Base
 		Reporting.logReporter(Status.INFO, "API Operation Request: " + apiOperation2.get("tc02RenewalRequest"));
 		paymentMech="BIB_TELUS_PENDING";
 		Reporting.printAndClearLogGroupStatements();
+		
+		//Return API Call
+		Reporting.setNewGroupName("RETURN SERVICE API CALL");
+		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
+		Map<String, Object> apiOperation4 = APIJava.runKarateFeature(environment,
+				"classpath:tests/RCMS/Return/returnTC1.feature");
+		Reporting.logReporter(Status.INFO,
+				"API Operation status: " + apiOperation4.get("apiStatus"));
+		Reporting.logReporter(Status.INFO,
+				"API Operation Request: " + apiOperation4.get("apiResponse"));
+
+		Reporting.printAndClearLogGroupStatements();
 
 		// GetTerminationPenalty API Call
 		Reporting.setNewGroupName("GET TERMINATION SERVICE API CALL");

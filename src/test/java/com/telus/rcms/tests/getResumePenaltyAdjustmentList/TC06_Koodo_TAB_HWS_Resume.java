@@ -71,7 +71,8 @@ public class TC06_Koodo_TAB_HWS_Resume extends BaseTest {
 		environment = SystemProperties.EXECUTION_ENVIRONMENT;
 	}
 
-	@Test(groups = { "Loyalty_Agreement_Violation","getResumePenaltyAdjustmentList", "TC06_Koodo_TAB_HWS_Resume", "CompleteRegressionSuite" })
+	@Test(groups = { "Loyalty_Agreement_Violation", "getResumePenaltyAdjustmentList", "TC06_Koodo_TAB_HWS_Resume",
+			"CompleteRegressionSuite" })
 
 	public void testMethod_getResumePenaltyAdjustmentList(ITestContext iTestContext) throws Exception {
 
@@ -115,12 +116,12 @@ public class TC06_Koodo_TAB_HWS_Resume extends BaseTest {
 		System.setProperty("karate.apiEnv", apiEnv);
 
 		Map<String, Object> apiOperation = GenericUtils.featureFileFailLoop_status(environment,
-				"classpath:tests/RCMS/activation/activationTC2.feature","tc02ActivateKoodoTAB_HWSStatus","200");
+				"classpath:tests/RCMS/activation/activationTC2.feature", "tc02ActivateKoodoTAB_HWSStatus", "200");
 		Reporting.logReporter(Status.INFO,
 				"API Operation status: " + apiOperation.get("tc02ActivateKoodoTAB_HWSStatus"));
 		Reporting.logReporter(Status.INFO,
 				"API Operation Request: " + apiOperation.get("tc02ActivateKoodoTAB_HWSRequest"));
-		
+
 		Reporting.printAndClearLogGroupStatements();
 
 		// Cancel API Call
@@ -129,26 +130,23 @@ public class TC06_Koodo_TAB_HWS_Resume extends BaseTest {
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
 		Map<String, Object> apiOperation3 = GenericUtils.featureFileFailLoop_status(environment,
-				"classpath:tests/RCMS/Cancel/cancelTC6.feature","apiDetailsStatus","200");
+				"classpath:tests/RCMS/Cancel/cancelTC6.feature", "apiDetailsStatus", "200");
 		Reporting.logReporter(Status.INFO, "API Operation Request: " + apiOperation3.get("apiDetailsRequest"));
 		Reporting.logReporter(Status.INFO, "API Operation status: " + apiOperation3.get("apiDetailsStatus"));
 
 		Reporting.printAndClearLogGroupStatements();
-		
-		//Resume penalty API
-				Reporting.setNewGroupName("RESUME PENALTY SERVICE API CALL");
-				Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
-				Map<String, Object> apiOperation4 = GenericUtils.featureFileFailLoop_status(environment,
-						"classpath:tests/RCMS/GetResumePenalty/GetResumePenaltyTC06.feature","apiStatus","201");
-				Reporting.logReporter(Status.INFO,
-						"API Operation status: " + apiOperation4.get("apiStatus"));
-				Reporting.logReporter(Status.INFO,
-						"API Operation Request: " + apiOperation4.get("apiResponse"));
+		// Resume penalty API
+		Reporting.setNewGroupName("RESUME PENALTY SERVICE API CALL");
+		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
+		Map<String, Object> apiOperation4 = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/GetResumePenalty/GetResumePenaltyTC06.feature", "apiStatus", "201");
+		Reporting.logReporter(Status.INFO, "API Operation status: " + apiOperation4.get("apiStatus"));
+		Reporting.logReporter(Status.INFO, "API Operation Request: " + apiOperation4.get("apiResponse"));
 
-				jsonString = String.valueOf(apiOperation4.get("apiResponse")).replace("=", ":");		
-				Reporting.printAndClearLogGroupStatements();
+		jsonString = String.valueOf(apiOperation4.get("apiResponse")).replace("=", ":");
+		Reporting.printAndClearLogGroupStatements();
 
 		/*** DB VALIDATION ***/
 		Reporting.setNewGroupName("DB VERIFICATION");
