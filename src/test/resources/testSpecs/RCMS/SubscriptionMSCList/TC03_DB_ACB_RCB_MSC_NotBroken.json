@@ -1,0 +1,25 @@
+{
+	"sla": {
+		"id": "MSCValidation"
+	},
+	"relatedParty": [
+		{
+			"role": "SUBSCRIPTION",
+			"id": #(subID),
+			"characteristic": [
+				{
+					"name": "PLAN_SPENT_AMT",
+					"value": "50"
+				},
+				{
+					"name": "SERVICE_SPENT_AMT",
+					"value": "50"
+				},
+				{
+					"name": "COMBO_RATE_PLAN_IND",
+					"value": "false"
+				}
+			]
+		}
+	]
+}

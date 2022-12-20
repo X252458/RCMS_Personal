@@ -23,6 +23,7 @@ import com.telus.rcms.utils.APIUtils;
 import com.telus.rcms.utils.DBUtils;
 import com.telus.rcms.utils.GenericUtils;
 import com.telus.rcms.utils.JSONUtils;
+import com.telus.rcms.utils.ValidationUtils;
 import com.test.reporting.Reporting;
 import com.test.ui.actions.BaseTest;
 import com.test.ui.actions.Validate;
@@ -34,10 +35,13 @@ import com.test.reporting.ExtentTestManager;
 
 /**
  * 
- * TestCase name : TC01 Call getMigrationPenalty for a subscriber who wants to Migrate from Prepaid account with PRESOC to Postpaid (DB+DF)
+ * TestCase name : TC03 Call getReturnPenaltyAdjustmentList for a Telus
+ * Subscriber having DB+DF+BIB+ACB+TIASSETCREDIT+TIPROMOCREDIT - Renewed to
+ * DB+AF with Payment Method as BIB_TELUS_PENDING(TRADE_IN_PENDING and
+ * BIB_TELUS_PENDING can only be used to pay off BIB.)
  *
  */
-public class TC01_Telus_AF_Renewal_AF extends BaseTest {
+public class TC01_DB_DF_BIB_ACB_TIA_TIP_AF_MSC_Broken extends BaseTest {
 
 	String testCaseName = null;
 	String scriptName = null;
@@ -54,7 +58,8 @@ public class TC01_Telus_AF_Renewal_AF extends BaseTest {
 
 	String startDate = null;
 	String jsonString = null;
-	String paymentMech=null;
+	String src_jsonString = null;
+	String paymentMech = null;
 
 	ExtentTest parentTest = null;
 
@@ -70,7 +75,8 @@ public class TC01_Telus_AF_Renewal_AF extends BaseTest {
 		environment = SystemProperties.EXECUTION_ENVIRONMENT;
 	}
 
-	@Test(groups = { "validateSubscriptionMscList","Return_TC01_Telus_AF_Renewal_AF","CompleteRegressionSuite" })
+	@Test(groups = { "Loyalty_Agreement_Violation", "validateSubscriptionMscList",
+			"TC01_DB_DF_BIB_ACB_TIA_TIP_AF_MSC_Broken", "CompleteRegressionSuite" })
 
 	public void testMethod_validateSubscriptionMscList(ITestContext iTestContext) throws Exception {
 
@@ -87,7 +93,7 @@ public class TC01_Telus_AF_Renewal_AF extends BaseTest {
 		Reporting.logReporter(Status.INFO, "Test Case Name : [" + scriptName + "]");
 		Reporting.logReporter(Status.INFO, "Test Case Description : [" + testCaseDescription + "]");
 		Reporting.printAndClearLogGroupStatements();
-		
+
 		Reporting.setNewGroupName("ACCESS TOKEN GENERATION");
 		String rewardServiceaccessToken = APIUtils.getAccessToken(environment, "rewardService");
 		String violationaccessToken = APIUtils.getAccessToken(environment, "violation");
@@ -96,10 +102,8 @@ public class TC01_Telus_AF_Renewal_AF extends BaseTest {
 		Reporting.printAndClearLogGroupStatements();
 
 		// Activation API Call
-
 		Reporting.setNewGroupName("ACTIVATION SERVICE API CALL");
 		String apiEnv = GenericUtils.getAPIEnvironment(environment);
-		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 		accountID = GenericUtils.getUniqueAccountID(apiEnv);
 		subscriptionID = GenericUtils.getUniqueSubscriptionID(apiEnv);
 		subscriberNum = GenericUtils.getUniqueSubscriberNumber(apiEnv);
@@ -113,49 +117,32 @@ public class TC01_Telus_AF_Renewal_AF extends BaseTest {
 		System.setProperty("karate.startDate", startDate);
 		System.setProperty("karate.apiEnv", apiEnv);
 
-		Map<String, Object> apiOperation1 = GenericUtils.featureFileFailLoop_status(environment,
-				"classpath:tests/RCMS/Activation/activationTC5.feature","tc05ActivateTelusSubwithAFStatus","200");
-		Reporting.logReporter(Status.INFO,
-				"API Operation status: " + apiOperation1.get("tc05ActivateTelusSubwithAFStatus"));
-		Reporting.logReporter(Status.INFO,
-				"API Operation Request: " + apiOperation1.get("tc05ActivateTelusSubwithAFRequest"));
+		// Activation API Call
 
+		Map<String, Object> apiOperation = GenericUtils.featureFileFailLoop_status(environment,
+				"classpath:tests/RCMS/activation/activationTC1.feature", "tc01ActivateTelusSubWithAllStatus", "200");
+		Reporting.logReporter(Status.INFO,
+				"API Operation status: " + apiOperation.get("tc01ActivateTelusSubWithAllRequest"));
+		Reporting.logReporter(Status.INFO,
+				"API Operation Request: " + apiOperation.get("tc01ActivateTelusSubWithAllStatus"));
 		Reporting.printAndClearLogGroupStatements();
 
-		/*** Test Case - Renewal - AccessoryFinance ***/
+		// ValidateSubMscList API Call
 
-		// Renewal API Call
-
-		Reporting.setNewGroupName("RENEWAL SERVICE API CALL - AccessoryFinance");
+		Reporting.setNewGroupName("SUBSCRIPTION MSC LIST SERVICE API CALL ");
 		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
 
 		Map<String, Object> apiOperation2 = GenericUtils.featureFileFailLoop_status(environment,
-				"classpath:tests/RCMS/Renewal/getRewardCommitment/renewalTC1.feature","apiStatus","200");
-		Reporting.logReporter(Status.INFO,
-				"API Operation status: " + apiOperation2.get("apiStatus"));
-		Reporting.logReporter(Status.INFO,
-				"API Operation Request: " + apiOperation2.get("apiRequest"));
-		paymentMech="BILL";
-		Reporting.printAndClearLogGroupStatements();
+				"classpath:tests/RCMS/SubscriptionMSCList/SubscriptionMSCListTC1.feature", "apiStatus", "201");
+		Reporting.logReporter(Status.INFO, "API Operation status: " + apiOperation2.get("apiStatus"));
+		Reporting.logReporter(Status.INFO, "API Operation Request: " + apiOperation2.get("apiRequest"));
+		Reporting.logReporter(Status.INFO, "API Operation Response: " + apiOperation2.get("apiResponse"));
 
-		// GetReturnPenalty API Call
-
-		
-		Reporting.setNewGroupName("GET RETURN PENALTY SERVICE API CALL");
-		Reporting.logReporter(Status.INFO, "API Test Env is : [" + apiEnv + "]");
-
-		Map<String, Object> apiOperation3 = GenericUtils.featureFileFailLoop_status(environment,
-				"classpath:tests/RCMS/GetReturnPenalty/GetReturnPenaltyTC01.feature","getReturnPenaltyStatus","201");
-		Reporting.logReporter(Status.INFO,
-				"API Operation status: " + apiOperation3.get("getReturnPenaltyStatus"));
-		Reporting.logReporter(Status.INFO,
-				"API Operation Request: " + apiOperation3.get("getReturnPenaltyResponse"));
-
-		jsonString = String.valueOf(apiOperation3.get("getReturnPenaltyResponse")).replace("=", ":");
+		jsonString = String.valueOf(apiOperation2.get("apiResponse")).replace("=", ":");
 		Reporting.printAndClearLogGroupStatements();
 
 		/*** DB VALIDATION ***/
-		Reporting.setNewGroupName("DB VERIFICATION - TC01");
+		Reporting.setNewGroupName("DB VERIFICATION");
 		responseAndDbCheck();
 		Reporting.printAndClearLogGroupStatements();
 
@@ -163,7 +150,7 @@ public class TC01_Telus_AF_Renewal_AF extends BaseTest {
 
 	public void responseAndDbCheck() throws SQLException, IOException, InterruptedException {
 
-		 DBUtils.callDBConnect();
+		DBUtils.callDBConnect();
 
 		/**
 		 * DB Verification Steps
@@ -172,8 +159,8 @@ public class TC01_Telus_AF_Renewal_AF extends BaseTest {
 		Reporting.logReporter(Status.INFO, "Pretty Payload: " + jsonString);
 
 		// Declaring variable from payload
+		ValidationUtils.subMscListCheck(jsonString,1);
 
-		GenericUtils.responseDBCheckReturnAdjustment(jsonString, subscriptionID, 0,paymentMech);
 
 		Reporting.logReporter(Status.INFO, "--------------------DB Validation Completed--------------------");
 	}

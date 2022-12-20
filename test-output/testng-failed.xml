@@ -3,13 +3,13 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.telus.rcms.tests.getMigrationPenalty.TC03_Postpaid_DB_DF_BIB_ACB_TIA_TIP_to_Prepaid_PRESOC">
+      <class name="com.telus.rcms.tests.ValidateSubscriptionMscList.TC01_DB_DF_BIB_ACB_TIA_TIP_AF_MSC_Broken">
         <methods>
-          <include name="testMethod_getMigrationPenalty" invocation-numbers="0"/>
+          <include name="testMethod_validateSubscriptionMscList" invocation-numbers="0"/>
           <include name="afterTest"/>
           <include name="BeforeMethod"/>
         </methods>
-      </class> <!-- com.telus.rcms.tests.getMigrationPenalty.TC03_Postpaid_DB_DF_BIB_ACB_TIA_TIP_to_Prepaid_PRESOC -->
+      </class> <!-- com.telus.rcms.tests.ValidateSubscriptionMscList.TC01_DB_DF_BIB_ACB_TIA_TIP_AF_MSC_Broken -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

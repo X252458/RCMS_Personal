@@ -63,6 +63,7 @@ import com.telus.rcms.jsonPathLibrary.GetRewardCommitmentAgreementItem;
 import com.telus.rcms.jsonPathLibrary.GetRewardCommitmentNew;
 import com.telus.rcms.jsonPathLibrary.ListEarnedTransaction;
 import com.telus.rcms.jsonPathLibrary.Renewal;
+import com.telus.rcms.jsonPathLibrary.SubscriptionMSCList;
 import com.telus.rcms.jsonPathLibrary.UpdateDeviceSerialNo;
 import com.telus.rcms.jsonPathLibrary.UpdateItem;
 import com.test.files.interaction.ReadJSON;
@@ -5421,7 +5422,7 @@ public class ValidationUtils {
 
 			String agreementItem_itemDurationEndDateTime = JSONUtils.checkValue(jsonString,
 					agrmtItem.agreementItem_itemDurationEndDateTime);
-			
+
 			agreementItem_itemDurationEndDateTime = JSONUtils.getEndDate(agreementItem_itemDurationEndDateTime,
 					agreementItem_itemDurationStartDateTime, agreementItem_itemType, agreementItem_itemDurationAmount);
 
@@ -5439,7 +5440,7 @@ public class ValidationUtils {
 
 			String agreementItem_installmentEndDateTime = JSONUtils.checkValue(jsonString,
 					agrmtItem.agreementItem_installmentEndDateTime);
-			
+
 			agreementItem_installmentEndDateTime = JSONUtils.getEndDate(agreementItem_installmentEndDateTime,
 					agreementItem_installmentStartDateTime, agreementItem_itemType, agreementItem_itemDurationAmount);
 
@@ -5540,10 +5541,9 @@ public class ValidationUtils {
 			String agreementItem_productOfferingSourceSystemId = String.valueOf(JSONUtils
 					.getJSONKeyValueUsingJsonPath(jsonString, agrmtItem.agreementItem_productOfferingSourceSystemId));
 
-			String relatedParty_Subid = String.valueOf(JSONUtils
-					.getJSONKeyValueUsingJsonPath(jsonString, agrmtItem.relatedParty_Subid));
+			String relatedParty_Subid = String
+					.valueOf(JSONUtils.getJSONKeyValueUsingJsonPath(jsonString, agrmtItem.relatedParty_Subid));
 
-			
 			if (agreementItem_itemType.equals("17")) {
 				agreementItem_termOrConditionMinRatePlanValue = "null";
 				agreementItem_termOrConditionMinFeatureValue = "null";
@@ -5556,7 +5556,9 @@ public class ValidationUtils {
 			String tax = null;
 			rsAgreementItem = statement.executeQuery("Select * from cust_srvc_agrmt_item item  "
 					+ "inner join CUST_SRVC_AGRMT_ITM_PROMO promo  "
-					+ "on item.CUST_SRVC_AGRMT_ITEM_ID = promo.CUST_SRVC_AGRMT_ITEM_ID and item.customer_svc_agreement_id =(select customer_svc_agreement_id from CUSTOMER_SERVICE_AGREEMENT where SUBSCRIPTION_ID = '"+relatedParty_Subid+"') and item.REWARD_PROGRAM_TYP_ID='" + agreementItem_itemType + "' and item.ORIG_COMMITMENT_LENGTH_NUM != '0'");
+					+ "on item.CUST_SRVC_AGRMT_ITEM_ID = promo.CUST_SRVC_AGRMT_ITEM_ID and item.customer_svc_agreement_id =(select customer_svc_agreement_id from CUSTOMER_SERVICE_AGREEMENT where SUBSCRIPTION_ID = '"
+					+ relatedParty_Subid + "') and item.REWARD_PROGRAM_TYP_ID='" + agreementItem_itemType
+					+ "' and item.ORIG_COMMITMENT_LENGTH_NUM != '0'");
 
 			while (rsAgreementItem.next()) {
 
@@ -5576,8 +5578,9 @@ public class ValidationUtils {
 						String.valueOf(rsAgreementItem.getString("ORIG_COMMITMENT_LENGTH_NUM")),
 						agreementItem_itemDurationAmount, "ORIG_COMMITMENT_LENGTH_NUM");
 
-				GenericUtils.validateAssertEqualsFromDB(String.valueOf(rsAgreementItem.getString("REWARD_PROGRAM_TYP_ID")),
-						agreementItem_itemType, "REWARD_PROGRAM_TYP_ID");
+				GenericUtils.validateAssertEqualsFromDB(
+						String.valueOf(rsAgreementItem.getString("REWARD_PROGRAM_TYP_ID")), agreementItem_itemType,
+						"REWARD_PROGRAM_TYP_ID");
 
 				GenericUtils.validateAssertEqualsFromDB(String.valueOf(rsAgreementItem.getString("INCENTIVE_AMT")),
 						agreementItem_incentiveAmount, "INCENTIVE_AMT");
@@ -5665,8 +5668,8 @@ public class ValidationUtils {
 
 				if (!agreementItem_itemType.equals("5")) {
 					GenericUtils.validateAssertEqualsFromDB(
-							String.valueOf(rsAgreementItem.getString("REDEEMED_PROMOTION_ID")), agreementItem_promotionid,
-							"REDEEMED_PROMOTION_ID");
+							String.valueOf(rsAgreementItem.getString("REDEEMED_PROMOTION_ID")),
+							agreementItem_promotionid, "REDEEMED_PROMOTION_ID");
 
 					GenericUtils.validateAssertEqualsFromDB(
 							String.valueOf(rsAgreementItem.getDate("REDEEMED_PROMOTION_TS")),
@@ -5690,9 +5693,12 @@ public class ValidationUtils {
 				GenericUtils.validateAssertEqualsFromDB(String.valueOf(rsAgreementItem.getString("REDEEMED_OFFER_ID")),
 						agreementItem_productOfferingid, "REDEEMED_OFFER_ID");
 
-				/*GenericUtils.validateAssertEqualsFromDB(
-						String.valueOf(rsAgreementItem.getString("REDEEMED_OFFER_TYPE_ID")),
-						agreementItem_productOfferingRedeemedOfferContextCodeValue, "REDEEMED_OFFER_TYPE_ID");*/
+				/*
+				 * GenericUtils.validateAssertEqualsFromDB(
+				 * String.valueOf(rsAgreementItem.getString("REDEEMED_OFFER_TYPE_ID")),
+				 * agreementItem_productOfferingRedeemedOfferContextCodeValue,
+				 * "REDEEMED_OFFER_TYPE_ID");
+				 */
 
 				GenericUtils.validateAssertEqualsFromDB(
 						String.valueOf(rsAgreementItem.getString("REDEEMED_OFFER_TIER_CD")),
@@ -5712,7 +5718,8 @@ public class ValidationUtils {
 				GenericUtils.validateAssertEqualsFromDB(String.valueOf(rsAgreementItem.getDate("REDEEMED_OFFER_TS")),
 						agreementItem_productOfferingPerspectiveDate, "REDEEMED_OFFER_TS");
 
-				GenericUtils.validateAssertEqualsFromDB(String.valueOf(rsAgreementItem.getString("REDEEMED_OFFER_SYS_ID")),
+				GenericUtils.validateAssertEqualsFromDB(
+						String.valueOf(rsAgreementItem.getString("REDEEMED_OFFER_SYS_ID")),
 						agreementItem_productOfferingSourceSystemId, "REDEEMED_OFFER_SYS_ID");
 
 			}
@@ -5759,12 +5766,12 @@ public class ValidationUtils {
 
 			String itemUpdate_itemDurationEndDateTime = JSONUtils.checkValue(jsonString,
 					agrmtItem.itemUpdate_itemDurationEndDateTime);
-			
+
 			itemUpdate_itemDurationEndDateTime = JSONUtils.getEndDate(itemUpdate_itemDurationEndDateTime,
 					itemUpdate_itemDurationStartDateTime, itemUpdate_itemType, itemUpdate_itemDurationAmount);
 
-			String itemUpdate_incentiveAmount = String.valueOf(
-					JSONUtils.getJSONKeyValueUsingJsonPath(jsonString, agrmtItem.itemUpdate_incentiveAmount));
+			String itemUpdate_incentiveAmount = String
+					.valueOf(JSONUtils.getJSONKeyValueUsingJsonPath(jsonString, agrmtItem.itemUpdate_incentiveAmount));
 
 			String itemUpdate_incentiveServiceCode = JSONUtils.checkValue(jsonString,
 					agrmtItem.itemUpdate_incentiveServiceCode);
@@ -5776,8 +5783,7 @@ public class ValidationUtils {
 					agrmtItem.itemUpdate_installmentStartDateTime);
 			if (itemUpdate_itemType.equals("9"))
 				itemUpdate_installmentStartDateTime = JSONUtils.getInstallmentStartDate(
-						itemUpdate_installmentStartDateTime, itemUpdate_itemType,
-						itemUpdate_installmentAmount);
+						itemUpdate_installmentStartDateTime, itemUpdate_itemType, itemUpdate_installmentAmount);
 
 			String itemUpdate_installmentEndDateTime = JSONUtils.checkValue(jsonString,
 					agrmtItem.itemUpdate_installmentEndDateTime);
@@ -5786,8 +5792,8 @@ public class ValidationUtils {
 			if (itemUpdate_itemType.equals("10") || itemUpdate_itemType.equals("11"))
 				itemUpdate_installmentEndDateTime = "null";
 
-			String itemUpdate_installmentLeftNumValue = String.valueOf(JSONUtils
-					.getJSONKeyValueUsingJsonPath(jsonString, agrmtItem.itemUpdate_installmentLeftNumValue));
+			String itemUpdate_installmentLeftNumValue = String.valueOf(
+					JSONUtils.getJSONKeyValueUsingJsonPath(jsonString, agrmtItem.itemUpdate_installmentLeftNumValue));
 
 			String itemUpdate_installmentAppliedNumValue = String.valueOf(JSONUtils
 					.getJSONKeyValueUsingJsonPath(jsonString, agrmtItem.itemUpdate_installmentAppliedNumValue));
@@ -5821,15 +5827,14 @@ public class ValidationUtils {
 			String itemUpdate_taxPaymentChannelCode = JSONUtils.checkValue(jsonString,
 					agrmtItem.itemUpdate_taxPaymentChannelCode);
 
-			String itemUpdate_taxProvinceCode = JSONUtils.checkValue(jsonString,
-					agrmtItem.itemUpdate_taxProvinceCode);
+			String itemUpdate_taxProvinceCode = JSONUtils.checkValue(jsonString, agrmtItem.itemUpdate_taxProvinceCode);
 
 			String itemUpdate_taxCategory = JSONUtils.checkValue(jsonString, agrmtItem.itemUpdate_taxCategory);
 
 			String itemUpdate_taxRate = JSONUtils.checkValue(jsonString, agrmtItem.itemUpdate_taxRate);
 
-			String itemUpdate_taxAmountValue = String.valueOf(
-					JSONUtils.getJSONKeyValueUsingJsonPath(jsonString, agrmtItem.itemUpdate_taxAmountValue));
+			String itemUpdate_taxAmountValue = String
+					.valueOf(JSONUtils.getJSONKeyValueUsingJsonPath(jsonString, agrmtItem.itemUpdate_taxAmountValue));
 
 			String itemUpdate_productSerialNumber = JSONUtils.checkValue(jsonString,
 					agrmtItem.itemUpdate_productSerialNumber);
@@ -5843,8 +5848,8 @@ public class ValidationUtils {
 			String itemUpdate_promotionid = String
 					.valueOf(JSONUtils.getJSONKeyValueUsingJsonPath(jsonString, agrmtItem.itemUpdate_promotionid));
 
-			String itemUpdate_promotionPerspectiveDate = String.valueOf(JSONUtils
-					.getJSONKeyValueUsingJsonPath(jsonString, agrmtItem.itemUpdate_promotionPerspectiveDate));
+			String itemUpdate_promotionPerspectiveDate = String.valueOf(
+					JSONUtils.getJSONKeyValueUsingJsonPath(jsonString, agrmtItem.itemUpdate_promotionPerspectiveDate));
 			itemUpdate_promotionPerspectiveDate = itemUpdate_promotionPerspectiveDate.split("T")[0];
 
 			String itemUpdate_productOfferingid = String.valueOf(
@@ -5883,10 +5888,9 @@ public class ValidationUtils {
 			String itemUpdate_productOfferingSourceSystemId = String.valueOf(JSONUtils
 					.getJSONKeyValueUsingJsonPath(jsonString, agrmtItem.itemUpdate_productOfferingSourceSystemId));
 
-			String relatedParty_Subid = String.valueOf(JSONUtils
-					.getJSONKeyValueUsingJsonPath(jsonString, agrmtItem.relatedParty_Subid));
+			String relatedParty_Subid = String
+					.valueOf(JSONUtils.getJSONKeyValueUsingJsonPath(jsonString, agrmtItem.relatedParty_Subid));
 
-			
 			if (itemUpdate_itemType.equals("17")) {
 				itemUpdate_termOrConditionMinRatePlanValue = "null";
 				itemUpdate_termOrConditionMinFeatureValue = "null";
@@ -5899,7 +5903,9 @@ public class ValidationUtils {
 			String tax = null;
 			rsAgreementItem = statement.executeQuery("Select * from cust_srvc_agrmt_item item  "
 					+ "inner join CUST_SRVC_AGRMT_ITM_PROMO promo  "
-					+ "on item.CUST_SRVC_AGRMT_ITEM_ID = promo.CUST_SRVC_AGRMT_ITEM_ID and item.customer_svc_agreement_id =(select customer_svc_agreement_id from CUSTOMER_SERVICE_AGREEMENT where CURRENT_IND='Y' AND SUBSCRIPTION_ID = '"+relatedParty_Subid+"') and item.REWARD_PROGRAM_TYP_ID='" + itemUpdate_itemType + "' and item.ORIG_COMMITMENT_LENGTH_NUM != '0'");
+					+ "on item.CUST_SRVC_AGRMT_ITEM_ID = promo.CUST_SRVC_AGRMT_ITEM_ID and item.customer_svc_agreement_id =(select customer_svc_agreement_id from CUSTOMER_SERVICE_AGREEMENT where CURRENT_IND='Y' AND SUBSCRIPTION_ID = '"
+					+ relatedParty_Subid + "') and item.REWARD_PROGRAM_TYP_ID='" + itemUpdate_itemType
+					+ "' and item.ORIG_COMMITMENT_LENGTH_NUM != '0'");
 
 			while (rsAgreementItem.next()) {
 
@@ -5911,9 +5917,10 @@ public class ValidationUtils {
 						String.valueOf(rsAgreementItem.getDate("COMMITMENT_EFF_START_DT")),
 						itemUpdate_itemDurationStartDateTime, "COMMITMENT_EFF_START_DT");
 
-				GenericUtils.validateAssertEqualsFromDB(String.valueOf(rsAgreementItem.getString("REWARD_PROGRAM_TYP_ID")),
-						itemUpdate_itemType, "REWARD_PROGRAM_TYP_ID");
-			
+				GenericUtils.validateAssertEqualsFromDB(
+						String.valueOf(rsAgreementItem.getString("REWARD_PROGRAM_TYP_ID")), itemUpdate_itemType,
+						"REWARD_PROGRAM_TYP_ID");
+
 				if (!itemUpdate_incentiveServiceCode.equals("NA")) {
 					GenericUtils.validateAssertEqualsFromDB(String.valueOf(rsAgreementItem.getInt("INCENTIVE_CD")),
 							itemUpdate_incentiveServiceCode, "INCENTIVE_CD");
@@ -5924,120 +5931,122 @@ public class ValidationUtils {
 
 				/*
 				 * GenericUtils.validateAssertEqualsFromDB(
-						String.valueOf(rsAgreementItem.getString("RTPLN_MIN_COMMITMENT_AMT")),
-						itemUpdate_termOrConditionMinRatePlanValue, "RTPLN_MIN_COMMITMENT_AMT");
+				 * String.valueOf(rsAgreementItem.getString("RTPLN_MIN_COMMITMENT_AMT")),
+				 * itemUpdate_termOrConditionMinRatePlanValue, "RTPLN_MIN_COMMITMENT_AMT");
+				 * 
+				 * GenericUtils.validateAssertEqualsFromDB(
+				 * String.valueOf(rsAgreementItem.getString("FEAT_MIN_COMMITMENT_AMT")),
+				 * itemUpdate_termOrConditionMinFeatureValue, "FEAT_MIN_COMMITMENT_AMT");
+				 * 
+				 * GenericUtils.validateAssertEqualsFromDB(
+				 * String.valueOf(rsAgreementItem.getString("COMB_MIN_COMMITMENT_AMT")),
+				 * itemUpdate_termOrConditionMinCombinedValue, "COMB_MIN_COMMITMENT_AMT");
+				 * 
+				 * if (!itemUpdate_termOrConditionCommitmentServiceCdValue.equals("NA"))
+				 * GenericUtils.validateAssertEqualsFromDB(
+				 * String.valueOf(rsAgreementItem.getString("COMMITMENT_SERVICE_CD")),
+				 * itemUpdate_termOrConditionCommitmentServiceCdValue, "COMMITMENT_SERVICE_CD");
+				 * 
+				 * if (!itemUpdate_termOrConditionAutoTopupCommitmentIndValue.equals("NA"))
+				 * GenericUtils.validateAssertEqualsFromDB(
+				 * String.valueOf(rsAgreementItem.getString("COMMITMENT_AUTOTOPUP_IND")),
+				 * itemUpdate_termOrConditionAutoTopupCommitmentIndValue,
+				 * "COMMITMENT_AUTOTOPUP_IND");
+				 * 
+				 * if (itemUpdate_itemType.equals("4") || itemUpdate_itemType.equals("9")) {
+				 * 
+				 * rsAgreementTax = statement3.executeQuery(
+				 * "select * from CUST_SRVC_AGRMT_ITM_TAX tax inner join CUST_SRVC_AGRMT_ITM_TAX_DTL dtl "
+				 * + "on tax.CUST_SRVC_AGRMT_ITM_TAX_ID = dtl.CUST_SRVC_AGRMT_ITM_TAX_ID " +
+				 * "and tax.CUST_SRVC_AGRMT_ITEM_ID=" + custAgmtItemId);
+				 * 
+				 * while (rsAgreementTax.next()) { GenericUtils.validateAssertEqualsFromDB(
+				 * String.valueOf(rsAgreementTax.getString("TAX_PAYMENT_METHOD_CD")),
+				 * itemUpdate_taxPaymentMethodCode, "TAX_PAYMENT_METHOD_CD");
+				 * 
+				 * GenericUtils.validateAssertEqualsFromDB(
+				 * String.valueOf(rsAgreementTax.getString("TAX_PYMT_MECHANISM_CD")),
+				 * itemUpdate_taxPaymentMechanismCode, "TAX_PYMT_MECHANISM_CD");
+				 * 
+				 * GenericUtils.validateAssertEqualsFromDB(
+				 * String.valueOf(rsAgreementTax.getString("TAX_PAYMENT_CHANNEL_CD")),
+				 * itemUpdate_taxPaymentChannelCode, "TAX_PAYMENT_CHANNEL_CD");
+				 * 
+				 * GenericUtils.validateAssertEqualsFromDB(
+				 * String.valueOf(rsAgreementTax.getString("TAXATION_PROVINCE_CD")),
+				 * itemUpdate_taxProvinceCode, "TAXATION_PROVINCE_CD");
+				 * 
+				 * GenericUtils.validateAssertEqualsFromDB(String.valueOf(rsAgreementTax.
+				 * getString("TAX_TYPE_CD")), itemUpdate_taxCategory, "TAX_TYPE_CD");
+				 * 
+				 * GenericUtils.validateAssertEqualsFromDB(
+				 * String.valueOf(rsAgreementTax.getString("TAX_RATE_PCT")), itemUpdate_taxRate,
+				 * "TAX_RATE_PCT");
+				 * 
+				 * GenericUtils.validateAssertEqualsFromDB(String.valueOf(rsAgreementTax.
+				 * getString("TAX_AMT")), itemUpdate_taxAmountValue, "TAX_AMT"); } }
+				 * 
+				 * if (!itemUpdate_itemType.equals("5")) {
+				 * GenericUtils.validateAssertEqualsFromDB(
+				 * String.valueOf(rsAgreementItem.getString("REDEEMED_PROMOTION_ID")),
+				 * itemUpdate_promotionid, "REDEEMED_PROMOTION_ID");
+				 * 
+				 * GenericUtils.validateAssertEqualsFromDB(
+				 * String.valueOf(rsAgreementItem.getDate("REDEEMED_PROMOTION_TS")),
+				 * itemUpdate_promotionPerspectiveDate, "REDEEMED_PROMOTION_TS"); } if
+				 * (!itemUpdate_productSerialNumber.equals("NA")) {
+				 * GenericUtils.validateAssertEqualsFromDB(
+				 * String.valueOf(rsAgreementItem.getString("HANDSET_SERIAL_NUM")),
+				 * itemUpdate_productSerialNumber, "HANDSET_SERIAL_NUM"); } if
+				 * (!itemUpdate_productPriceValue.equals("NA")) {
+				 * GenericUtils.validateAssertEqualsFromDB(
+				 * String.valueOf(rsAgreementItem.getString("CATALOGUE_ITEM_PRICE_AMT")),
+				 * itemUpdate_productPriceValue, "CATALOGUE_ITEM_PRICE_AMT"); } if
+				 * (!itemUpdate_productCharacteristicValue.equals("NA")) {
+				 * GenericUtils.validateAssertEqualsFromDB(String.valueOf(rsAgreementItem.
+				 * getString("USIM_ID")), itemUpdate_productCharacteristicValue, "USIM_ID"); }
+				 * 
+				 * GenericUtils.validateAssertEqualsFromDB(String.valueOf(rsAgreementItem.
+				 * getString("REDEEMED_OFFER_ID")), itemUpdate_productOfferingid,
+				 * "REDEEMED_OFFER_ID");
+				 * 
+				 * GenericUtils.validateAssertEqualsFromDB(
+				 * String.valueOf(rsAgreementItem.getString("REDEEMED_OFFER_TYPE_ID")),
+				 * itemUpdate_productOfferingRedeemedOfferContextCodeValue,
+				 * "REDEEMED_OFFER_TYPE_ID");
+				 * 
+				 * GenericUtils.validateAssertEqualsFromDB(
+				 * String.valueOf(rsAgreementItem.getString("REDEEMED_OFFER_TIER_CD")),
+				 * itemUpdate_productOfferingOfferTierCdValue, "REDEEMED_OFFER_TIER_CD");
+				 * 
+				 * GenericUtils.validateAssertEqualsFromDB(
+				 * String.valueOf(rsAgreementItem.getString("REDEEMED_OFFER_TIER_CAP_AMT")),
+				 * itemUpdate_productOfferingOfferTierCapAmtValue,
+				 * "REDEEMED_OFFER_TIER_CAP_AMT");
+				 * 
+				 * GenericUtils.validateAssertEqualsFromDB(String.valueOf(rsAgreementItem.
+				 * getString("DATA_SRVC_REQ_IND")),
+				 * itemUpdate_productOfferingDataCommitmentIndValue, "DATA_SRVC_REQ_IND");
+				 * 
+				 * GenericUtils.validateAssertEqualsFromDB(
+				 * String.valueOf(rsAgreementItem.getString("COMB_MIN_CMITMT_DISCHRG_IND")),
+				 * itemUpdate_productOfferingContractEnforcedPlanIndValue,
+				 * "COMB_MIN_CMITMT_DISCHRG_IND");
+				 * 
+				 * GenericUtils.validateAssertEqualsFromDB(String.valueOf(rsAgreementItem.
+				 * getDate("REDEEMED_OFFER_TS")), itemUpdate_productOfferingPerspectiveDate,
+				 * "REDEEMED_OFFER_TS");
+				 * 
+				 * GenericUtils.validateAssertEqualsFromDB(String.valueOf(rsAgreementItem.
+				 * getString("REDEEMED_OFFER_SYS_ID")),
+				 * itemUpdate_productOfferingSourceSystemId, "REDEEMED_OFFER_SYS_ID");
+				 */
 
-				GenericUtils.validateAssertEqualsFromDB(
-						String.valueOf(rsAgreementItem.getString("FEAT_MIN_COMMITMENT_AMT")),
-						itemUpdate_termOrConditionMinFeatureValue, "FEAT_MIN_COMMITMENT_AMT");
+				Reporting.logReporter(Status.INFO, "--- Updated fields for : " + itemUpdate_itemType);
+				GenericUtils.validateAssertEquals(itemUpdate_installmentAppliedNumValue,
+						itemUpdate_installmentAppliedNumValue, "INSTALLMENT_APPLIED_NUM");
 
-				GenericUtils.validateAssertEqualsFromDB(
-						String.valueOf(rsAgreementItem.getString("COMB_MIN_COMMITMENT_AMT")),
-						itemUpdate_termOrConditionMinCombinedValue, "COMB_MIN_COMMITMENT_AMT");
-
-				if (!itemUpdate_termOrConditionCommitmentServiceCdValue.equals("NA"))
-					GenericUtils.validateAssertEqualsFromDB(
-							String.valueOf(rsAgreementItem.getString("COMMITMENT_SERVICE_CD")),
-							itemUpdate_termOrConditionCommitmentServiceCdValue, "COMMITMENT_SERVICE_CD");
-
-				if (!itemUpdate_termOrConditionAutoTopupCommitmentIndValue.equals("NA"))
-					GenericUtils.validateAssertEqualsFromDB(
-							String.valueOf(rsAgreementItem.getString("COMMITMENT_AUTOTOPUP_IND")),
-							itemUpdate_termOrConditionAutoTopupCommitmentIndValue, "COMMITMENT_AUTOTOPUP_IND");
-
-				if (itemUpdate_itemType.equals("4") || itemUpdate_itemType.equals("9")) {
-
-					rsAgreementTax = statement3.executeQuery(
-							"select * from CUST_SRVC_AGRMT_ITM_TAX tax inner join CUST_SRVC_AGRMT_ITM_TAX_DTL dtl "
-									+ "on tax.CUST_SRVC_AGRMT_ITM_TAX_ID = dtl.CUST_SRVC_AGRMT_ITM_TAX_ID "
-									+ "and tax.CUST_SRVC_AGRMT_ITEM_ID=" + custAgmtItemId);
-
-					while (rsAgreementTax.next()) {
-						GenericUtils.validateAssertEqualsFromDB(
-								String.valueOf(rsAgreementTax.getString("TAX_PAYMENT_METHOD_CD")),
-								itemUpdate_taxPaymentMethodCode, "TAX_PAYMENT_METHOD_CD");
-
-						GenericUtils.validateAssertEqualsFromDB(
-								String.valueOf(rsAgreementTax.getString("TAX_PYMT_MECHANISM_CD")),
-								itemUpdate_taxPaymentMechanismCode, "TAX_PYMT_MECHANISM_CD");
-
-						GenericUtils.validateAssertEqualsFromDB(
-								String.valueOf(rsAgreementTax.getString("TAX_PAYMENT_CHANNEL_CD")),
-								itemUpdate_taxPaymentChannelCode, "TAX_PAYMENT_CHANNEL_CD");
-
-						GenericUtils.validateAssertEqualsFromDB(
-								String.valueOf(rsAgreementTax.getString("TAXATION_PROVINCE_CD")),
-								itemUpdate_taxProvinceCode, "TAXATION_PROVINCE_CD");
-
-						GenericUtils.validateAssertEqualsFromDB(String.valueOf(rsAgreementTax.getString("TAX_TYPE_CD")),
-								itemUpdate_taxCategory, "TAX_TYPE_CD");
-
-						GenericUtils.validateAssertEqualsFromDB(
-								String.valueOf(rsAgreementTax.getString("TAX_RATE_PCT")), itemUpdate_taxRate,
-								"TAX_RATE_PCT");
-
-						GenericUtils.validateAssertEqualsFromDB(String.valueOf(rsAgreementTax.getString("TAX_AMT")),
-								itemUpdate_taxAmountValue, "TAX_AMT");
-					}
-				}
-
-				if (!itemUpdate_itemType.equals("5")) {
-					GenericUtils.validateAssertEqualsFromDB(
-							String.valueOf(rsAgreementItem.getString("REDEEMED_PROMOTION_ID")), itemUpdate_promotionid,
-							"REDEEMED_PROMOTION_ID");
-
-					GenericUtils.validateAssertEqualsFromDB(
-							String.valueOf(rsAgreementItem.getDate("REDEEMED_PROMOTION_TS")),
-							itemUpdate_promotionPerspectiveDate, "REDEEMED_PROMOTION_TS");
-				}
-				if (!itemUpdate_productSerialNumber.equals("NA")) {
-					GenericUtils.validateAssertEqualsFromDB(
-							String.valueOf(rsAgreementItem.getString("HANDSET_SERIAL_NUM")),
-							itemUpdate_productSerialNumber, "HANDSET_SERIAL_NUM");
-				}
-				if (!itemUpdate_productPriceValue.equals("NA")) {
-					GenericUtils.validateAssertEqualsFromDB(
-							String.valueOf(rsAgreementItem.getString("CATALOGUE_ITEM_PRICE_AMT")),
-							itemUpdate_productPriceValue, "CATALOGUE_ITEM_PRICE_AMT");
-				}
-				if (!itemUpdate_productCharacteristicValue.equals("NA")) {
-					GenericUtils.validateAssertEqualsFromDB(String.valueOf(rsAgreementItem.getString("USIM_ID")),
-							itemUpdate_productCharacteristicValue, "USIM_ID");
-				}
-
-				GenericUtils.validateAssertEqualsFromDB(String.valueOf(rsAgreementItem.getString("REDEEMED_OFFER_ID")),
-						itemUpdate_productOfferingid, "REDEEMED_OFFER_ID");
-
-				GenericUtils.validateAssertEqualsFromDB(
-						String.valueOf(rsAgreementItem.getString("REDEEMED_OFFER_TYPE_ID")),
-						itemUpdate_productOfferingRedeemedOfferContextCodeValue, "REDEEMED_OFFER_TYPE_ID");
-
-				GenericUtils.validateAssertEqualsFromDB(
-						String.valueOf(rsAgreementItem.getString("REDEEMED_OFFER_TIER_CD")),
-						itemUpdate_productOfferingOfferTierCdValue, "REDEEMED_OFFER_TIER_CD");
-
-				GenericUtils.validateAssertEqualsFromDB(
-						String.valueOf(rsAgreementItem.getString("REDEEMED_OFFER_TIER_CAP_AMT")),
-						itemUpdate_productOfferingOfferTierCapAmtValue, "REDEEMED_OFFER_TIER_CAP_AMT");
-
-				GenericUtils.validateAssertEqualsFromDB(String.valueOf(rsAgreementItem.getString("DATA_SRVC_REQ_IND")),
-						itemUpdate_productOfferingDataCommitmentIndValue, "DATA_SRVC_REQ_IND");
-
-				GenericUtils.validateAssertEqualsFromDB(
-						String.valueOf(rsAgreementItem.getString("COMB_MIN_CMITMT_DISCHRG_IND")),
-						itemUpdate_productOfferingContractEnforcedPlanIndValue, "COMB_MIN_CMITMT_DISCHRG_IND");
-
-				GenericUtils.validateAssertEqualsFromDB(String.valueOf(rsAgreementItem.getDate("REDEEMED_OFFER_TS")),
-						itemUpdate_productOfferingPerspectiveDate, "REDEEMED_OFFER_TS");
-
-				GenericUtils.validateAssertEqualsFromDB(String.valueOf(rsAgreementItem.getString("REDEEMED_OFFER_SYS_ID")),
-						itemUpdate_productOfferingSourceSystemId, "REDEEMED_OFFER_SYS_ID");*/
-				
-				Reporting.logReporter(Status.INFO, "--- Updated fields for : "+itemUpdate_itemType);
-					GenericUtils.validateAssertEquals(itemUpdate_installmentAppliedNumValue,
-							itemUpdate_installmentAppliedNumValue, "INSTALLMENT_APPLIED_NUM");
-
-				switch(itemUpdate_installmentAppliedNumValue) {
+				switch (itemUpdate_installmentAppliedNumValue) {
 				case "0":
 					GenericUtils.validateAssertEqualsFromDB(
 							String.valueOf(rsAgreementItem.getDate("COMMITMENT_EFF_END_DT")),
@@ -6046,14 +6055,11 @@ public class ValidationUtils {
 							itemUpdate_incentiveAmount, "INCENTIVE_AMT");
 					break;
 				case "1":
-					GenericUtils.validateAssertEqualsFromDB(
-							rsAgreementItem.getDate("COMMITMENT_EFF_END_DT"),
+					GenericUtils.validateAssertEqualsFromDB(rsAgreementItem.getDate("COMMITMENT_EFF_END_DT"),
 							rsAgreementItem.getDate("COMMITMENT_EFF_END_DT"), "COMMITMENT_EFF_END_DT");
-					GenericUtils.validateAssertEqualsFromDB(
-							rsAgreementItem.getDate("REWARD_INSTLMNT_END_DT"),
+					GenericUtils.validateAssertEqualsFromDB(rsAgreementItem.getDate("REWARD_INSTLMNT_END_DT"),
 							rsAgreementItem.getDate("REWARD_INSTLMNT_END_DT"), "REWARD_INSTLMNT_END_DT");
-					GenericUtils.validateAssertEqualsFromDB(
-							rsAgreementItem.getDate("REWARD_INSTLMNT_START_DT"),
+					GenericUtils.validateAssertEqualsFromDB(rsAgreementItem.getDate("REWARD_INSTLMNT_START_DT"),
 							rsAgreementItem.getDate("REWARD_INSTLMNT_START_DT"), "REWARD_INSTLMNT_START_DT");
 					break;
 				// and incentive_amt
@@ -6069,7 +6075,6 @@ public class ValidationUtils {
 		Statement statement = null;
 		statement = DBUtils.Conn.createStatement();
 		ResultSet rsAgreementItem = null;
-
 
 		int agreementItemNo = 0;
 
@@ -6110,7 +6115,7 @@ public class ValidationUtils {
 
 			String agreementItem_installmentEndDateTime = JSONUtils.checkValue(jsonString,
 					agrmtItem.agreementItem_installmentEndDateTime);
-			
+
 			String agreementItem_installmentLeftNumValue = String.valueOf(JSONUtils
 					.getJSONKeyValueUsingJsonPath(jsonString, agrmtItem.agreementItem_installmentLeftNumValue));
 
@@ -6208,10 +6213,9 @@ public class ValidationUtils {
 			String agreementItem_productOfferingSourceSystemId = String.valueOf(JSONUtils
 					.getJSONKeyValueUsingJsonPath(jsonString, agrmtItem.agreementItem_productOfferingSourceSystemId));
 
-			String relatedParty_Subid = String.valueOf(JSONUtils
-					.getJSONKeyValueUsingJsonPath(jsonString, agrmtItem.relatedParty_Subid));
+			String relatedParty_Subid = String
+					.valueOf(JSONUtils.getJSONKeyValueUsingJsonPath(jsonString, agrmtItem.relatedParty_Subid));
 
-			
 			if (agreementItem_itemType.equals("17")) {
 				agreementItem_termOrConditionMinRatePlanValue = "null";
 				agreementItem_termOrConditionMinFeatureValue = "null";
@@ -6222,34 +6226,31 @@ public class ValidationUtils {
 			}
 
 			String tax = null;
-			rsAgreementItem = statement.executeQuery("SELECT item.REWARD_PROGRAM_TYP_ID,item.COMMITMENT_EFF_END_DT,item.COMMITMENT_EFF_START_DT,item.ORIG_COMMITMENT_LENGTH_NUM,item.REWARD_INSTLMNT_START_DT, item.REWARD_INSTLMNT_END_DT, item.REWARD_INSTLMNT_QTY, \r\n" + 
-					"agmtLyf.CUST_AGRMT_STAT_LIFECYCL_ID, agmtLyf.EFF_START_TS, agmtLyf.EFF_STOP_TS, \r\n" + 
-					"rewTxn.CURRENCY_BAL_AMT, rewTxn.REWARD_TXN_RSN_ID, \r\n" + 
-					"rewAcc.STATUS_LIFECYCLE_ID, rewAcc.CURRENCY_BAL_AMT as REWARD_ACC_CURRENCY_BAL_AMT,\r\n" + 
-					"rsnTyp.TYP_CD\r\n" + 
-					"FROM  CUSTOMER_SERVICE_AGREEMENT agrmt \r\n" + 
-					"inner join CUST_SRVC_AGRMT_ITEM item \r\n" + 
-					"on agrmt.CUSTOMER_SVC_AGREEMENT_ID = item.customer_svc_agreement_id \r\n" + 
-					"and agrmt.SUBSCRIPTION_ID ='"+relatedParty_Subid+"' \r\n" + 
-					"and agrmt.current_ind='Y' \r\n" + 
-					"and item.REWARD_PROGRAM_TYP_ID='17'\r\n" + 
-					"inner join REWARD_ACCOUNT rewAcc \r\n" + 
-					"on agrmt.SUBSCRIPTION_ID = rewAcc.BUSINESS_OBJECT_ID \r\n" + 
-					"inner join REWARD_TXN rewTxn \r\n" + 
-					"on rewAcc.REWARD_ACCOUNT_ID = rewTxn.REWARD_ACCOUNT_ID\r\n" + 
-					"and rewTxn.REWARD_TXN_RSN_ID !='1' and rewAcc.STATUS_LIFECYCLE_ID='3'\r\n" + 
-					"inner join CUST_AGRMT_LIFECYCL agmtLyf\r\n" + 
-					"on agmtLyf.CUSTOMER_SVC_AGREEMENT_ID=item.CUSTOMER_SVC_AGREEMENT_ID\r\n" + 
-					"inner join REWARD_TXN_RSN rewTxnRsn\r\n" + 
-					"on rewTxn.REWARD_TXN_RSN_ID = rewTxnRsn.REWARD_TXN_RSN_ID\r\n" + 
-					"inner join REWARD_TXN_TYP rewTxnTyp\r\n" + 
-					"on rewTxnTyp.REWARD_TXN_TYP_ID=rewTxnRsn.REWARD_TXN_TYP_ID\r\n" +
-					"and rewTxn.REWARD_TXN_RSN_ID ='220'\r\n" +
-					"inner join REWARD_RSN_TYP rsnTyp\r\n" + 
-					"on rewTxnRsn.REWARD_RSN_TYP_ID=rsnTyp.REWARD_RSN_TYP_ID\r\n");
+			rsAgreementItem = statement.executeQuery(
+					"SELECT item.REWARD_PROGRAM_TYP_ID,item.COMMITMENT_EFF_END_DT,item.COMMITMENT_EFF_START_DT,item.ORIG_COMMITMENT_LENGTH_NUM,item.REWARD_INSTLMNT_START_DT, item.REWARD_INSTLMNT_END_DT, item.REWARD_INSTLMNT_QTY, \r\n"
+							+ "agmtLyf.CUST_AGRMT_STAT_LIFECYCL_ID, agmtLyf.EFF_START_TS, agmtLyf.EFF_STOP_TS, \r\n"
+							+ "rewTxn.CURRENCY_BAL_AMT, rewTxn.REWARD_TXN_RSN_ID, \r\n"
+							+ "rewAcc.STATUS_LIFECYCLE_ID, rewAcc.CURRENCY_BAL_AMT as REWARD_ACC_CURRENCY_BAL_AMT,\r\n"
+							+ "rsnTyp.TYP_CD\r\n" + "FROM  CUSTOMER_SERVICE_AGREEMENT agrmt \r\n"
+							+ "inner join CUST_SRVC_AGRMT_ITEM item \r\n"
+							+ "on agrmt.CUSTOMER_SVC_AGREEMENT_ID = item.customer_svc_agreement_id \r\n"
+							+ "and agrmt.SUBSCRIPTION_ID ='" + relatedParty_Subid + "' \r\n"
+							+ "and agrmt.current_ind='Y' \r\n" + "and item.REWARD_PROGRAM_TYP_ID='17'\r\n"
+							+ "inner join REWARD_ACCOUNT rewAcc \r\n"
+							+ "on agrmt.SUBSCRIPTION_ID = rewAcc.BUSINESS_OBJECT_ID \r\n"
+							+ "inner join REWARD_TXN rewTxn \r\n"
+							+ "on rewAcc.REWARD_ACCOUNT_ID = rewTxn.REWARD_ACCOUNT_ID\r\n"
+							+ "and rewTxn.REWARD_TXN_RSN_ID !='1' and rewAcc.STATUS_LIFECYCLE_ID='3'\r\n"
+							+ "inner join CUST_AGRMT_LIFECYCL agmtLyf\r\n"
+							+ "on agmtLyf.CUSTOMER_SVC_AGREEMENT_ID=item.CUSTOMER_SVC_AGREEMENT_ID\r\n"
+							+ "inner join REWARD_TXN_RSN rewTxnRsn\r\n"
+							+ "on rewTxn.REWARD_TXN_RSN_ID = rewTxnRsn.REWARD_TXN_RSN_ID\r\n"
+							+ "inner join REWARD_TXN_TYP rewTxnTyp\r\n"
+							+ "on rewTxnTyp.REWARD_TXN_TYP_ID=rewTxnRsn.REWARD_TXN_TYP_ID\r\n"
+							+ "and rewTxn.REWARD_TXN_RSN_ID ='220'\r\n" + "inner join REWARD_RSN_TYP rsnTyp\r\n"
+							+ "on rewTxnRsn.REWARD_RSN_TYP_ID=rsnTyp.REWARD_RSN_TYP_ID\r\n");
 
 			while (rsAgreementItem.next()) {
-
 
 				Reporting.logReporter(Status.INFO, "DB Validation for RETURN_AGREEMENT_ITEM");
 
@@ -6262,11 +6263,12 @@ public class ValidationUtils {
 						agreementItem_itemDurationStartDateTime, "COMMITMENT_EFF_END_DT");
 
 				GenericUtils.validateAssertEqualsFromDB(
-						String.valueOf(rsAgreementItem.getString("ORIG_COMMITMENT_LENGTH_NUM")),
-						"0", "ORIG_COMMITMENT_LENGTH_NUM");
+						String.valueOf(rsAgreementItem.getString("ORIG_COMMITMENT_LENGTH_NUM")), "0",
+						"ORIG_COMMITMENT_LENGTH_NUM");
 
-				GenericUtils.validateAssertEqualsFromDB(String.valueOf(rsAgreementItem.getString("REWARD_PROGRAM_TYP_ID")),
-						agreementItem_itemType, "REWARD_PROGRAM_TYP_ID");
+				GenericUtils.validateAssertEqualsFromDB(
+						String.valueOf(rsAgreementItem.getString("REWARD_PROGRAM_TYP_ID")), agreementItem_itemType,
+						"REWARD_PROGRAM_TYP_ID");
 
 				if (!agreementItem_installmentStartDateTime.equals("NA")) {
 					GenericUtils.validateAssertEqualsFromDB(
@@ -6286,9 +6288,10 @@ public class ValidationUtils {
 							agreementItem_installmentAmount, "REWARD_INSTLMNT_QTY");
 				}
 
-				GenericUtils.validateAssertEquals(String.valueOf(rsAgreementItem.getString("REWARD_ACC_CURRENCY_BAL_AMT")),
-						"0", "REWARD_ACCOUNT_CURRENCY_BAL_AMT");
-				
+				GenericUtils.validateAssertEquals(
+						String.valueOf(rsAgreementItem.getString("REWARD_ACC_CURRENCY_BAL_AMT")), "0",
+						"REWARD_ACCOUNT_CURRENCY_BAL_AMT");
+
 				GenericUtils.validateAssertEquals(String.valueOf(rsAgreementItem.getString("TYP_CD")),
 						"RETURN_REVERSAL", "REASON_TYPE");
 
@@ -6299,58 +6302,100 @@ public class ValidationUtils {
 	}
 
 	public static void beforeMigrationDBcheck(String subID) throws SQLException {
-		
+
 		Statement statement = null;
 		statement = DBUtils.Conn.createStatement();
 		ResultSet rsAgreementItem = null;
 		Boolean flag = true;
 		String startDate = JSONUtils.getGMTStartDate().split("T")[0];
-		
-		rsAgreementItem = statement.executeQuery("\r\n" + 
-				"SELECT agrmt.REDEEMED_OFFER_TYPE_ID, agrmt.AGREEMENT_START_DT, agrmt.AGREEMENT_END_DT, agrmt.COMMITMENT_LENGTH_NUM as AGRMT_COMMITMENT_LENGTH_NUM, agrmt.CURRENT_IND, \r\n" + 
-				"item.REWARD_PROGRAM_TYP_ID, item.COMMITMENT_EFF_START_DT, item.COMMITMENT_EFF_END_DT, item.ORIG_COMMITMENT_LENGTH_NUM AS ITEM_ORIG_COMMITMENT_LENGTH_NUM \r\n" + 
-				"FROM CUSTOMER_SERVICE_AGREEMENT agrmt \r\n" + 
-				"inner join CUST_SRVC_AGRMT_ITEM item \r\n" + 
-				"on agrmt.CUSTOMER_SVC_AGREEMENT_ID = item.customer_svc_agreement_id \r\n" + 
-				"and agrmt.SUBSCRIPTION_ID ='"+subID+"' \r\n" + 
-				"and agrmt.REDEEMED_OFFER_TYPE_ID='1' \r\n" + 
-				"and agrmt.CURRENT_IND='N'");
-		
+
+		rsAgreementItem = statement.executeQuery("\r\n"
+				+ "SELECT agrmt.REDEEMED_OFFER_TYPE_ID, agrmt.AGREEMENT_START_DT, agrmt.AGREEMENT_END_DT, agrmt.COMMITMENT_LENGTH_NUM as AGRMT_COMMITMENT_LENGTH_NUM, agrmt.CURRENT_IND, \r\n"
+				+ "item.REWARD_PROGRAM_TYP_ID, item.COMMITMENT_EFF_START_DT, item.COMMITMENT_EFF_END_DT, item.ORIG_COMMITMENT_LENGTH_NUM AS ITEM_ORIG_COMMITMENT_LENGTH_NUM \r\n"
+				+ "FROM CUSTOMER_SERVICE_AGREEMENT agrmt \r\n" + "inner join CUST_SRVC_AGRMT_ITEM item \r\n"
+				+ "on agrmt.CUSTOMER_SVC_AGREEMENT_ID = item.customer_svc_agreement_id \r\n"
+				+ "and agrmt.SUBSCRIPTION_ID ='" + subID + "' \r\n" + "and agrmt.REDEEMED_OFFER_TYPE_ID='1' \r\n"
+				+ "and agrmt.CURRENT_IND='N'");
+
 		while (rsAgreementItem.next()) {
 
-			Reporting.logReporter(Status.INFO, "DB Validation for Voided record : "+String.valueOf(rsAgreementItem.getString("REWARD_PROGRAM_TYP_ID")));
-			
-			if(flag=true);{
-			GenericUtils.validateAssertEquals(String.valueOf(rsAgreementItem.getString("CURRENT_IND")),
-					"N", "CURRENT_IND");
-			GenericUtils.validateAssertEquals(String.valueOf(rsAgreementItem.getString("REDEEMED_OFFER_TYPE_ID")),
-					"1", "REDEEMED_OFFER_TYPE_ID");
-			GenericUtils.validateAssertEquals(String.valueOf(rsAgreementItem.getDate("AGREEMENT_START_DT")),
-					startDate, "AGREEMENT_START_DT");
-			GenericUtils.validateAssertEquals(String.valueOf(rsAgreementItem.getDate("AGREEMENT_END_DT")),
-					startDate, "AGREEMENT_END_DT");
-			GenericUtils.validateAssertEquals(String.valueOf(rsAgreementItem.getString("AGRMT_COMMITMENT_LENGTH_NUM")),
-					"0", "AGRMT_COMMITMENT_LENGTH_NUM");
-			GenericUtils.validateAssertEquals(String.valueOf(rsAgreementItem.getString("CURRENT_IND")),
-					"N", "CURRENT_IND");
+			Reporting.logReporter(Status.INFO, "DB Validation for Voided record : "
+					+ String.valueOf(rsAgreementItem.getString("REWARD_PROGRAM_TYP_ID")));
+
+			if (flag = true)
+				;
+			{
+				GenericUtils.validateAssertEquals(String.valueOf(rsAgreementItem.getString("CURRENT_IND")), "N",
+						"CURRENT_IND");
+				GenericUtils.validateAssertEquals(String.valueOf(rsAgreementItem.getString("REDEEMED_OFFER_TYPE_ID")),
+						"1", "REDEEMED_OFFER_TYPE_ID");
+				GenericUtils.validateAssertEquals(String.valueOf(rsAgreementItem.getDate("AGREEMENT_START_DT")),
+						startDate, "AGREEMENT_START_DT");
+				GenericUtils.validateAssertEquals(String.valueOf(rsAgreementItem.getDate("AGREEMENT_END_DT")),
+						startDate, "AGREEMENT_END_DT");
+				GenericUtils.validateAssertEquals(
+						String.valueOf(rsAgreementItem.getString("AGRMT_COMMITMENT_LENGTH_NUM")), "0",
+						"AGRMT_COMMITMENT_LENGTH_NUM");
+				GenericUtils.validateAssertEquals(String.valueOf(rsAgreementItem.getString("CURRENT_IND")), "N",
+						"CURRENT_IND");
 			}
 
 			GenericUtils.validateAssertEquals(String.valueOf(rsAgreementItem.getDate("COMMITMENT_EFF_START_DT")),
 					startDate, "COMMITMENT_EFF_START_DT");
 			GenericUtils.validateAssertEquals(String.valueOf(rsAgreementItem.getDate("COMMITMENT_EFF_END_DT")),
 					startDate, "COMMITMENT_EFF_END_DT");
-			GenericUtils.validateAssertEquals(String.valueOf(rsAgreementItem.getString("ITEM_ORIG_COMMITMENT_LENGTH_NUM")),
-					"0", "ITEM_ORIG_COMMITMENT_LENGTH_NUM");
-			flag=false;
+			GenericUtils.validateAssertEquals(
+					String.valueOf(rsAgreementItem.getString("ITEM_ORIG_COMMITMENT_LENGTH_NUM")), "0",
+					"ITEM_ORIG_COMMITMENT_LENGTH_NUM");
+			flag = false;
 		}
-		
+
 	}
 
 	public static void migrationDBcheck(String jsonString, int i) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
-	
+	public static void subMscListCheck(String jsonString, int itemNo) throws SQLException {
+
+		Statement statement = null;
+		statement = DBUtils.Conn.createStatement();
+		ResultSet rsAgreementItem = null;
+
+		for (int i = 0; i < itemNo; i++) {
+
+			SubscriptionMSCList subMscList = new SubscriptionMSCList(i);
+
+			String href = String.valueOf(JSONUtils.getJSONKeyValueUsingJsonPath(jsonString, subMscList.href));
+
+			String date = JSONUtils.checkValue(jsonString, subMscList.date);
+
+			String slaId = String.valueOf(JSONUtils.getJSONKeyValueUsingJsonPath(jsonString, subMscList.slaId));
+
+			String relatedPartySubID = String
+					.valueOf(JSONUtils.getJSONKeyValueUsingJsonPath(jsonString, subMscList.relatedPartySubID));
+
+			String relatedPartyCharMissedMscAmtValue = JSONUtils.checkValue(jsonString,
+					subMscList.relatedPartyCharMissedMscAmtValue);
+
+			String relatedPartyCharReturnCdValue = String.valueOf(
+					JSONUtils.getJSONKeyValueUsingJsonPath(jsonString, subMscList.relatedPartyCharReturnCdValue));
+
+			GenericUtils.validateAssertNotNull(href, "HREF");
+
+			GenericUtils.validateAssertEquals("MSCValidation", slaId, "SLAID");
+
+			GenericUtils.validateAssertEqualsFromDB(JSONUtils.getGMTStartDate().split("T")[0], date, "DATE");
+
+			if (!relatedPartyCharMissedMscAmtValue.equals("NA"))
+				GenericUtils.validateAssertEquals(relatedPartyCharMissedMscAmtValue, relatedPartyCharMissedMscAmtValue,
+						"MISSED_MSC_AMT");
+
+			if (!relatedPartyCharReturnCdValue.equals("NA"))
+				GenericUtils.validateAssertEquals("1", relatedPartyCharReturnCdValue, "RETURN_CODE");
+
+		}
+	}
 
 }
